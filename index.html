@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fire Store – Watch 2026 FIFA World Cup LIVE in 4K</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- ── Global Stylesheet ── -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- Flame particle canvas (fixed background) -->
+  <canvas id="flame-canvas"></canvas>
+
+  <!-- ── SECTION 1 · Navbar ─────────────────────────── -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="nav-logo">
+      <span class="flame-icon">🔥</span>
+      Fire<span>Store</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#plans">Plans</a></li>
+      <li><a href="#games">Games</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <!-- <button class="btn-trial" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">🎁 Free Trial</button> -->
+      <button class="btn-subscribe"
+        onclick="document.getElementById('plans').scrollIntoView({behavior:'smooth'})">Subscribe Now</button>
+    </div>
+    <!-- Hamburger Button -->
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </nav>
+
+  <!-- ── SECTION 2 · Hero ───────────────────────────── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        2026 FIFA World Cup — USA · Canada · Mexico
+      </div>
+      <h1>
+        <span class="line-fire">Watch 2026 World Cup</span>
+        <span class="line-4k">LIVE in 4K + Premium</span>
+        Sports Streaming
+      </h1>
+      <p class="hero-sub">
+        <strong>100,000+ Channels</strong> &nbsp;•&nbsp; No Buffering &nbsp;•&nbsp; Instant Access on Any Device
+      </p>
+      <div class="countdown" id="countdown">
+        <div class="cd-unit"><span class="cd-num" id="cd-days">000</span><span class="cd-label">Days</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit"><span class="cd-num" id="cd-hours">00</span><span class="cd-label">Hours</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit"><span class="cd-num" id="cd-mins">00</span><span class="cd-label">Mins</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit"><span class="cd-num" id="cd-secs">00</span><span class="cd-label">Secs</span></div>
+      </div>
+      <div class="hero-ctas">
+        <a href="#plans" class="cta-primary">⚡ Choose Your Plan</a>
+        <a href="#plans" class="cta-secondary">▶ View Plans</a>
+      </div>
+      <div class="urgency-bar">
+        <span class="dot-red"></span>
+        Limited 4K streams during World Cup — Only <strong id="seats">47</strong> spots remaining
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 3 · Games Slider ──────────────────── -->
+  <section class="games-section" id="games">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">⚽ Live &amp; Upcoming</span>
+        <h2>World Cup 2026 Match Schedule</h2>
+        <p>Stream every single game in stunning 4K — group stages to the final</p>
+      </div>
+    </div>
+    <div class="games-slider-wrapper">
+      <div class="games-slider" id="gamesSlider"></div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 4 · Features ──────────────────────── -->
+  <section class="features-section" id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Why Fire Store</span>
+        <h2>Built For The World's Biggest Moments</h2>
+        <p>Every feature engineered so you never miss a second</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon">⚽</div>
+          <h3>Live Sports — 100K+ Channels</h3>
+          <p>Every match, every tournament. Premier League, La Liga, NBA, NFL, UFC, MMA and the full 2026 FIFA World
+            Cup.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon">🎥</div>
+          <h3>4K / FHD Streaming</h3>
+          <p>Crystal-clear ultra-high definition with Dolby Audio. Experience the World Cup as if you were in the
+            stadium.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon">🧊</div>
+          <h3>Anti-Freeze Technology</h3>
+          <p>Our proprietary buffering shield eliminates freezing during peak moments — World Cup finals guaranteed.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon">📱</div>
+          <h3>Any Device, Everywhere</h3>
+          <p>Firestick, Smart TV, Android, iOS, PC, Mac, Chromecast, Roku. One subscription, all your screens.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon">🎧</div>
+          <h3>24/7 Priority Support</h3>
+          <p>Real human support on WhatsApp during every big match. We're always on — especially when it matters.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 5 · Plans ─────────────────────────── -->
+  <section class="plans-section" id="plans">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">🔥 Choose Your Fire Plan</span>
+        <h2>Watch The World Cup + Sports All Year</h2>
+        <p>No hidden fees. Cancel anytime. Instant activation via WhatsApp or Email.</p>
+      </div>
+      <!-- Device Selector -->
+      <div class="device-selector-container reveal">
+        <p class="device-selector-label">How many devices do you need?</p>
+        <div class="device-selector-buttons" id="deviceSelector">
+          <button class="device-btn active" data-devices="1">1 Device</button>
+          <button class="device-btn" data-devices="2">2 Devices</button>
+          <button class="device-btn" data-devices="3">3 Devices</button>
+          <button class="device-btn" data-devices="4">4 Devices</button>
+          <button class="device-btn" data-devices="5">5 Devices</button>
+        </div>
+      </div>
+      <div class="plans-grid">
+        <div class="plan-card reveal reveal-delay-1">
+          <div class="plan-duration">1 Month</div>
+          <div class="plan-price" id="price-1m"><span>$</span>19</div>
+          <div class="plan-period" id="period-1m">per month, billed monthly</div>
+          <div class="plan-savings">Try the fire experience</div>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li>Full access to 100,000+ Live TV Channels</li>
+            <li>2026 World Cup LIVE in 4K &amp; HD</li>
+            <li>Anti-Freeze Technology</li>
+            <li>Unlimited devices (Firestick, Smart TV, Mobile)</li>
+            <li>Instant activation via WhatsApp / Email</li>
+            <li>24/7 Priority Support</li>
+            <li>Cancel anytime, no questions asked</li>
+          </ul>
+          <button class="btn-plan btn-plan-default" id="btn-1m">Get Started →</button>
+        </div>
+        <div class="plan-card popular reveal reveal-delay-2">
+          <div class="plan-popular-badge">⭐ Most Popular — Best Value</div>
+          <div class="plan-duration" style="margin-top:20px">12 Months</div>
+          <div class="plan-price" id="price-12m"><span>$</span>149</div>
+          <div class="plan-period" id="period-12m">$12.40/month — billed once</div>
+          <div class="plan-savings">🔥 Save 50% — Full World Cup Season</div>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li>Everything in 1-Month plan</li>
+            <li>2026 World Cup LIVE in 4K &amp; HD — full tournament</li>
+            <li>Anti-Freeze Technology — World Cup guarantee</li>
+            <li>Unlimited devices, unlimited profiles</li>
+            <li>Instant activation via WhatsApp / Email</li>
+            <li>VIP Priority Support — dedicated agent</li>
+            <li>Cancel anytime, money-back guarantee</li>
+          </ul>
+          <div class="plan-extra">⭐ Dedicated Priority Support included (No extra charges)</div>
+          <button class="btn-plan btn-plan-popular" id="btn-12m">🔥 Get VIP Access →</button>
+        </div>
+        <div class="plan-card reveal reveal-delay-3">
+          <div class="plan-duration">6 Months</div>
+          <div class="plan-price" id="price-6m"><span>$</span>89</div>
+          <div class="plan-period" id="period-6m">$14.80/month — billed once</div>
+          <div class="plan-savings">Save 25% vs monthly</div>
+          <div class="plan-divider"></div>
+          <ul class="plan-features">
+            <li>Full access to 100,000+ Live TV Channels</li>
+            <li>2026 World Cup LIVE in 4K &amp; HD</li>
+            <li>Anti-Freeze Technology</li>
+            <li>Unlimited devices (Firestick, Smart TV, Mobile)</li>
+            <li>Instant activation via WhatsApp / Email</li>
+            <li>24/7 Priority Support</li>
+            <li>Cancel anytime, no questions asked</li>
+          </ul>
+          <button class="btn-plan btn-plan-default" id="btn-6m">Get 6 Months →</button>
+        </div>
+      </div>
+      <div class="comparison-table reveal" style="margin-top:60px">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>1 Month</th>
+              <th>6 Months</th>
+              <th class="highlight">12 Months ⭐</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>100,000+ Channels</td>
+              <td><span class="check-yes">✓</span></td>
+              <td><span class="check-yes">✓</span></td>
+              <td><span class="check-yes">✓</span></td>
+            </tr>
+            <tr>
+              <td>World Cup 2026 in 4K</td>
+              <td><span class="check-yes">✓</span></td>
+              <td><span class="check-yes">✓</span></td>
+              <td><span class="check-yes">✓</span></td>
+            </tr>
+            <tr>
+              <td>Priority Support</td>
+              <td>24/7</td>
+              <td>24/7</td>
+              <td>Dedicated VIP</td>
+            </tr>
+            <tr>
+              <td>Anti-Freeze Technology</td>
+              <td><span class="check-yes">✓</span></td>
+              <td><span class="check-yes">✓</span></td>
+              <td><span class="check-yes">✓</span></td>
+            </tr>
+            <tr>
+              <td>Money-back Guarantee</td>
+              <td><span class="check-no">—</span></td>
+              <td><span class="check-no">—</span></td>
+              <td><span class="check-yes">✓</span></td>
+            </tr>
+            <tr>
+              <td>Savings vs Monthly</td>
+              <td>—</td>
+              <td>25% off</td>
+              <td>50% off</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 6 · How It Works ──────────────────── -->
+  <section class="how-section" id="how">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Simple 3 Steps</span>
+        <h2>You're Live In Under 60 Seconds</h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step reveal reveal-delay-1">
+          <span class="step-num">1</span>
+          <div class="step-icon">🎯</div>
+          <h3>Pick Your Plan</h3>
+          <p>Choose the subscription that fits you — 1, 6, or 12 months. All plans include the full World Cup 2026 in
+            4K.</p>
+        </div>
+        <div class="step reveal reveal-delay-2">
+          <span class="step-num">2</span>
+          <div class="step-icon">💳</div>
+          <h3>Secure Checkout</h3>
+          <p>Pay securely via card, PayPal, crypto, or bank transfer. Your data is always encrypted and protected.</p>
+        </div>
+        <div class="step reveal reveal-delay-3">
+          <span class="step-num">3</span>
+          <div class="step-icon">🔥</div>
+          <h3>Instant Access</h3>
+          <p>Receive your login credentials via WhatsApp or Email within minutes. Install on any device and start
+            watching.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 7 · Testimonials ──────────────────── -->
+  <section class="testimonials-section" id="reviews">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Real Users</span>
+        <h2>What Our Fire Users Are Saying</h2>
+        <p>Real people. Real streams. Zero buffering during the biggest matches.</p>
+      </div>
+    </div>
+    <div class="games-slider-wrapper">
+      <div class="testimonials-slider" id="testiSlider"></div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 8 · FAQ ───────────────────────────── -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Objection Removed</span>
+        <h2>Every Doubt — Answered</h2>
+        <p>We answer the questions that actually stop people from subscribing</p>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+      <div class="faq-cta reveal">
+        <p>Still have a question we didn't answer?</p>
+        <a href="https://wa.me/1234567890" class="btn-whatsapp" target="_blank" rel="noopener">
+          💬 Message Us on WhatsApp — Instant Reply
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 9 · Footer ────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">🔥 Fire<span>Store</span></a>
+          <p>The premium streaming destination for sports fans worldwide. Watch the 2026 FIFA World Cup live in 4K — no
+            buffering, no compromise.</p>
+          <div class="footer-social">
+            <a href="#" class="social-btn">𝕏</a>
+            <a href="#" class="social-btn">f</a>
+            <a href="#" class="social-btn">in</a>
+            <a href="#" class="social-btn">▶</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#plans">Pricing Plans</a></li>
+            <li><a href="#games">Live Games</a></li>
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="https://wa.me/1234567890" class="footer-wa-btn" target="_blank" rel="noopener">💬 WhatsApp
+            Support</a>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Device Setup Guides</a></li>
+            <li><a href="#">Billing &amp; Payments</a></li>
+            <li><a href="#">Report an Issue</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Refund Policy</a></li>
+            <li><a href="#">DMCA Notice</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Discover</h4>
+          <ul>
+            <li><a href="#">World Cup 2026</a></li>
+            <li><a href="#">Premier League</a></li>
+            <li><a href="#">Sports Channels</a></li>
+            <li><a href="#">Firestick Setup</a></li>
+            <li><a href="#">App Download</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Fire Store — fire-store.tv · All rights reserved</p>
+        <div class="payment-icons">
+          <span class="payment-badge">VISA</span>
+          <span class="payment-badge">Mastercard</span>
+          <span class="payment-badge">PayPal</span>
+          <span class="payment-badge">Crypto</span>
+          <span class="payment-badge">Bank Transfer</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Main JavaScript ── -->
+  <script type="module" src="/main.js"></script>
+
+</body>
+
+</html>
