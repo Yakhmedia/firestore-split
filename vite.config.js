@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: '/firestore-split/',
+  base: process.env.GITHUB_ACTIONS ? '/firestore-split/' : '/',
   root: '.',
   build: {
     outDir: 'dist',
