@@ -8,9 +8,9 @@
    ============================================================ */
 const pricingPlans = {
   1: {
-    1: { price: 29, monthly: 29, checkoutLink: 'https://wa.me/12029927413?text=Hi%2C+I%27d+like+to+order+the+1-Month+plan+for+1+device+%28%2429%29.' },
-    6: { price: 49, monthly: 8.1, checkoutLink: 'https://wa.me/12029927413?text=Hi%2C+I%27d+like+to+order+the+6-Month+plan+for+1+device+%28%2449%29.' },
-    12: { price: 79, monthly: 6.58, checkoutLink: 'https://wa.me/12029927413?text=Hi%2C+I%27d+like+to+order+the+12-Month+plan+for+1+device+%28%2479%29.' },
+    1: { price: 29, monthly: 29, checkoutLink: 'https://firepay.shop/step/1-month-premium-plan/' },
+    6: { price: 49, monthly: 8.1, checkoutLink: 'https://firepay.shop/step/6-month-premium-plan/' },
+    12: { price: 79, monthly: 6.58, checkoutLink: 'https://firepay.shop/step/12-month-premium-plan/' },
   },
   2: {
     1: { price: 59, monthly: 59, checkoutLink: 'https://wa.me/12029927413?text=Hi%2C+I%27d+like+to+order+the+1-Month+plan+for+2+devices+%28%2459%29.' },

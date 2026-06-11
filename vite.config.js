@@ -9,7 +9,14 @@ export default defineConfig({
     assetsDir: 'assets',
     minify: 'esbuild',
     rollupOptions: {
-      input: 'index.html',
+      input: {
+        main: 'index.html',
+        terms: 'terms.html',
+        privacy: 'privacy.html',
+        refund: 'refund.html',
+        cookies: 'cookies.html',
+        dmca: 'dmca.html',
+      },
     },
   },
   server: {

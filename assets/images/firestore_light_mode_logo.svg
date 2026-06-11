@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1796" height="876" viewBox="0 0 1796 876" role="img" aria-labelledby="title desc">
+  <title id="title">FireStore light mode logo</title>
+  <desc id="desc">Refreshed FireStore logo with TV flame icon, orange to magenta FIRE wordmark, and dark STORE wordmark on white background.</desc>
+  <defs>
+    <linearGradient id="fireWord" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff7a00"/>
+      <stop offset="46%" stop-color="#ff3b2f"/>
+      <stop offset="100%" stop-color="#e9008a"/>
+    </linearGradient>
+    <linearGradient id="flameGrad" x1="0.15" y1="0.85" x2="0.85" y2="0.08">
+      <stop offset="0%" stop-color="#ffd000"/>
+      <stop offset="32%" stop-color="#ff7a00"/>
+      <stop offset="66%" stop-color="#ff3658"/>
+      <stop offset="100%" stop-color="#e900b8"/>
+    </linearGradient>
+    <linearGradient id="flameInner" x1="0.18" y1="0.88" x2="0.78" y2="0.12">
+      <stop offset="0%" stop-color="#fff14a"/>
+      <stop offset="52%" stop-color="#ff9a00"/>
+      <stop offset="100%" stop-color="#ff405f"/>
+    </linearGradient>
+    <linearGradient id="antennaA" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff8a00"/>
+      <stop offset="100%" stop-color="#ffbf24"/>
+    </linearGradient>
+    <linearGradient id="antennaB" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff4663"/>
+      <stop offset="100%" stop-color="#e9008a"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#101114" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <rect width="1796" height="876" fill="#ffffff"/>
+
+  <g id="logo" transform="translate(206 212)">
+    <!-- TV icon -->
+    <g id="tv-icon" filter="url(#softShadow)">
+      <line x1="170" y1="96" x2="86" y2="0" stroke="#202125" stroke-width="13" stroke-linecap="round"/>
+      <line x1="218" y1="96" x2="304" y2="0" stroke="#202125" stroke-width="13" stroke-linecap="round"/>
+      <circle cx="84" cy="0" r="14" fill="url(#antennaA)"/>
+      <circle cx="306" cy="0" r="14" fill="url(#antennaB)"/>
+
+      <rect x="0" y="98" width="410" height="300" rx="45" fill="#202125"/>
+      <rect x="31" y="127" width="348" height="241" rx="30" fill="#ffffff"/>
+      <rect x="43" y="139" width="324" height="217" rx="23" fill="#ffffff" stroke="#f4f4f4" stroke-width="2"/>
+
+      <path d="M73 430 L96 430 L83 474 L43 474 Z" fill="#202125"/>
+      <path d="M314 430 L337 430 L368 474 L329 474 Z" fill="#202125"/>
+
+      <!-- Flame: optimized scalable vector curves -->
+      <g id="flame" transform="translate(80 143) scale(1.05)">
+        <path fill="url(#flameGrad)" d="M141 207
+          C93 202 62 170 57 129
+          C54 101 68 72 91 52
+          C86 77 96 92 113 98
+          C103 66 122 36 149 5
+          C163 31 158 60 142 86
+          C169 72 180 50 181 23
+          C214 64 201 109 169 136
+          C194 132 209 113 211 91
+          C245 124 237 177 200 199
+          C181 211 160 214 141 207 Z"/>
+        <path fill="url(#flameInner)" opacity="0.96" d="M126 205
+          C91 192 78 166 83 139
+          C86 118 99 100 116 86
+          C111 107 118 124 134 132
+          C126 99 146 74 164 47
+          C173 82 158 112 139 138
+          C160 129 174 113 182 91
+          C197 122 184 156 157 177
+          C145 187 137 196 126 205 Z"/>
+        <path fill="#ffffff" opacity="0.90" d="M101 73 C113 79 116 93 108 105 C105 92 96 86 88 82 C93 80 98 77 101 73 Z"/>
+      </g>
+    </g>
+
+    <!-- Wordmark -->
+    <g id="wordmark" transform="translate(500 159)">
+      <text x="0" y="138"
+            font-family="Montserrat, Poppins, Arial, sans-serif"
+            font-size="160"
+            font-weight="800"
+            letter-spacing="2"
+            fill="url(#fireWord)">FIRE</text>
+      <text x="518" y="138"
+            font-family="Orbitron, Montserrat, Arial, sans-serif"
+            font-size="142"
+            font-weight="300"
+            letter-spacing="4"
+            fill="none"
+            stroke="#22242a"
+            stroke-width="5"
+            paint-order="stroke fill">STORE</text>
+      <text x="518" y="138"
+            font-family="Orbitron, Montserrat, Arial, sans-serif"
+            font-size="142"
+            font-weight="300"
+            letter-spacing="4"
+            fill="#22242a">STORE</text>
+    </g>
+  </g>
+</svg>

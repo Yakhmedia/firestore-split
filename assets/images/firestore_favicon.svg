@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 45 45" role="img" aria-labelledby="title desc">
+  <title id="title">FireStore favicon</title>
+  <desc id="desc">Refined vector favicon with retro TV outline and gradient flame.</desc>
+  <defs>
+    <linearGradient id="flameGradient" x1="13.5" y1="30" x2="31.5" y2="17" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFB000"/>
+      <stop offset="42%" stop-color="#FF5A00"/>
+      <stop offset="72%" stop-color="#FF276E"/>
+      <stop offset="100%" stop-color="#E800FF"/>
+    </linearGradient>
+    <linearGradient id="innerFlame" x1="17" y1="31" x2="26" y2="18" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFD22E"/>
+      <stop offset="60%" stop-color="#FF7A00"/>
+      <stop offset="100%" stop-color="#FF2A63"/>
+    </linearGradient>
+    <linearGradient id="pinkFlame" x1="24" y1="33" x2="31" y2="22" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF7A1A"/>
+      <stop offset="45%" stop-color="#FF2E80"/>
+      <stop offset="100%" stop-color="#E600FF"/>
+    </linearGradient>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="0.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- TV silhouette -->
+  <g fill="none" stroke="#101010" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15.25 13.2 9.2 6.7" stroke-width="2.05"/>
+    <path d="M29.75 13.2 35.8 6.7" stroke-width="2.05"/>
+    <circle cx="8.55" cy="6" r="1.35" fill="#101010" stroke="none"/>
+    <circle cx="36.45" cy="6" r="1.35" fill="#101010" stroke="none"/>
+    <rect x="8.25" y="13.45" width="28.5" height="25.2" rx="5.15" stroke-width="2.25"/>
+    <rect x="11.05" y="16.05" width="22.9" height="19.1" rx="3.15" stroke-width="2.05"/>
+    <path d="M14.1 40.1h4.2l-.9 2.3h-4.35z" fill="#101010" stroke="none"/>
+    <path d="M26.7 40.1h4.2l1.05 2.3H27.6z" fill="#101010" stroke="none"/>
+  </g>
+
+  <!-- Flame mark -->
+  <g filter="url(#softGlow)">
+    <path fill="url(#flameGradient)" d="M22.6 36.15c-5.85 0-10.5-3.85-10.5-9.55 0-3.95 2.12-6.7 4.25-8.9-.45 2.65.52 4.25 1.75 5.55.1-4.45 3.2-6.8 5.05-9.35 1.55-2.1 1.58-4.35.9-6.05 5.45 4.05 6.75 8.55 4.7 13.2 1.2-.28 2.42-1.15 3.25-2.5.42 2.6-.08 4.95-1.45 6.8 1.45-.35 2.65-1.23 3.35-2.4.38 4.35-.85 7.5-3.02 9.68-2.02 2.05-4.82 3.52-8.28 3.52z"/>
+    <path fill="url(#pinkFlame)" opacity="0.96" d="M25.35 35.75c3.45-.75 5.72-3.25 5.72-6.82 0-1.9-.75-3.45-1.72-4.75-.05 2.35-1.45 3.5-3.05 4.45.75-2.95-.25-5.05-2-6.95-.2 3.1-2.35 4.75-3.02 7.38-.62 2.42.48 4.6 4.07 6.69z"/>
+    <path fill="url(#innerFlame)" d="M20.2 35.75c-3.55-1.2-5.45-3.88-5.45-7.02 0-2.62 1.35-4.52 3.2-6.22-.28 2.2.65 3.88 2.1 5.15-.18-4.25 2.42-6.38 4.45-9.22.55 3.65-.42 5.95-2.1 8.02-1.75 2.15-3.05 4.6-2.2 9.29z"/>
+    <path fill="#FFB000" opacity="0.92" d="M17.2 18.35c.78 1.25.85 2.4.2 3.72-.35-1.32-.98-2.1-2-2.62.62-.35 1.15-.72 1.8-1.1z"/>
+  </g>
+</svg>
