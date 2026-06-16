@@ -33,22 +33,22 @@ This document outlines the proposed changes to transition the **Fire Store** lan
 
 ## Progress Checklist
 
-- [ ] **Phase 1: Brand & Layout Restructuring**
-  - [ ] Update browser window title, meta descriptions, and header links in `index.html` to reflect movies, TV shows, and multi-sport live TV.
-  - [ ] Redesign the navbar to include an entertainment link (e.g., "Movies & Shows").
-  - [ ] Implement the new Hero section layout with combined sports and entertainment branding.
+- [x] **Phase 1: Brand & Layout Restructuring**
+  - [x] Update browser window title, meta descriptions, and header links in `index.html` to reflect movies, TV shows, and multi-sport live TV.
+  - [x] Redesign the navbar to include an entertainment link (e.g., "Movies & Shows").
+  - [x] Implement the new Hero section layout with combined sports and entertainment branding.
 
-- [ ] **Phase 2: The Entertainment & Sports Hub (Interactive Slider)**
-  - [ ] Create CSS/JS controls for category tabs (`Trending`, `Movies & TV`, `US Sports`, `World Cup`).
-  - [ ] Prepare asset folders for trending movies/TV show poster images and US sports icons.
-  - [ ] Update slider logic in `main.js` to render items based on the active tab selection.
+- [x] **Phase 2: The Entertainment & Sports Hub (Interactive Slider)**
+  - [x] Create CSS/JS controls for category tabs (`Trending`, `Movies & TV`, `US Sports`, `World Cup`).
+  - [x] Prepare asset folders for trending movies/TV show poster images and US sports icons.
+  - [x] Update slider logic in `main.js` to render items based on the active tab selection.
 
-- [ ] **Phase 3: US Channel Showcase & Value Props**
-  - [ ] Build the interactive channel/network logo strip.
-  - [ ] Rewrite features list to highlight 60 FPS sports, 4K movies, and anti-freeze guarantees for big Sunday games.
-  - [ ] Update the Device Selector labels to emphasize family streaming (multiple screens for kids' cartoons, parents' shows, and live sports).
+- [x] **Phase 3: US Channel Showcase & Value Props**
+  - [x] Build the interactive channel/network logo strip.
+  - [x] Rewrite features list to highlight 60 FPS sports, 4K movies, and anti-freeze guarantees for big Sunday games.
+  - [x] Update the Device Selector labels to emphasize family streaming (multiple screens for kids' cartoons, parents' shows, and live sports).
 
-- [ ] **Phase 4: Social Proof & Checkout Polish**
-  - [ ] Replace existing soccer-centric testimonials with localized US reviews referencing US television, movies, and football/basketball.
-  - [ ] Redesign the payment badging area near checkout buttons to highlight Apple Pay, Google Pay, and credit cards.
-  - [ ] Verify that all text styling, animations, and image placeholders align correctly across mobile and desktop viewports.
+- [x] **Phase 4: Social Proof & Checkout Polish**
+  - [x] Replace existing soccer-centric testimonials with localized US reviews referencing US television, movies, and football/basketball.
+  - [x] Redesign the payment badging area near checkout buttons to highlight PayPal, Credit Card, Crypto\s.
+  - [x] Verify that all text styling, animations, and image placeholders align correctly across mobile and desktop viewports.

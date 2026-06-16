@@ -440,6 +440,63 @@ section {
   animation: pulse-dot 1.5s ease-in-out infinite;
 }
 
+/* Ticker badge replaces static hero badge */
+.hero-badge-ticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 45, 0, 0.15);
+  border: 1px solid rgba(255, 45, 0, 0.4);
+  color: var(--fire-orange);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 30px;
+  margin-bottom: 24px;
+  animation: fadeInDown 0.6s ease both;
+  min-width: 280px;
+  justify-content: center;
+}
+
+.hero-badge-ticker .dot {
+  width: 8px;
+  height: 8px;
+  background: var(--live-green);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+/* Category pills below h1 */
+.hero-category-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 28px;
+  animation: fadeInUp 0.7s ease 0.25s both;
+}
+
+.hero-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.hero-pill:hover {
+  background: rgba(255, 107, 0, 0.2);
+  border-color: var(--fire-orange);
+  color: var(--fire-orange);
+}
+
 .hero h1 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(3rem, 7vw, 6.5rem);
@@ -612,6 +669,46 @@ section {
 }
 
 /* ============================================================
+   SECTION 3 — HUB TABS
+   ============================================================ */
+.hub-tabs {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 32px 0 0;
+}
+
+.hub-tab {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 10px 22px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+}
+
+.hub-tab:hover {
+  background: rgba(255, 107, 0, 0.1);
+  border-color: rgba(255, 107, 0, 0.35);
+  color: var(--fire-orange);
+  transform: translateY(-1px);
+}
+
+.hub-tab.active {
+  background: linear-gradient(135deg, var(--fire-red), var(--fire-orange));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(255, 45, 0, 0.35);
+}
+
+/* ============================================================
    SECTION 3 — GAMES SLIDER
    ============================================================ */
 .games-section {
@@ -654,6 +751,9 @@ section {
   cursor: grab;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
+  touch-action: pan-x;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .games-slider:active {
@@ -827,8 +927,498 @@ section {
   color: white;
 }
 
+/* ── Movie / TV card ── */
+.media-card {
+  flex: 0 0 220px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  scroll-snap-align: start;
+  cursor: pointer;
+  position: relative;
+}
+
+.media-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(255, 184, 0, 0.4);
+  box-shadow: 0 12px 36px rgba(255, 184, 0, 0.15);
+}
+
+.media-poster {
+  width: 100%;
+  aspect-ratio: 2/3;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-card2);
+}
+
+.media-poster img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.4s ease;
+}
+
+.media-card:hover .media-poster img {
+  transform: scale(1.05);
+}
+
+.media-poster-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(to top, rgba(0,0,0,0.92), transparent);
+  z-index: 1;
+}
+
+.media-type-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+  z-index: 2;
+}
+
+.media-type-badge.movie {
+  background: rgba(255, 184, 0, 0.25);
+  border: 1px solid rgba(255, 184, 0, 0.6);
+  color: var(--fire-gold);
+}
+
+.media-type-badge.series {
+  background: rgba(100, 180, 255, 0.2);
+  border: 1px solid rgba(100, 180, 255, 0.5);
+  color: #64b4ff;
+}
+
+.media-network-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--text-primary);
+  padding: 3px 7px;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  z-index: 2;
+}
+
+.media-body {
+  padding: 14px 14px 16px;
+}
+
+.media-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.media-meta {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.media-rating {
+  font-size: 0.72rem;
+  color: var(--fire-gold);
+  margin-bottom: 10px;
+}
+
+.media-watch-btn {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(255, 184, 0, 0.4);
+  color: var(--fire-gold);
+  padding: 7px 0;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.media-watch-btn:hover {
+  background: var(--fire-gold);
+  color: #000;
+}
+
+/* ── US Sports card ── */
+.sport-card {
+  flex: 0 0 280px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  scroll-snap-align: start;
+  position: relative;
+}
+
+.sport-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 45, 0, 0.3);
+  box-shadow: 0 8px 30px rgba(255, 45, 0, 0.15);
+}
+
+.sport-banner {
+  width: 100%;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-card2);
+}
+
+.sport-banner img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.4s ease;
+}
+
+.sport-card:hover .sport-banner img {
+  transform: scale(1.06);
+}
+
+.sport-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.15) 100%);
+  z-index: 1;
+}
+
+.sport-banner .sport-league-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+}
+
+.sport-banner .live-pulse-badge {
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+}
+
+.sport-card-header {
+  padding: 18px 18px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.sport-league-badge {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 3px;
+}
+
+.sport-league-badge.nfl { background: rgba(1,51,105,0.4); border: 1px solid rgba(1,51,105,0.7); color: #80a8d4; }
+.sport-league-badge.nba { background: rgba(29,66,138,0.4); border: 1px solid rgba(29,66,138,0.7); color: #6e9fd4; }
+.sport-league-badge.mlb { background: rgba(0,45,114,0.4); border: 1px solid rgba(0,45,114,0.7); color: #7fa8d4; }
+.sport-league-badge.ufc { background: rgba(200,16,46,0.2); border: 1px solid rgba(200,16,46,0.5); color: #e86070; }
+.sport-league-badge.boxing { background: rgba(255,184,0,0.15); border: 1px solid rgba(255,184,0,0.4); color: var(--fire-gold); }
+
+.sport-teams-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px 14px;
+  gap: 8px;
+}
+
+.sport-team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.sport-team-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+}
+
+.sport-team-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.sport-vs {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  color: var(--fire-red);
+  letter-spacing: 2px;
+  flex-shrink: 0;
+}
+
+.sport-card-body {
+  padding: 14px 18px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.sport-meta {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 12px;
+}
+
+.sport-network {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  padding: 3px 9px;
+  border-radius: 3px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+/* ── Trending card (mixed layout) ── */
+.trending-card {
+  flex: 0 0 260px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  scroll-snap-align: start;
+  position: relative;
+}
+
+.trending-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 45, 0, 0.35);
+  box-shadow: 0 10px 32px rgba(255, 45, 0, 0.18);
+}
+
+.trending-hero {
+  width: 100%;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-card2);
+}
+
+.trending-hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.4s ease;
+}
+
+.trending-card:hover .trending-hero img {
+  transform: scale(1.06);
+}
+
+.trending-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+  z-index: 1;
+}
+
+.trending-rank {
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  color: var(--fire-orange);
+  line-height: 1;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+  z-index: 2;
+}
+
+.trending-live-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0,255,106,0.15);
+  border: 1px solid rgba(0,255,106,0.5);
+  color: var(--live-green);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  z-index: 2;
+}
+
+.trending-body {
+  padding: 14px;
+}
+
+.trending-category {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--fire-orange);
+  margin-bottom: 5px;
+}
+
+.trending-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.trending-desc {
+  font-size: 0.73rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
 /* ============================================================
-   SECTION 4 — FEATURES
+   SECTION 4 — CHANNEL SHOWCASE
+   ============================================================ */
+.channels-section {
+  padding: 90px 0 80px;
+  background: linear-gradient(180deg, var(--bg-card2) 0%, var(--bg-dark) 100%);
+}
+
+.channel-category {
+  margin-bottom: 40px;
+}
+
+.channel-cat-label {
+  display: inline-block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-left: 3px solid var(--fire-red);
+  padding-left: 12px;
+  margin-bottom: 20px;
+}
+
+.channel-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.channel-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  cursor: default;
+  transition: background 0.2s, border-color 0.25s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.channel-logo::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent, var(--fire-red));
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.channel-logo:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--accent, var(--fire-red));
+  color: var(--text-primary);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.channel-logo:hover::before {
+  transform: scaleX(1);
+}
+
+.channel-cta {
+  margin-top: 48px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.channel-cta p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   SECTION 5 — FEATURES
    ============================================================ */
 .features-section {
   padding: 100px 0;
@@ -937,15 +1527,15 @@ section {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border);
   color: var(--text-muted);
-  padding: 10px 22px;
+  padding: 10px 18px;
   border-radius: 6px;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
   cursor: pointer;
   transition: all 0.2s;
+  white-space: nowrap;
 }
 
 .device-btn:hover {
@@ -1048,6 +1638,49 @@ section {
   padding: 4px 12px;
   border-radius: 20px;
   margin-bottom: 24px;
+}
+
+.plan-screens-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 107, 0, 0.08);
+  border: 1px solid rgba(255, 107, 0, 0.25);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-top: 16px;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.plan-screens-badge.popular {
+  background: rgba(255, 45, 0, 0.1);
+  border-color: rgba(255, 45, 0, 0.3);
+}
+
+.screens-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.screens-count {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  color: var(--fire-orange);
+  letter-spacing: 1px;
+  line-height: 1;
+  transition: color 0.3s;
+}
+
+.plan-screens-badge.popular .screens-count {
+  color: var(--fire-red);
+}
+
+.screens-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+  transition: color 0.3s;
 }
 
 .plan-divider {
@@ -1277,6 +1910,9 @@ section {
   scrollbar-width: none;
   cursor: grab;
   scroll-snap-type: x mandatory;
+  touch-action: pan-x;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .testimonials-slider:active {
@@ -1302,28 +1938,41 @@ section {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
+.testi-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.testi-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--fire-orange);
+  background: rgba(255, 107, 0, 0.1);
+  border: 1px solid rgba(255, 107, 0, 0.25);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
 .testi-stars {
   color: var(--fire-gold);
-  font-size: 1rem;
-  letter-spacing: 3px;
-  margin-bottom: 16px;
+  font-size: 0.95rem;
+  letter-spacing: 2px;
 }
 
 .testi-quote {
-  font-size: 0.92rem;
-  line-height: 1.6;
+  font-size: 0.9rem;
+  line-height: 1.65;
   color: #ccc;
   font-style: italic;
   margin-bottom: 20px;
-  quotes: "\201C" "\201D";
 }
 
 .testi-quote::before {
-  content: open-quote;
-  color: var(--fire-red);
-  font-size: 1.5rem;
-  line-height: 0;
-  vertical-align: -0.5rem;
+  content: none;
 }
 
 .testi-user {
@@ -1608,22 +2257,105 @@ section {
   font-size: 0.82rem;
 }
 
-.payment-icons {
+/* ── Payment Trust Strip (below plans grid) ── */
+.payment-trust-strip {
+  margin-top: 48px;
+  padding: 20px 28px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
   display: flex;
-  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.trust-lock {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--live-green);
+  white-space: nowrap;
+}
+
+.trust-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 5px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.trust-badge.visa       { background: #fff; color: #1a1f71; font-weight: 900; letter-spacing: 1px; }
+.trust-badge.mastercard { background: #1a1a1a; color: #f79e1b; border-color: rgba(255,255,255,0.15); }
+.trust-badge.paypal     { background: #fff; color: #003087; }
+.trust-badge.crypto     { background: rgba(247,147,26,0.12); border-color: rgba(247,147,26,0.35); color: #f7931a; }
+
+.trust-secure {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+/* ── Footer payment row ── */
+.footer-payment-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
-.payment-badge {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 4px 10px;
-  font-size: 0.72rem;
+.footer-payment-label {
+  font-size: 0.7rem;
   font-weight: 600;
   color: var(--text-muted);
   letter-spacing: 0.5px;
+  white-space: nowrap;
 }
+
+.footer-payment-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.footer-pay-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 9px;
+  height: 24px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-muted);
+  transition: background 0.2s, color 0.2s;
+}
+
+.footer-pay-badge:hover { background: rgba(255,255,255,0.1); color: var(--text-primary); }
+.footer-pay-badge.visa  { background: #fff; border-color: transparent; color: #1a1f71; font-weight: 900; }
+.footer-pay-badge.mc    { background: #1a1a1a; border-color: rgba(255,255,255,0.15); color: #f79e1b; }
+.footer-pay-badge.pp    { background: #fff; border-color: transparent; color: #003087; }
+.footer-pay-badge.cr    { background: rgba(247,147,26,0.1); border-color: rgba(247,147,26,0.3); color: #f7931a; }
 
 /* ============================================================
    RESPONSIVE
@@ -1631,6 +2363,15 @@ section {
 @media (max-width: 1024px) {
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .channel-grid {
+    gap: 10px;
+  }
+
+  .channel-logo {
+    padding: 9px 16px;
+    font-size: 0.85rem;
   }
 
   .plans-grid {
@@ -1711,12 +2452,43 @@ section {
     grid-template-columns: 1fr;
   }
 
+  .channel-grid {
+    gap: 8px;
+  }
+
+  .channel-logo {
+    padding: 8px 12px;
+    font-size: 0.78rem;
+    letter-spacing: 1px;
+  }
+
+  .device-btn {
+    font-size: 0.78rem;
+    padding: 9px 12px;
+  }
+
   .footer-grid {
     grid-template-columns: 1fr;
   }
 
   .footer-bottom {
     flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-payment-row {
+    justify-content: center;
+  }
+
+  .payment-trust-strip {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .trust-secure {
+    white-space: normal;
     text-align: center;
   }
 

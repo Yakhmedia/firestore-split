@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fire Store – Watch 2026 FIFA World Cup LIVE in 4K</title>
+  <title>Fire Store – Live TV, Movies, Sports & Entertainment Streaming</title>
+  <meta name="description" content="Fire Store: Stream 100,000+ live channels including NFL, NBA, UFC, Movies, TV Shows & the 2026 FIFA World Cup in 4K. No buffering, instant activation.">
+  <meta name="keywords" content="IPTV, live TV streaming, NFL streaming, NBA live, UFC streaming, movies, TV shows, World Cup 2026, 4K streaming, Fire Store">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +31,8 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#features">Features</a></li>
       <li><a href="#plans">Plans</a></li>
-      <li><a href="#games">Games</a></li>
+      <li><a href="#games">Live & Trending</a></li>
+      <li><a href="#entertainment">Movies & Shows</a></li>
       <li><a href="#how">How It Works</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
@@ -51,18 +54,25 @@
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
-      <div class="hero-badge">
+      <div class="hero-badge-ticker" id="heroBadgeTicker">
         <span class="dot"></span>
-        2026 FIFA World Cup — USA · Canada · Mexico
+        <span id="tickerText">🏈 NFL Sunday Ticket · Live Now</span>
       </div>
       <h1>
-        <span class="line-fire">Watch 2026 World Cup</span>
-        <span class="line-4k">LIVE in 4K + Premium</span>
-        Sports Streaming
+        <span class="line-fire">Live TV, Movies & Sports</span>
+        <span class="line-4k">All in 4K — One Subscription</span>
       </h1>
       <p class="hero-sub">
-        <strong>100,000+ Channels</strong> &nbsp;•&nbsp; No Buffering &nbsp;•&nbsp; Instant Access on Any Device
+        <strong>100,000+ Channels</strong> &nbsp;•&nbsp; NFL · NBA · UFC · Movies · TV Shows &nbsp;•&nbsp; No Buffering
       </p>
+      <div class="hero-category-pills">
+        <span class="hero-pill">🏈 NFL</span>
+        <span class="hero-pill">🏀 NBA</span>
+        <span class="hero-pill">🥊 UFC</span>
+        <span class="hero-pill">🎬 Movies</span>
+        <span class="hero-pill">📺 TV Shows</span>
+        <span class="hero-pill">⚽ World Cup 2026</span>
+      </div>
       <div class="countdown" id="countdown">
         <div class="cd-unit"><span class="cd-num" id="cd-days">000</span><span class="cd-label">Days</span></div>
         <span class="cd-sep">:</span>
@@ -74,22 +84,29 @@
       </div>
       <div class="hero-ctas">
         <a href="#plans" class="cta-primary">⚡ Choose Your Plan</a>
-        <a href="#plans" class="cta-secondary">▶ View Plans</a>
+        <a href="#games" class="cta-secondary">▶ See What's Live</a>
       </div>
       <div class="urgency-bar">
         <span class="dot-red"></span>
-        Limited 4K streams during World Cup — Only <strong id="seats">47</strong> spots remaining
+        Limited 4K streams available — Only <strong id="seats">47</strong> spots remaining
       </div>
     </div>
   </section>
 
-  <!-- ── SECTION 3 · Games Slider ──────────────────── -->
+  <!-- ── SECTION 3 · Entertainment & Sports Hub ───── -->
   <section class="games-section" id="games">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag">⚽ Live &amp; Upcoming</span>
-        <h2>World Cup 2026 Match Schedule</h2>
-        <p>Stream every single game in stunning 4K — group stages to the final</p>
+        <span class="section-tag">🔥 Live &amp; Trending</span>
+        <h2>Your Entertainment &amp; Sports Hub</h2>
+        <p>Browse live events, trending shows, and big-game schedules — all in one place</p>
+      </div>
+      <!-- Category Tab Selector -->
+      <div class="hub-tabs reveal" id="hubTabs">
+        <button class="hub-tab active" data-tab="trending">🔥 Trending Today</button>
+        <button class="hub-tab" data-tab="movies">🎬 Movies &amp; TV Shows</button>
+        <button class="hub-tab" data-tab="sports">🏈 US Sports</button>
+        <button class="hub-tab" data-tab="worldcup">⚽ World Cup 2026</button>
       </div>
     </div>
     <div class="games-slider-wrapper">
@@ -97,41 +114,96 @@
     </div>
   </section>
 
-  <!-- ── SECTION 4 · Features ──────────────────────── -->
+  <!-- ── SECTION 4 · Channel Showcase ────────────────── -->
+  <section class="channels-section" id="entertainment">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">📡 What's Included</span>
+        <h2>Every Network. Every Stream. One Subscription.</h2>
+        <p>100,000+ channels — sports, movies, news, kids, and premium entertainment all under one roof</p>
+      </div>
+
+      <div class="channel-category reveal">
+        <span class="channel-cat-label">🏈 Sports Networks</span>
+        <div class="channel-grid">
+          <div class="channel-logo" style="--accent:#d00404">ESPN</div>
+          <div class="channel-logo" style="--accent:#ff6600">ESPN+</div>
+          <div class="channel-logo" style="--accent:#003da5">FOX Sports</div>
+          <div class="channel-logo" style="--accent:#003594">CBS Sports</div>
+          <div class="channel-logo" style="--accent:#002244">NBC Sports</div>
+          <div class="channel-logo" style="--accent:#8a00ff">TNT Sports</div>
+          <div class="channel-logo" style="--accent:#d6001c">FS1</div>
+          <div class="channel-logo" style="--accent:#f5a623">DAZN</div>
+          <div class="channel-logo" style="--accent:#800000">beIN Sports</div>
+          <div class="channel-logo" style="--accent:#005f9e">NFL Network</div>
+          <div class="channel-logo" style="--accent:#006bb6">NBA TV</div>
+          <div class="channel-logo" style="--accent:#002d62">MLB Network</div>
+        </div>
+      </div>
+
+      <div class="channel-category reveal">
+        <span class="channel-cat-label">🎬 Entertainment & Streaming</span>
+        <div class="channel-grid">
+          <div class="channel-logo" style="--accent:#5b2d8e">HBO / Max</div>
+          <div class="channel-logo" style="--accent:#e50914">Netflix</div>
+          <div class="channel-logo" style="--accent:#0063e5">Disney+</div>
+          <div class="channel-logo" style="--accent:#0064ff">Paramount+</div>
+          <div class="channel-logo" style="--accent:#00b2e3">Peacock</div>
+          <div class="channel-logo" style="--accent:#1ce783">Hulu</div>
+          <div class="channel-logo" style="--accent:#cc0000">Showtime</div>
+          <div class="channel-logo" style="--accent:#c8102e">Bravo</div>
+          <div class="channel-logo" style="--accent:#b89c5e">AMC</div>
+          <div class="channel-logo" style="--accent:#1d4099">FX</div>
+          <div class="channel-logo" style="--accent:#ff9800">Starz</div>
+          <div class="channel-logo" style="--accent:#e91e8c">Lifetime</div>
+        </div>
+      </div>
+
+      <div class="channel-cta reveal">
+        <p>+ Thousands more: news, kids, international, PPV &amp; local channels</p>
+        <a href="#plans" class="cta-primary" style="display:inline-block;text-decoration:none">⚡ See All Plans</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 5 · Features ──────────────────────── -->
   <section class="features-section" id="features">
     <div class="container">
       <div class="section-header reveal">
         <span class="section-tag">Why Fire Store</span>
-        <h2>Built For The World's Biggest Moments</h2>
-        <p>Every feature engineered so you never miss a second</p>
+        <h2>Engineered for the Moments That Matter</h2>
+        <p>Every feature built around US sports fans, movie lovers, and family streamers</p>
       </div>
       <div class="features-grid">
         <div class="feature-card reveal reveal-delay-1">
-          <div class="feature-icon">⚽</div>
-          <h3>Live Sports — 100K+ Channels</h3>
-          <p>Every match, every tournament. Premier League, La Liga, NBA, NFL, UFC, MMA and the full 2026 FIFA World
-            Cup.</p>
+          <div class="feature-icon">⚡</div>
+          <h3>60 FPS Live Sports</h3>
+          <p>NFL, NBA, UFC and MLB streamed at buttery-smooth <strong>60 frames per second</strong>. Every pass, dunk, and knockout — crystal clear, zero motion blur.</p>
         </div>
         <div class="feature-card reveal reveal-delay-2">
-          <div class="feature-icon">🎥</div>
-          <h3>4K / FHD Streaming</h3>
-          <p>Crystal-clear ultra-high definition with Dolby Audio. Experience the World Cup as if you were in the
-            stadium.</p>
-        </div>
-        <div class="feature-card reveal reveal-delay-1">
-          <div class="feature-icon">🧊</div>
-          <h3>Anti-Freeze Technology</h3>
-          <p>Our proprietary buffering shield eliminates freezing during peak moments — World Cup finals guaranteed.</p>
-        </div>
-        <div class="feature-card reveal reveal-delay-2">
-          <div class="feature-icon">📱</div>
-          <h3>Any Device, Everywhere</h3>
-          <p>Firestick, Smart TV, Android, iOS, PC, Mac, Chromecast, Roku. One subscription, all your screens.</p>
+          <div class="feature-icon">🎬</div>
+          <h3>4K HDR Movies & TV</h3>
+          <p>Cinematic <strong>4K Ultra HD with Dolby Audio</strong> for every HBO series, blockbuster movie, and premium show. Your living room becomes the theater.</p>
         </div>
         <div class="feature-card reveal reveal-delay-3">
-          <div class="feature-icon">🎧</div>
-          <h3>24/7 Priority Support</h3>
-          <p>Real human support on WhatsApp during every big match. We're always on — especially when it matters.</p>
+          <div class="feature-icon">🛡️</div>
+          <h3>Anti-Freeze Sunday Guarantee</h3>
+          <p>Our servers are sized for <strong>Super Bowl-level traffic</strong>. Zero buffering on the biggest NFL Sundays, NBA playoffs, and UFC pay-per-views — guaranteed.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon">📡</div>
+          <h3>No Regional Blackouts</h3>
+          <p>Stream your local NFL or NBA team <strong>from anywhere in the US</strong> — no geo-blocks, no cable zip-code restrictions, no blackouts. Every game, every market.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon">🏠</div>
+          <h3>The Whole Family, All at Once</h3>
+          <p>Kids on cartoons, parents on the NFL, someone else binging a series — <strong>multiple screens streaming simultaneously</strong> without a single frame dropped.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon">💬</div>
+          <h3>24/7 WhatsApp Support</h3>
+          <p>Real humans, not bots. Message us during <strong>any game, any time</strong> — average reply under 2 minutes. We stay live so your stream stays live.</p>
         </div>
       </div>
     </div>
@@ -147,13 +219,13 @@
       </div>
       <!-- Device Selector -->
       <div class="device-selector-container reveal">
-        <p class="device-selector-label">How many devices do you need?</p>
+        <p class="device-selector-label">How many screens does your household need?</p>
         <div class="device-selector-buttons" id="deviceSelector">
-          <button class="device-btn active" data-devices="1">1 Device</button>
-          <button class="device-btn" data-devices="2">2 Devices</button>
-          <button class="device-btn" data-devices="3">3 Devices</button>
-          <button class="device-btn" data-devices="4">4 Devices</button>
-          <button class="device-btn" data-devices="5">5 Devices</button>
+          <button class="device-btn active" data-devices="1">📱 Solo Viewer</button>
+          <button class="device-btn" data-devices="2">👫 Couple / Roommates</button>
+          <button class="device-btn" data-devices="3">👨‍👩‍👦 Small Family</button>
+          <button class="device-btn" data-devices="4">🏠 Full Family</button>
+          <button class="device-btn" data-devices="5">🔥 Whole Household</button>
         </div>
       </div>
       <div class="plans-grid">
@@ -162,12 +234,17 @@
           <div class="plan-price" id="price-1m"><span>$</span>19</div>
           <div class="plan-period" id="period-1m">per month, billed monthly</div>
           <div class="plan-savings">Try the fire experience</div>
+          <div class="plan-screens-badge" id="screens-1m">
+            <span class="screens-icon">📺</span>
+            <span class="screens-count" id="screens-count-1m">1 Screen</span>
+            <span class="screens-label" id="screens-label-1m">Solo Viewer</span>
+          </div>
           <div class="plan-divider"></div>
           <ul class="plan-features">
             <li>Full access to 100,000+ Live TV Channels</li>
-            <li>2026 World Cup LIVE in 4K &amp; HD</li>
+            <li>NFL, NBA, UFC, Movies &amp; TV Shows in 4K</li>
             <li>Anti-Freeze Technology</li>
-            <li>Unlimited devices (Firestick, Smart TV, Mobile)</li>
+            <li id="devices-line-1m">Stream on <strong>1 device</strong> simultaneously</li>
             <li>Instant activation via WhatsApp / Email</li>
             <li>24/7 Priority Support</li>
             <li>Cancel anytime, no questions asked</li>
@@ -180,12 +257,17 @@
           <div class="plan-price" id="price-12m"><span>$</span>149</div>
           <div class="plan-period" id="period-12m">$12.40/month — billed once</div>
           <div class="plan-savings">🔥 Save 50% — Full World Cup Season</div>
+          <div class="plan-screens-badge popular" id="screens-12m">
+            <span class="screens-icon">📺</span>
+            <span class="screens-count" id="screens-count-12m">1 Screen</span>
+            <span class="screens-label" id="screens-label-12m">Solo Viewer</span>
+          </div>
           <div class="plan-divider"></div>
           <ul class="plan-features">
             <li>Everything in 1-Month plan</li>
-            <li>2026 World Cup LIVE in 4K &amp; HD — full tournament</li>
-            <li>Anti-Freeze Technology — World Cup guarantee</li>
-            <li>Unlimited devices, unlimited profiles</li>
+            <li>World Cup 2026 LIVE in 4K — full tournament</li>
+            <li>Anti-Freeze Technology — big game guarantee</li>
+            <li id="devices-line-12m">Stream on <strong>1 device</strong> simultaneously</li>
             <li>Instant activation via WhatsApp / Email</li>
             <li>VIP Priority Support — dedicated agent</li>
             <li>Cancel anytime, money-back guarantee</li>
@@ -198,12 +280,17 @@
           <div class="plan-price" id="price-6m"><span>$</span>89</div>
           <div class="plan-period" id="period-6m">$14.80/month — billed once</div>
           <div class="plan-savings">Save 25% vs monthly</div>
+          <div class="plan-screens-badge" id="screens-6m">
+            <span class="screens-icon">📺</span>
+            <span class="screens-count" id="screens-count-6m">1 Screen</span>
+            <span class="screens-label" id="screens-label-6m">Solo Viewer</span>
+          </div>
           <div class="plan-divider"></div>
           <ul class="plan-features">
             <li>Full access to 100,000+ Live TV Channels</li>
-            <li>2026 World Cup LIVE in 4K &amp; HD</li>
+            <li>NFL, NBA, UFC, Movies &amp; TV Shows in 4K</li>
             <li>Anti-Freeze Technology</li>
-            <li>Unlimited devices (Firestick, Smart TV, Mobile)</li>
+            <li id="devices-line-6m">Stream on <strong>1 device</strong> simultaneously</li>
             <li>Instant activation via WhatsApp / Email</li>
             <li>24/7 Priority Support</li>
             <li>Cancel anytime, no questions asked</li>
@@ -261,6 +348,18 @@
           </tbody>
         </table>
       </div>
+
+      <!-- Payment Trust Strip -->
+      <div class="payment-trust-strip reveal">
+        <span class="trust-lock">🔒 Secure Checkout</span>
+        <div class="trust-badges">
+          <span class="trust-badge visa">VISA</span>
+          <span class="trust-badge mastercard">Mastercard</span>
+          <span class="trust-badge paypal">PayPal</span>
+          <span class="trust-badge crypto">₿ Crypto</span>
+        </div>
+        <span class="trust-secure">256-bit SSL Encrypted · No payment data stored</span>
+      </div>
     </div>
   </section>
 
@@ -300,9 +399,9 @@
   <section class="testimonials-section" id="reviews">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag">Real Users</span>
-        <h2>What Our Fire Users Are Saying</h2>
-        <p>Real people. Real streams. Zero buffering during the biggest matches.</p>
+        <span class="section-tag">⭐ Real US Subscribers</span>
+        <h2>Americans Who Cut the Cable Bill</h2>
+        <p>NFL fans, NBA die-hards, movie lovers, and families — all streaming smarter with Fire Store</p>
       </div>
     </div>
     <div class="games-slider-wrapper">
@@ -389,12 +488,14 @@
       </div>
       <div class="footer-bottom">
         <p>© 2026 Fire Store — fire-store.tv · All rights reserved</p>
-        <div class="payment-icons">
-          <span class="payment-badge">VISA</span>
-          <span class="payment-badge">Mastercard</span>
-          <span class="payment-badge">PayPal</span>
-          <span class="payment-badge">Crypto</span>
-          <span class="payment-badge">Bank Transfer</span>
+        <div class="footer-payment-row">
+          <span class="footer-payment-label">🔒 Secure &amp; Trusted</span>
+          <div class="footer-payment-badges">
+            <span class="footer-pay-badge visa">VISA</span>
+            <span class="footer-pay-badge mc">Mastercard</span>
+            <span class="footer-pay-badge pp">PayPal</span>
+            <span class="footer-pay-badge cr">₿ Crypto</span>
+          </div>
         </div>
       </div>
     </div>

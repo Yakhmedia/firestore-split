@@ -4,6 +4,64 @@
    ============================================================ */
 
 /* ============================================================
+   DATA — HUB: MOVIES & TV SHOWS
+   ============================================================ */
+// poster: TMDB CDN (no API key needed). bg gradient shows if image fails.
+const TMDB = 'https://image.tmdb.org/t/p/w500';
+const mediaItems = [
+  { type: 'series', title: 'House of the Dragon', meta: 'Season 3 · Fantasy Drama', network: 'HBO', rating: '★★★★★', bg: 'linear-gradient(135deg,#1a0a2e,#4a1060)', poster: `${TMDB}/z2yahl2uefxDCl0nogcRBstwruJ.jpg` },
+  { type: 'movie',  title: 'Mission: Impossible 8', meta: '2025 · Action Thriller', network: 'Paramount+', rating: '★★★★☆', bg: 'linear-gradient(135deg,#0d1a2e,#0d3060)', poster: `${TMDB}/NNxYkU71-w7sb7mY5yvD4yd8B4.jpg` },
+  { type: 'series', title: 'The Last of Us', meta: 'Season 3 · Sci-Fi Drama', network: 'HBO', rating: '★★★★★', bg: 'linear-gradient(135deg,#0a1a0a,#1a4020)', poster: `${TMDB}/uKvVjHNqB5VmOrdxqAt2F7J78ED.jpg` },
+  { type: 'movie',  title: 'Thunderbolts*', meta: '2025 · Marvel Action', network: 'Disney+', rating: '★★★★☆', bg: 'linear-gradient(135deg,#0a0a2e,#1a1a60)', poster: `${TMDB}/9l1eZiJHmhr5jIlthMdJN5WYoff.jpg` },
+  { type: 'series', title: 'Stranger Things', meta: 'Season 5 · Sci-Fi', network: 'Netflix', rating: '★★★★★', bg: 'linear-gradient(135deg,#0d0028,#280d40)', poster: `${TMDB}/49WJfeN0moxb9IPfGn8AIqMGskD.jpg` },
+  { type: 'movie',  title: 'Avatar 3', meta: '2025 · Sci-Fi Epic', network: 'Disney+', rating: '★★★★☆', bg: 'linear-gradient(135deg,#001a2e,#003a5e)', poster: `${TMDB}/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg` },
+  { type: 'series', title: 'Peaky Blinders', meta: 'Movie Special · Crime', network: 'Netflix', rating: '★★★★★', bg: 'linear-gradient(135deg,#1a0a00,#3a1800)', poster: `${TMDB}/vUUqzWa2LnHIVqkaKVn3nyfVnBL.jpg` },
+  { type: 'movie',  title: 'Sinners', meta: '2025 · Horror Drama', network: 'Peacock', rating: '★★★★☆', bg: 'linear-gradient(135deg,#1a0000,#3a0008)', poster: `${TMDB}/aosm8NMQ3UyoBVpSxyimorCQykC.jpg` },
+  { type: 'series', title: 'The White Lotus', meta: 'Season 3 · Drama', network: 'HBO', rating: '★★★★★', bg: 'linear-gradient(135deg,#1a150a,#3a2a10)', poster: `${TMDB}/kgwjIb2JDHRhNk13lmSxiClFjVk.jpg` },
+  { type: 'movie',  title: 'Jurassic World 4', meta: '2025 · Adventure', network: 'Peacock', rating: '★★★☆☆', bg: 'linear-gradient(135deg,#0a1a0a,#1a3010)', poster: `${TMDB}/7xkEkEfheCJR0Dm8YdQUNMqcxIW.jpg` },
+];
+
+/* ============================================================
+   DATA — HUB: US SPORTS
+   ============================================================ */
+// image: Unsplash sport-specific action photos
+const IMG = {
+  nfl:     'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&q=80',
+  nba:     'https://images.unsplash.com/photo-1546519638405-a1a3ff2cba13?w=600&q=80',
+  ufc:     'https://images.unsplash.com/photo-1552677426-5f09c6c2ef5c?w=600&q=80',
+  mlb:     'https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=600&q=80',
+  boxing:  'https://images.unsplash.com/photo-1517438476312-10d79c077509?w=600&q=80',
+  soccer:  'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600&q=80',
+  cinema:  'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600&q=80',
+  drama:   'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&q=80',
+};
+
+const usSportsEvents = [
+  { league: 'nfl', team1: 'Chiefs', team2: 'Cowboys', date: 'Sun, Jun 22 · 4:25 PM ET', network: 'CBS', stadium: 'Arrowhead Stadium, KC', status: 'upcoming', image: IMG.nfl },
+  { league: 'nba', team1: 'Lakers', team2: 'Celtics', date: 'Mon, Jun 23 · 8:30 PM ET', network: 'ESPN', stadium: 'Crypto.com Arena, LA', status: 'live', image: IMG.nba },
+  { league: 'ufc', team1: 'Jon Jones', team2: 'Stipe Miocic', date: 'Sat, Jun 28 · 10:00 PM ET', network: 'ESPN+ PPV', stadium: 'T-Mobile Arena, Las Vegas', status: 'upcoming', image: IMG.ufc },
+  { league: 'mlb', team1: 'Yankees', team2: 'Red Sox', date: 'Fri, Jun 20 · 7:05 PM ET', network: 'FOX', stadium: 'Yankee Stadium, NY', status: 'upcoming', image: IMG.mlb },
+  { league: 'nfl', team1: 'Eagles', team2: 'Giants', date: 'Sun, Jun 22 · 1:00 PM ET', network: 'FOX', stadium: 'Lincoln Financial Field, PA', status: 'upcoming', image: IMG.nfl },
+  { league: 'nba', team1: 'Warriors', team2: 'Heat', date: 'Wed, Jun 25 · 9:00 PM ET', network: 'TNT', stadium: 'Chase Center, SF', status: 'upcoming', image: IMG.nba },
+  { league: 'boxing', team1: 'Canelo', team2: 'Benavidez', date: 'Sat, Jul 5 · 8:00 PM ET', network: 'DAZN', stadium: 'T-Mobile Arena, Las Vegas', status: 'upcoming', image: IMG.boxing },
+  { league: 'mlb', team1: 'Dodgers', team2: 'Giants', date: 'Tue, Jun 24 · 10:10 PM ET', network: 'FS1', stadium: 'Oracle Park, SF', status: 'live', image: IMG.mlb },
+];
+
+/* ============================================================
+   DATA — HUB: TRENDING TODAY
+   ============================================================ */
+const trendingItems = [
+  { rank: 1, category: 'Live Sport', title: 'NBA Lakers vs Celtics', desc: 'Game 5 · Playoffs — Live Now', image: IMG.nba, isLive: true },
+  { rank: 2, category: 'New Release', title: 'Mission: Impossible 8', desc: 'Just dropped on Paramount+ — watch now', image: IMG.cinema, isLive: false },
+  { rank: 3, category: 'Live Sport', title: 'UFC Fight Night', desc: 'Jones vs Miocic — Main Card Live', image: IMG.ufc, isLive: true },
+  { rank: 4, category: 'Trending Series', title: 'The White Lotus S3', desc: "Season finale — everyone's watching", image: IMG.drama, isLive: false },
+  { rank: 5, category: 'Live Sport', title: 'NFL Thursday Night', desc: 'Chiefs vs Cowboys · 4K HDR', image: IMG.nfl, isLive: true },
+  { rank: 6, category: 'New Episode', title: 'House of the Dragon', desc: 'S3 E4 · Available now on HBO', image: IMG.drama, isLive: false },
+  { rank: 7, category: 'World Cup 2026', title: 'Brazil vs Argentina', desc: 'Group Stage · Jun 18 · MetLife Stadium', image: IMG.soccer, isLive: true },
+  { rank: 8, category: 'Trending Movie', title: 'Sinners', desc: '#1 movie in the US this week', image: IMG.cinema, isLive: false },
+];
+
+/* ============================================================
    DATA — PRICING PLANS (device-based)
    ============================================================ */
 const pricingPlans = {
@@ -50,12 +108,38 @@ const games = [
 ];
 
 const testimonials = [
-  { name: 'Carlos M.', location: '🇧🇷 São Paulo, Brazil', initials: 'CM', quote: 'Fire Store delivered flawless 4K during the Brazil vs Argentina match. Not a single freeze. I\'ve tried 5 IPTV services — this is on another level.' },
-  { name: 'Sarah K.', location: '🇬🇧 London, UK', initials: 'SK', quote: 'Setup took literally 3 minutes on my Firestick. The picture quality for the Premier League is better than my cable subscription. Worth every penny.' },
-  { name: 'Ahmed R.', location: '🇲🇦 Casablanca, Morocco', initials: 'AR', quote: 'The support team replied on WhatsApp in under 2 minutes when I had an issue. Never seen customer service this fast from an IPTV provider.' },
-  { name: 'Maria L.', location: '🇩🇪 Berlin, Germany', initials: 'ML', quote: 'I subscribed for the World Cup but stayed for the sports library. The channel count is unreal and the quality stays rock solid on my Smart TV.' },
-  { name: 'James T.', location: '🇺🇸 New York, USA', initials: 'JT', quote: 'Watching the World Cup on my 85-inch in 4K. Multiple streams at once, zero slow-down. Insane value for what you get.' },
-  { name: 'Yuki N.', location: '🇯🇵 Tokyo, Japan', initials: 'YN', quote: 'I was skeptical about the "no buffering" claim — I\'ve heard that before. But during the World Cup final, not one interruption. Unreal.' },
+  {
+    name: 'Tyler B.', location: '🇺🇸 Dallas, TX', initials: 'TB', tag: '🏈 NFL Fan',
+    quote: 'Watched the Cowboys game Sunday in 4K — zero hiccups the entire game. I was paying $180/month on cable for the same channels. Cancelled it the same week I found Fire Store.'
+  },
+  {
+    name: 'Jessica M.', location: '🇺🇸 Los Angeles, CA', initials: 'JM', tag: '🎬 Movie & TV',
+    quote: 'House of the Dragon, White Lotus, The Last of Us — all in 4K on one subscription. HBO Max plus every live sports channel I want. My friends still can\'t believe what I\'m paying for this.'
+  },
+  {
+    name: 'Marcus W.', location: '🇺🇸 Chicago, IL', initials: 'MW', tag: '🏀 NBA Fan',
+    quote: 'Bulls games, ESPN, TNT — everything I need. Setup took 4 minutes on my Fire TV Stick. Picture is sharper than cable ever was and I\'m saving over $100 a month.'
+  },
+  {
+    name: 'Rodriguez Family', location: '🇺🇸 Miami, FL', initials: 'RF', tag: '🏠 Family Plan',
+    quote: '3 TVs running at the same time — kids on Disney, my wife on her shows, me on the NFL. Not one dropped stream. This is how TV should have always worked.'
+  },
+  {
+    name: 'Derek H.', location: '🇺🇸 Las Vegas, NV', initials: 'DH', tag: '🥊 UFC Fan',
+    quote: 'UFC pay-per-views without the $80 PPV charge every time. I\'ve saved over $400 this year alone just on PPV. Fire Store is the best sports decision I\'ve ever made.'
+  },
+  {
+    name: 'Ashley T.', location: '🇺🇸 New York, NY', initials: 'AT', tag: '📺 Entertainment',
+    quote: '4K HDR with Dolby Audio on my 75-inch for movie nights. My boyfriend catches the NBA Finals on the same subscription at the same time. For what we pay, this thing is a steal.'
+  },
+  {
+    name: 'Kevin P.', location: '🇺🇸 Houston, TX', initials: 'KP', tag: '✂️ Cord-Cutter',
+    quote: 'Cut cable 6 months ago. Between Fire Store and my internet bill I\'m saving $120 every month. NFL, MLB, NBA, UFC — every sport I care about with zero blackouts.'
+  },
+  {
+    name: 'Sandra L.', location: '🇺🇸 Phoenix, AZ', initials: 'SL', tag: '💬 Support',
+    quote: 'Had a setup question during Monday Night Football. Messaged on WhatsApp and got a reply in under 2 minutes. I\'ve never had that from any streaming service, ever.'
+  },
 ];
 
 const faqs = [
@@ -102,11 +186,9 @@ const faqs = [
 ];
 
 /* ============================================================
-   RENDER — GAMES SLIDER
+   RENDER — WORLD CUP TAB (original games slider)
    ============================================================ */
-function renderGames() {
-  const slider = document.getElementById('gamesSlider');
-  if (!slider) return;
+function renderWorldCup(slider) {
   games.forEach(g => {
     const isLive = g.status === 'live';
     slider.innerHTML += `
@@ -145,6 +227,126 @@ function renderGames() {
 }
 
 /* ============================================================
+   RENDER — MOVIES & TV TAB
+   ============================================================ */
+function renderMedia(slider) {
+  mediaItems.forEach(m => {
+    slider.innerHTML += `
+      <div class="media-card" onclick="document.getElementById('plans').scrollIntoView({behavior:'smooth'})">
+        <div class="media-poster" style="background:${m.bg}">
+          <img src="${m.poster}" alt="${m.title}" loading="lazy" onerror="this.style.display='none'">
+          <div class="media-poster-overlay"></div>
+          <span class="media-type-badge ${m.type}">${m.type === 'movie' ? '🎬 Movie' : '📺 Series'}</span>
+          <span class="media-network-badge">${m.network}</span>
+        </div>
+        <div class="media-body">
+          <div class="media-title">${m.title}</div>
+          <div class="media-meta">${m.meta}</div>
+          <div class="media-rating">${m.rating}</div>
+          <button class="media-watch-btn">▶ Stream Now</button>
+        </div>
+      </div>`;
+  });
+}
+
+/* ============================================================
+   RENDER — US SPORTS TAB
+   ============================================================ */
+function renderUSSports(slider) {
+  usSportsEvents.forEach(e => {
+    const isLive = e.status === 'live';
+    slider.innerHTML += `
+      <div class="sport-card">
+        <div class="sport-banner">
+          <img src="${e.image}" alt="${e.league} action" loading="lazy" onerror="this.style.display='none'">
+          <div class="sport-banner-overlay"></div>
+          <span class="sport-league-badge ${e.league}">${e.league.toUpperCase()}</span>
+          ${isLive ? '<div class="live-pulse-badge"><span class="live-dot"></span> LIVE</div>' : ''}
+        </div>
+        <div class="sport-teams-row">
+          <div class="sport-team">
+            <span class="sport-team-name">${e.team1}</span>
+          </div>
+          <span class="sport-vs">VS</span>
+          <div class="sport-team">
+            <span class="sport-team-name">${e.team2}</span>
+          </div>
+        </div>
+        <div class="sport-card-body">
+          <div class="sport-meta">
+            <span>📅 ${e.date}</span>
+            <span>🏟️ ${e.stadium}</span>
+          </div>
+          <span class="sport-network">📡 ${e.network}</span>
+          <button class="game-watch" onclick="document.getElementById('plans').scrollIntoView({behavior:'smooth'})">${isLive ? '🔴 Watch Live →' : '▶ Watch →'}</button>
+        </div>
+      </div>`;
+  });
+}
+
+/* ============================================================
+   RENDER — TRENDING TODAY TAB
+   ============================================================ */
+function renderTrending(slider) {
+  trendingItems.forEach(t => {
+    slider.innerHTML += `
+      <div class="trending-card" onclick="document.getElementById('plans').scrollIntoView({behavior:'smooth'})">
+        <div class="trending-hero">
+          <img src="${t.image}" alt="${t.title}" loading="lazy" onerror="this.style.display='none'">
+          <div class="trending-hero-overlay"></div>
+          <span class="trending-rank">#${t.rank}</span>
+          ${t.isLive ? '<div class="trending-live-badge"><span class="live-dot"></span> LIVE</div>' : ''}
+        </div>
+        <div class="trending-body">
+          <div class="trending-category">${t.category}</div>
+          <div class="trending-title">${t.title}</div>
+          <div class="trending-desc">${t.desc}</div>
+          <button class="game-watch">${t.isLive ? '🔴 Watch Live →' : '▶ Watch Now →'}</button>
+        </div>
+      </div>`;
+  });
+}
+
+/* ============================================================
+   HUB TAB CONTROLLER
+   ============================================================ */
+function renderHub(tab) {
+  const slider = document.getElementById('gamesSlider');
+  if (!slider) return;
+  slider.innerHTML = '';
+  slider.scrollLeft = 0;
+
+  if (tab === 'trending') renderTrending(slider);
+  else if (tab === 'movies') renderMedia(slider);
+  else if (tab === 'sports') renderUSSports(slider);
+  else if (tab === 'worldcup') renderWorldCup(slider);
+}
+
+function initHubTabs() {
+  const tabs = document.getElementById('hubTabs');
+  if (!tabs) return;
+  let cleanupSlider = () => {};
+
+  const startSlider = () => {
+    cleanupSlider();
+    cleanupSlider = initSlider(document.getElementById('gamesSlider'), { autoSlide: true, interval: 3500 });
+  };
+
+  tabs.querySelectorAll('.hub-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabs.querySelectorAll('.hub-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderHub(btn.dataset.tab);
+      startSlider();
+    });
+  });
+
+  // Start auto-slide for the default tab
+  startSlider();
+  return startSlider;
+}
+
+/* ============================================================
    RENDER — TESTIMONIALS SLIDER
    ============================================================ */
 function renderTestimonials() {
@@ -153,14 +355,17 @@ function renderTestimonials() {
   testimonials.forEach(t => {
     slider.innerHTML += `
       <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <div class="testi-quote">${t.quote}</div>
+        <div class="testi-card-top">
+          <span class="testi-tag">${t.tag}</span>
+          <div class="testi-stars">★★★★★</div>
+        </div>
+        <div class="testi-quote">"${t.quote}"</div>
         <div class="testi-user">
           <div class="testi-avatar">${t.initials}</div>
           <div>
             <div class="testi-name">${t.name}</div>
             <div class="testi-location">${t.location}</div>
-            <div class="testi-verified">✓ Verified FireStick User</div>
+            <div class="testi-verified">✓ Verified US Subscriber</div>
           </div>
         </div>
       </div>`;
@@ -174,25 +379,52 @@ function renderFaq() {
   const list = document.getElementById('faqList');
   if (!list) return;
   faqs.forEach((item, i) => {
-    list.innerHTML += `
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(${i}, this)">
-          <span>${item.q}</span>
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a" id="faq-a-${i}">
-          <div class="faq-a-inner">${item.a}</div>
-        </div>
+    const div = document.createElement('div');
+    div.className = 'faq-item';
+    div.innerHTML = `
+      <button class="faq-q">
+        <span>${item.q}</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a" id="faq-a-${i}">
+        <div class="faq-a-inner">${item.a}</div>
       </div>`;
+    const btn = div.querySelector('.faq-q');
+    const ans = div.querySelector('.faq-a');
+    btn.addEventListener('click', () => {
+      const isOpen = ans.classList.contains('open');
+      document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+      document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('active'));
+      if (!isOpen) { ans.classList.add('open'); btn.classList.add('active'); }
+    });
+    list.appendChild(div);
   });
 }
 
-function toggleFaq(i, btn) {
-  const ans = document.getElementById(`faq-a-${i}`);
-  const isOpen = ans.classList.contains('open');
-  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
-  document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('active'));
-  if (!isOpen) { ans.classList.add('open'); btn.classList.add('active'); }
+/* ============================================================
+   HERO BADGE TICKER
+   ============================================================ */
+function initHeroTicker() {
+  const tickerEl = document.getElementById('tickerText');
+  if (!tickerEl) return;
+  const items = [
+    '🏈 NFL Sunday Ticket · Live Now',
+    '🏀 NBA Playoffs · Watch in 4K',
+    '🥊 UFC Fight Night · Stream Live',
+    '🎬 New Movies & HBO Originals · On Demand',
+    '⚽ World Cup 2026 · USA · Canada · Mexico',
+    '📺 Trending TV Shows · Streaming Now',
+  ];
+  let idx = 0;
+  setInterval(() => {
+    tickerEl.style.opacity = '0';
+    setTimeout(() => {
+      idx = (idx + 1) % items.length;
+      tickerEl.textContent = items[idx];
+      tickerEl.style.opacity = '1';
+    }, 400);
+  }, 4000);
+  tickerEl.style.transition = 'opacity 0.4s ease';
 }
 
 /* ============================================================
@@ -272,32 +504,76 @@ function initScrollReveal() {
 }
 
 /* ============================================================
-   DRAG SCROLL + AUTO SCROLL
+   UNIFIED SLIDER — mouse drag + touch drag + auto-slide
    ============================================================ */
-function initDragScroll(el) {
-  if (!el) return;
-  let isDown = false, startX, scrollLeft;
-  el.addEventListener('mousedown', e => { isDown = true; startX = e.pageX - el.offsetLeft; scrollLeft = el.scrollLeft; });
-  el.addEventListener('mouseleave', () => { isDown = false; });
-  el.addEventListener('mouseup', () => { isDown = false; });
-  el.addEventListener('mousemove', e => {
-    if (!isDown) return;
-    e.preventDefault();
-    el.scrollLeft = scrollLeft - (e.pageX - el.offsetLeft - startX);
-  });
-}
+function initSlider(el, { autoSlide = false, interval = 3500 } = {}) {
+  if (!el) return () => {};
 
-function initAutoScroll(el, speed) {
-  if (!el) return;
-  let paused = false;
-  el.addEventListener('mouseenter', () => paused = true);
-  el.addEventListener('mouseleave', () => paused = false);
-  setInterval(() => {
-    if (!paused) {
-      el.scrollLeft += speed;
-      if (el.scrollLeft >= el.scrollWidth - el.clientWidth) el.scrollLeft = 0;
-    }
-  }, 30);
+  let interacting = false;
+  let timer = null;
+
+  // ── Mouse drag ──────────────────────────────────────────────
+  let mouseDown = false, mouseStartX = 0, mouseScrollLeft = 0;
+
+  el.addEventListener('mousedown', e => {
+    mouseDown = true;
+    interacting = true;
+    mouseStartX = e.pageX - el.offsetLeft;
+    mouseScrollLeft = el.scrollLeft;
+    el.style.scrollBehavior = 'auto';
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (!mouseDown) return;
+    mouseDown = false;
+    interacting = false;
+    el.style.scrollBehavior = 'smooth';
+  });
+
+  el.addEventListener('mousemove', e => {
+    if (!mouseDown) return;
+    e.preventDefault();
+    el.scrollLeft = mouseScrollLeft - (e.pageX - el.offsetLeft - mouseStartX);
+  });
+
+  // ── Touch drag ──────────────────────────────────────────────
+  let touchStartX = 0, touchScrollLeft = 0;
+
+  el.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchScrollLeft = el.scrollLeft;
+    interacting = true;
+    el.style.scrollBehavior = 'auto';
+  }, { passive: true });
+
+  el.addEventListener('touchmove', e => {
+    const dx = touchStartX - e.touches[0].clientX;
+    el.scrollLeft = touchScrollLeft + dx;
+  }, { passive: true });
+
+  el.addEventListener('touchend', () => {
+    interacting = false;
+    el.style.scrollBehavior = 'smooth';
+  }, { passive: true });
+
+  // ── Auto-slide (card-by-card) ────────────────────────────────
+  if (autoSlide) {
+    const advance = () => {
+      if (interacting) return;
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      if (el.scrollLeft >= maxScroll - 2) {
+        el.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        const card = el.firstElementChild;
+        const cardW = card ? card.offsetWidth + parseInt(getComputedStyle(el).gap || 20) : 300;
+        el.scrollBy({ left: cardW, behavior: 'smooth' });
+      }
+    };
+    timer = setInterval(advance, interval);
+  }
+
+  // Return cleanup so tab switches can cancel the old timer
+  return () => { if (timer) clearInterval(timer); };
 }
 
 /* ============================================================
@@ -363,35 +639,49 @@ function initFlameCanvas() {
 /* ============================================================
    DEVICE SELECTOR + PRICING UPDATE
    ============================================================ */
+const deviceLabels = {
+  1: { count: '1 Screen',   label: 'Solo Viewer' },
+  2: { count: '2 Screens',  label: 'Couple / Roommates' },
+  3: { count: '3 Screens',  label: 'Small Family' },
+  4: { count: '4 Screens',  label: 'Full Family' },
+  5: { count: '5 Screens',  label: 'Whole Household' },
+};
+
 function updatePriceCards(deviceCount) {
   const plans = pricingPlans[deviceCount];
   if (!plans) return;
 
   const p1 = plans[1], p6 = plans[6], p12 = plans[12];
+  const { count, label } = deviceLabels[deviceCount];
+  const deviceWord = deviceCount === 1 ? 'device' : 'devices';
 
-  const price1m = document.getElementById('price-1m');
-  const period1m = document.getElementById('period-1m');
-  const btn1m = document.getElementById('btn-1m');
+  // Prices & periods
+  const set = (id, html, isHTML) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (isHTML) el.innerHTML = html; else el.textContent = html;
+  };
 
-  const price6m = document.getElementById('price-6m');
-  const period6m = document.getElementById('period-6m');
-  const btn6m = document.getElementById('btn-6m');
+  set('price-1m',  `<span>$</span>${p1.price}`, true);
+  set('period-1m', 'per month, billed monthly');
+  set('price-6m',  `<span>$</span>${p6.price}`, true);
+  set('period-6m', `$${p6.monthly.toFixed(2)}/month — billed once`);
+  set('price-12m', `<span>$</span>${p12.price}`, true);
+  set('period-12m',`$${p12.monthly.toFixed(2)}/month — billed once`);
 
-  const price12m = document.getElementById('price-12m');
-  const period12m = document.getElementById('period-12m');
-  const btn12m = document.getElementById('btn-12m');
+  // Checkout links
+  document.getElementById('btn-1m').onclick  = () => window.location.href = p1.checkoutLink;
+  document.getElementById('btn-6m').onclick  = () => window.location.href = p6.checkoutLink;
+  document.getElementById('btn-12m').onclick = () => window.location.href = p12.checkoutLink;
 
-  if (price1m) price1m.innerHTML = `<span>$</span>${p1.price}`;
-  if (period1m) period1m.textContent = `per month, billed monthly`;
-  if (btn1m) btn1m.onclick = () => window.location.href = p1.checkoutLink;
-
-  if (price6m) price6m.innerHTML = `<span>$</span>${p6.price}`;
-  if (period6m) period6m.textContent = `$${p6.monthly.toFixed(2)}/month — billed once`;
-  if (btn6m) btn6m.onclick = () => window.location.href = p6.checkoutLink;
-
-  if (price12m) price12m.innerHTML = `<span>$</span>${p12.price}`;
-  if (period12m) period12m.textContent = `$${p12.monthly.toFixed(2)}/month — billed once`;
-  if (btn12m) btn12m.onclick = () => window.location.href = p12.checkoutLink;
+  // Screens badge — count + label on all three cards
+  ['1m', '6m', '12m'].forEach(suffix => {
+    set(`screens-count-${suffix}`, count);
+    set(`screens-label-${suffix}`, label);
+    set(`devices-line-${suffix}`,
+      `Stream on <strong>${deviceCount} ${deviceWord}</strong> at the same time`,
+      true);
+  });
 }
 
 function initDeviceSelector() {
@@ -414,7 +704,8 @@ function initDeviceSelector() {
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
   // Render dynamic sections
-  renderGames();
+  renderHub('trending'); // default tab
+  initHubTabs();
   renderTestimonials();
   renderFaq();
 
@@ -428,12 +719,12 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // Sliders
-  initDragScroll(document.getElementById('gamesSlider'));
-  initDragScroll(document.getElementById('testiSlider'));
-  initAutoScroll(document.getElementById('gamesSlider'), 0.8);
-  initAutoScroll(document.getElementById('testiSlider'), 0.6);
+  // Testimonials slider
+  initSlider(document.getElementById('testiSlider'), { autoSlide: true, interval: 4000 });
 
   // Flame effect
   initFlameCanvas();
+
+  // Hero ticker
+  initHeroTicker();
 });
