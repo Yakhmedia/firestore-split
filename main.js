@@ -12,8 +12,8 @@ const mediaItems = [
   { type: 'series', title: 'House of the Dragon', meta: 'Season 3 · Fantasy Drama', network: 'HBO', rating: '★★★★★', bg: 'linear-gradient(135deg,#1a0a2e,#4a1060)', poster: `${TMDB}/z2yahl2uefxDCl0nogcRBstwruJ.jpg` },
   { type: 'series', title: 'The Bear', meta: 'Final Season · Comedy Drama', network: 'Hulu', rating: '★★★★★', bg: 'linear-gradient(135deg,#1a0a00,#3a1800)', poster: `${TMDB}/4fVddnbhcmzRZE14NJY03GKS6Fn.jpg` },
   { type: 'series', title: 'Shōgun', meta: 'Season 2 · Historical Epic', network: 'Hulu', rating: '★★★★★', bg: 'linear-gradient(135deg,#1a1005,#3a2510)', poster: `${TMDB}/7O4iVfOMQmdCSxhOg1WnzG1AgYT.jpg` },
-  { type: 'movie',  title: 'Deadpool & Wolverine', meta: '2026 · Marvel Action', network: 'Disney+', rating: '★★★★★', bg: 'linear-gradient(135deg,#2e0a0a,#601010)', poster: `${TMDB}/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg` },
-  { type: 'movie',  title: 'Inside Out 2', meta: '2026 · Pixar Animation', network: 'Disney+', rating: '★★★★★', bg: 'linear-gradient(135deg,#0d1a2e,#1a3a60)', poster: `${TMDB}/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg` },
+  { type: 'movie', title: 'Deadpool & Wolverine', meta: '2026 · Marvel Action', network: 'Disney+', rating: '★★★★★', bg: 'linear-gradient(135deg,#2e0a0a,#601010)', poster: `${TMDB}/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg` },
+  { type: 'movie', title: 'Inside Out 2', meta: '2026 · Pixar Animation', network: 'Disney+', rating: '★★★★★', bg: 'linear-gradient(135deg,#0d1a2e,#1a3a60)', poster: `${TMDB}/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg` },
   { type: 'series', title: 'The Boys', meta: 'Season 4 · Superhero Satire', network: 'Amazon Prime', rating: '★★★★☆', bg: 'linear-gradient(135deg,#2e0a0a,#3a0008)', poster: `${TMDB}/in1R2dDc421JxsoRWaIIAqVI2KE.jpg` },
 ];
 
@@ -22,15 +22,15 @@ const mediaItems = [
    ============================================================ */
 // image: Unsplash sport-specific action photos
 const IMG = {
-  nfl:     'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&q=80',
-  nba:     'https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=600&q=80',
-  ufc:     'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd2ee?w=600&q=80',
-  mlb:     'https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=600&q=80',
-  boxing:  'https://images.unsplash.com/photo-1517438476312-10d79c077509?w=600&q=80',
-  soccer:  'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600&q=80',
-  golf:    'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=600&q=80',
-  cinema:  'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600&q=80',
-  drama:   'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&q=80',
+  nfl: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&q=80',
+  nba: 'https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=600&q=80',
+  ufc: 'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd2ee?w=600&q=80',
+  mlb: 'https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=600&q=80',
+  boxing: 'https://images.unsplash.com/photo-1517438476312-10d79c077509?w=600&q=80',
+  soccer: 'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600&q=80',
+  golf: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=600&q=80',
+  cinema: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600&q=80',
+  drama: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&q=80',
 };
 
 const usSportsEvents = [
@@ -65,24 +65,24 @@ const pricingPlans = {
     12: { price: 79, monthly: 6.58, checkoutLink: 'https://firepay.shop/step/12-month-premium-plan/' },
   },
   2: {
-    1: { price: 59, monthly: 59, checkoutLink: 'https://wa.me/12029927413?text=Hi%2C+I%27d+like+to+order+the+1-Month+plan+for+2+devices+%28%2459%29.' },
-    6: { price: 99, monthly: 16, checkoutLink: 'https://wa.me/12029927413?text=Hi%2C+I%27d+like+to+order+the+6-Month+plan+for+2+devices+%28%2499%29.' },
-    12: { price: 159, monthly: 13.25, checkoutLink: 'https://wa.me/12029927413?text=Hi%2C+I%27d+like+to+order+the+12-Month+plan+for+2+devices+%28%24159%29.' },
+    1: { price: 59, monthly: 59, checkoutLink: 'https://firepay.shop/step/2-devices-1-month/' },
+    6: { price: 99, monthly: 16, checkoutLink: 'https://firepay.shop/step/2-devices-6-month/' },
+    12: { price: 159, monthly: 13.25, checkoutLink: 'https://firepay.shop/step/2-devices-12-month/' },
   },
   3: {
-    1: { price: 89, monthly: 89, checkoutLink: 'https://wa.me/12029927413?text=Hi%2C+I%27d+like+to+order+the+1-Month+plan+for+3+devices+%28%2489%29.' },
-    6: { price: 149, monthly: 24, checkoutLink: 'https://wa.me/12029927413?text=Hi%2C+I%27d+like+to+order+the+6-Month+plan+for+3+devices+%28%24149%29.' },
-    12: { price: 209, monthly: 17.42, checkoutLink: 'https://wa.me/12029927413?text=Hi%2C+I%27d+like+to+order+the+12-Month+plan+for+3+devices+%28%24209%29.' },
+    1: { price: 89, monthly: 89, checkoutLink: 'https://firepay.shop/step/3-devices-1-month/' },
+    6: { price: 149, monthly: 24, checkoutLink: 'https://firepay.shop/step/3-devices-6-month/' },
+    12: { price: 209, monthly: 17.42, checkoutLink: 'https://firepay.shop/step/3-devices-12-month/' },
   },
   4: {
-    1: { price: 119, monthly: 119, checkoutLink: 'https://wa.me/12029927413?text=Hi%2C+I%27d+like+to+order+the+1-Month+plan+for+4+devices+%28%24119%29.' },
-    6: { price: 159, monthly: 26.5, checkoutLink: 'https://wa.me/12029927413?text=Hi%2C+I%27d+like+to+order+the+6-Month+plan+for+4+devices+%28%24159%29.' },
-    12: { price: 319, monthly: 26.58, checkoutLink: 'https://wa.me/12029927413?text=Hi%2C+I%27d+like+to+order+the+12-Month+plan+for+4+devices+%28%24319%29.' },
+    1: { price: 119, monthly: 119, checkoutLink: 'https://firepay.shop/step/4-devices-1-month/' },
+    6: { price: 159, monthly: 26.5, checkoutLink: 'https://firepay.shop/step/4-devices-6-month/' },
+    12: { price: 239, monthly: 19.91, checkoutLink: 'https://firepay.shop/step/4-devices-12-month/' },
   },
   5: {
-    1: { price: 149, monthly: 149, checkoutLink: 'https://wa.me/12029927413?text=Hi%2C+I%27d+like+to+order+the+1-Month+plan+for+5+devices+%28%24149%29.' },
-    6: { price: 199, monthly: 33.17, checkoutLink: 'https://wa.me/12029927413?text=Hi%2C+I%27d+like+to+order+the+6-Month+plan+for+5+devices+%28%24199%29.' },
-    12: { price: 399, monthly: 33.25, checkoutLink: 'https://wa.me/12029927413?text=Hi%2C+I%27d+like+to+order+the+12-Month+plan+for+5+devices+%28%24399%29.' },
+    1: { price: 129, monthly: 129, checkoutLink: 'https://firepay.shop/step/5-devices-1-month/' },
+    6: { price: 179, monthly: 29.83, checkoutLink: 'https://firepay.shop/step/5-devices-6-month/' },
+    12: { price: 289, monthly: 24.08, checkoutLink: 'https://firepay.shop/step/5-devices-12-month/' },
   },
 };
 
@@ -314,7 +314,7 @@ function renderHub(tab) {
 function initHubTabs() {
   const tabs = document.getElementById('hubTabs');
   if (!tabs) return;
-  let cleanupSlider = () => {};
+  let cleanupSlider = () => { };
 
   const startSlider = () => {
     cleanupSlider();
@@ -496,7 +496,7 @@ function initScrollReveal() {
    UNIFIED SLIDER — mouse drag + touch drag + auto-slide
    ============================================================ */
 function initSlider(el, { autoSlide = false, interval = 3500 } = {}) {
-  if (!el) return () => {};
+  if (!el) return () => { };
 
   let interacting = false;
   let timer = null;
@@ -629,11 +629,11 @@ function initFlameCanvas() {
    DEVICE SELECTOR + PRICING UPDATE
    ============================================================ */
 const deviceLabels = {
-  1: { count: '1 Screen',   label: 'Solo Viewer' },
-  2: { count: '2 Screens',  label: 'Couple / Roommates' },
-  3: { count: '3 Screens',  label: 'Small Family' },
-  4: { count: '4 Screens',  label: 'Full Family' },
-  5: { count: '5 Screens',  label: 'Whole Household' },
+  1: { count: '1 Screen', label: 'Solo Viewer' },
+  2: { count: '2 Screens', label: 'Couple / Roommates' },
+  3: { count: '3 Screens', label: 'Small Family' },
+  4: { count: '4 Screens', label: 'Full Family' },
+  5: { count: '5 Screens', label: 'Whole Household' },
 };
 
 function updatePriceCards(deviceCount) {
@@ -651,16 +651,16 @@ function updatePriceCards(deviceCount) {
     if (isHTML) el.innerHTML = html; else el.textContent = html;
   };
 
-  set('price-1m',  `<span>$</span>${p1.price}`, true);
+  set('price-1m', `<span>$</span>${p1.price}`, true);
   set('period-1m', 'per month, billed monthly');
-  set('price-6m',  `<span>$</span>${p6.price}`, true);
+  set('price-6m', `<span>$</span>${p6.price}`, true);
   set('period-6m', `$${p6.monthly.toFixed(2)}/month — billed once`);
   set('price-12m', `<span>$</span>${p12.price}`, true);
-  set('period-12m',`$${p12.monthly.toFixed(2)}/month — billed once`);
+  set('period-12m', `$${p12.monthly.toFixed(2)}/month — billed once`);
 
   // Checkout links
-  document.getElementById('btn-1m').onclick  = () => window.location.href = p1.checkoutLink;
-  document.getElementById('btn-6m').onclick  = () => window.location.href = p6.checkoutLink;
+  document.getElementById('btn-1m').onclick = () => window.location.href = p1.checkoutLink;
+  document.getElementById('btn-6m').onclick = () => window.location.href = p6.checkoutLink;
   document.getElementById('btn-12m').onclick = () => window.location.href = p12.checkoutLink;
 
   // Screens badge — count + label on all three cards
@@ -671,6 +671,111 @@ function updatePriceCards(deviceCount) {
       `Stream on <strong>${deviceCount} ${deviceWord}</strong> at the same time`,
       true);
   });
+
+  // Keep the savings calculator in sync with the selected package's
+  // best-value (12-month) monthly rate.
+  fireStoreMonthly = p12.monthly;
+  recalcSavings();
+}
+
+/* ============================================================
+   CORD-CUTTER SAVINGS CALCULATOR
+   ============================================================ */
+const subscriptions = [
+  { id: 'cable', name: 'Cable / Satellite TV', cost: 83.00, icon: '📡', checked: true },
+  { id: 'netflix', name: 'Netflix', cost: 15.49, icon: '🎬', checked: true },
+  { id: 'disney', name: 'Disney+', cost: 13.99, icon: '🏰', checked: true },
+  { id: 'hbo', name: 'HBO Max', cost: 16.99, icon: '🐉' },
+  { id: 'espn', name: 'ESPN+ / Sports', cost: 10.99, icon: '🏈' },
+  { id: 'prime', name: 'Prime Video', cost: 8.99, icon: '📦' },
+  { id: 'hulu', name: 'Hulu (No Ads)', cost: 17.99, icon: '📺' },
+  { id: 'paramount', name: 'Paramount+', cost: 11.99, icon: '⛰️' },
+  { id: 'peacock', name: 'Peacock Premium', cost: 13.99, icon: '🦚' },
+  { id: 'youtubetv', name: 'YouTube TV', cost: 72.99, icon: '▶️' },
+];
+
+// Default Fire Store monthly cost = 1-device, 12-month best value.
+let fireStoreMonthly = pricingPlans[1][12].monthly;
+
+// Smoothly counts a number element from its current value to `target`.
+function animateCount(el, target, prefix = '$', decimals = 0) {
+  if (!el) return;
+  const start = parseFloat(el.dataset.value || '0');
+  const duration = 600;
+  const startTime = performance.now();
+
+  function frame(now) {
+    const t = Math.min((now - startTime) / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
+    const value = start + (target - start) * eased;
+    el.textContent = `${prefix}${value.toFixed(decimals)}`;
+    if (t < 1) requestAnimationFrame(frame);
+    else el.dataset.value = String(target);
+  }
+  el.dataset.value = String(start);
+  requestAnimationFrame(frame);
+}
+
+function recalcSavings() {
+  const checklist = document.getElementById('calcChecklist');
+  if (!checklist) return;
+
+  let monthlyExpense = 0;
+  checklist.querySelectorAll('input:checked').forEach(input => {
+    monthlyExpense += Number(input.dataset.cost);
+  });
+
+  const annualSavings = Math.max(0, (monthlyExpense - fireStoreMonthly) * 12);
+
+  // Counters
+  animateCount(document.getElementById('calcMonthly'), monthlyExpense, '$', 0);
+  animateCount(document.getElementById('calcFirestore'), fireStoreMonthly, '$', 2);
+  animateCount(document.getElementById('calcSavings'), annualSavings, '$', 0);
+
+  // Comparison bars (expense is the reference width when anything is selected)
+  const expenseBar = document.getElementById('calcExpenseBar');
+  const firestoreBar = document.getElementById('calcFirestoreBar');
+  if (expenseBar && firestoreBar) {
+    if (monthlyExpense > 0) {
+      expenseBar.style.width = '100%';
+      firestoreBar.style.width = `${Math.min(100, (fireStoreMonthly / monthlyExpense) * 100)}%`;
+    } else {
+      expenseBar.style.width = '0';
+      firestoreBar.style.width = '0';
+    }
+  }
+
+  // Contextual note
+  const note = document.getElementById('calcSavingsNote');
+  if (note) {
+    if (monthlyExpense <= 0) {
+      note.textContent = 'Select your current services above';
+    } else if (annualSavings <= 0) {
+      note.textContent = "You're already lean — Fire Store still adds 100,000+ channels";
+    } else {
+      note.textContent = `That's like getting ${Math.floor(annualSavings / fireStoreMonthly / 12)}+ years of Fire Store free`;
+    }
+  }
+}
+
+function initCalculator() {
+  const checklist = document.getElementById('calcChecklist');
+  if (!checklist) return;
+
+  checklist.innerHTML = subscriptions.map(s => `
+    <label class="calc-item">
+      <input type="checkbox" data-cost="${s.cost}" ${s.checked ? 'checked' : ''}>
+      <span class="calc-checkbox"></span>
+      <span class="calc-item-icon">${s.icon}</span>
+      <span class="calc-item-text">
+        <span class="calc-item-name">${s.name}</span>
+        <span class="calc-item-cost">$${s.cost.toFixed(2)}/mo</span>
+      </span>
+    </label>
+  `).join('');
+
+  checklist.addEventListener('change', recalcSavings);
+  recalcSavings();
 }
 
 function initDeviceSelector() {
@@ -700,6 +805,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // UI behaviours
   initNavbar();
+  initCalculator();
   initDeviceSelector();
   initScrollReveal();
   initUrgencyCounter();

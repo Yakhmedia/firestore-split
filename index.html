@@ -5,8 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fire Store – Live TV, Movies, Sports & Entertainment Streaming</title>
-  <meta name="description" content="Fire Store: Stream 100,000+ live channels including NFL, NBA, UFC, Movies, TV Shows & the 2026 FIFA World Cup in 4K. No buffering, instant activation.">
-  <meta name="keywords" content="IPTV, live TV streaming, NFL streaming, NBA live, UFC streaming, movies, TV shows, World Cup 2026, 4K streaming, Fire Store">
+  <meta name="description"
+    content="Fire Store: Stream 100,000+ live channels including NFL, NBA, UFC, Movies, TV Shows & the 2026 FIFA World Cup in 4K. No buffering, instant activation.">
+  <meta name="keywords"
+    content="IPTV, live TV streaming, NFL streaming, NBA live, UFC streaming, movies, TV shows, World Cup 2026, 4K streaming, Fire Store">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,7 +42,7 @@
     <div class="nav-actions">
       <!-- <button class="btn-trial" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">🎁 Free Trial</button> -->
       <button class="btn-subscribe"
-        onclick="document.getElementById('plans').scrollIntoView({behavior:'smooth'})">Subscribe Now</button>
+        onclick="document.getElementById('plans').scrollIntoView({behavior:'smooth'})">Subscribe</button>
     </div>
     <!-- Hamburger Button -->
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
@@ -125,37 +127,67 @@
 
       <div class="channel-category reveal">
         <span class="channel-cat-label">🏈 Sports Networks</span>
-        <div class="channel-grid">
-          <div class="channel-logo" style="--accent:#d00404">ESPN</div>
-          <div class="channel-logo" style="--accent:#ff6600">ESPN+</div>
-          <div class="channel-logo" style="--accent:#003da5">FOX Sports</div>
-          <div class="channel-logo" style="--accent:#003594">CBS Sports</div>
-          <div class="channel-logo" style="--accent:#002244">NBC Sports</div>
-          <div class="channel-logo" style="--accent:#8a00ff">TNT Sports</div>
-          <div class="channel-logo" style="--accent:#d6001c">FS1</div>
-          <div class="channel-logo" style="--accent:#f5a623">DAZN</div>
-          <div class="channel-logo" style="--accent:#800000">beIN Sports</div>
-          <div class="channel-logo" style="--accent:#005f9e">NFL Network</div>
-          <div class="channel-logo" style="--accent:#006bb6">NBA TV</div>
-          <div class="channel-logo" style="--accent:#002d62">MLB Network</div>
+        <div class="marquee-container">
+          <div class="marquee-track">
+            <div class="channel-logo" style="--accent:#d00404">ESPN</div>
+            <div class="channel-logo" style="--accent:#ff6600">ESPN+</div>
+            <div class="channel-logo" style="--accent:#003da5">FOX Sports</div>
+            <div class="channel-logo" style="--accent:#003594">CBS Sports</div>
+            <div class="channel-logo" style="--accent:#002244">NBC Sports</div>
+            <div class="channel-logo" style="--accent:#8a00ff">TNT Sports</div>
+            <div class="channel-logo" style="--accent:#d6001c">FS1</div>
+            <div class="channel-logo" style="--accent:#f5a623">DAZN</div>
+            <div class="channel-logo" style="--accent:#800000">beIN Sports</div>
+            <div class="channel-logo" style="--accent:#005f9e">NFL Network</div>
+            <div class="channel-logo" style="--accent:#006bb6">NBA TV</div>
+            <div class="channel-logo" style="--accent:#002d62">MLB Network</div>
+            <!-- Duplicate set for seamless loop -->
+            <div class="channel-logo" style="--accent:#d00404" aria-hidden="true">ESPN</div>
+            <div class="channel-logo" style="--accent:#ff6600" aria-hidden="true">ESPN+</div>
+            <div class="channel-logo" style="--accent:#003da5" aria-hidden="true">FOX Sports</div>
+            <div class="channel-logo" style="--accent:#003594" aria-hidden="true">CBS Sports</div>
+            <div class="channel-logo" style="--accent:#002244" aria-hidden="true">NBC Sports</div>
+            <div class="channel-logo" style="--accent:#8a00ff" aria-hidden="true">TNT Sports</div>
+            <div class="channel-logo" style="--accent:#d6001c" aria-hidden="true">FS1</div>
+            <div class="channel-logo" style="--accent:#f5a623" aria-hidden="true">DAZN</div>
+            <div class="channel-logo" style="--accent:#800000" aria-hidden="true">beIN Sports</div>
+            <div class="channel-logo" style="--accent:#005f9e" aria-hidden="true">NFL Network</div>
+            <div class="channel-logo" style="--accent:#006bb6" aria-hidden="true">NBA TV</div>
+            <div class="channel-logo" style="--accent:#002d62" aria-hidden="true">MLB Network</div>
+          </div>
         </div>
       </div>
 
       <div class="channel-category reveal">
         <span class="channel-cat-label">🎬 Entertainment & Streaming</span>
-        <div class="channel-grid">
-          <div class="channel-logo" style="--accent:#5b2d8e">HBO / Max</div>
-          <div class="channel-logo" style="--accent:#e50914">Netflix</div>
-          <div class="channel-logo" style="--accent:#0063e5">Disney+</div>
-          <div class="channel-logo" style="--accent:#0064ff">Paramount+</div>
-          <div class="channel-logo" style="--accent:#00b2e3">Peacock</div>
-          <div class="channel-logo" style="--accent:#1ce783">Hulu</div>
-          <div class="channel-logo" style="--accent:#cc0000">Showtime</div>
-          <div class="channel-logo" style="--accent:#c8102e">Bravo</div>
-          <div class="channel-logo" style="--accent:#b89c5e">AMC</div>
-          <div class="channel-logo" style="--accent:#1d4099">FX</div>
-          <div class="channel-logo" style="--accent:#ff9800">Starz</div>
-          <div class="channel-logo" style="--accent:#e91e8c">Lifetime</div>
+        <div class="marquee-container">
+          <div class="marquee-track reverse">
+            <div class="channel-logo" style="--accent:#5b2d8e">HBO / Max</div>
+            <div class="channel-logo" style="--accent:#e50914">Netflix</div>
+            <div class="channel-logo" style="--accent:#0063e5">Disney+</div>
+            <div class="channel-logo" style="--accent:#0064ff">Paramount+</div>
+            <div class="channel-logo" style="--accent:#00b2e3">Peacock</div>
+            <div class="channel-logo" style="--accent:#1ce783">Hulu</div>
+            <div class="channel-logo" style="--accent:#cc0000">Showtime</div>
+            <div class="channel-logo" style="--accent:#c8102e">Bravo</div>
+            <div class="channel-logo" style="--accent:#b89c5e">AMC</div>
+            <div class="channel-logo" style="--accent:#1d4099">FX</div>
+            <div class="channel-logo" style="--accent:#ff9800">Starz</div>
+            <div class="channel-logo" style="--accent:#e91e8c">Lifetime</div>
+            <!-- Duplicate set for seamless loop -->
+            <div class="channel-logo" style="--accent:#5b2d8e" aria-hidden="true">HBO / Max</div>
+            <div class="channel-logo" style="--accent:#e50914" aria-hidden="true">Netflix</div>
+            <div class="channel-logo" style="--accent:#0063e5" aria-hidden="true">Disney+</div>
+            <div class="channel-logo" style="--accent:#0064ff" aria-hidden="true">Paramount+</div>
+            <div class="channel-logo" style="--accent:#00b2e3" aria-hidden="true">Peacock</div>
+            <div class="channel-logo" style="--accent:#1ce783" aria-hidden="true">Hulu</div>
+            <div class="channel-logo" style="--accent:#cc0000" aria-hidden="true">Showtime</div>
+            <div class="channel-logo" style="--accent:#c8102e" aria-hidden="true">Bravo</div>
+            <div class="channel-logo" style="--accent:#b89c5e" aria-hidden="true">AMC</div>
+            <div class="channel-logo" style="--accent:#1d4099" aria-hidden="true">FX</div>
+            <div class="channel-logo" style="--accent:#ff9800" aria-hidden="true">Starz</div>
+            <div class="channel-logo" style="--accent:#e91e8c" aria-hidden="true">Lifetime</div>
+          </div>
         </div>
       </div>
 
@@ -178,32 +210,38 @@
         <div class="feature-card reveal reveal-delay-1">
           <div class="feature-icon">⚡</div>
           <h3>60 FPS Live Sports</h3>
-          <p>NFL, NBA, UFC and MLB streamed at buttery-smooth <strong>60 frames per second</strong>. Every pass, dunk, and knockout — crystal clear, zero motion blur.</p>
+          <p>NFL, NBA, UFC and MLB streamed at buttery-smooth <strong>60 frames per second</strong>. Every pass, dunk,
+            and knockout — crystal clear, zero motion blur.</p>
         </div>
         <div class="feature-card reveal reveal-delay-2">
           <div class="feature-icon">🎬</div>
           <h3>4K HDR Movies & TV</h3>
-          <p>Cinematic <strong>4K Ultra HD with Dolby Audio</strong> for every HBO series, blockbuster movie, and premium show. Your living room becomes the theater.</p>
+          <p>Cinematic <strong>4K Ultra HD with Dolby Audio</strong> for every HBO series, blockbuster movie, and
+            premium show. Your living room becomes the theater.</p>
         </div>
         <div class="feature-card reveal reveal-delay-3">
           <div class="feature-icon">🛡️</div>
           <h3>Anti-Freeze Sunday Guarantee</h3>
-          <p>Our servers are sized for <strong>Super Bowl-level traffic</strong>. Zero buffering on the biggest NFL Sundays, NBA playoffs, and UFC pay-per-views — guaranteed.</p>
+          <p>Our servers are sized for <strong>Super Bowl-level traffic</strong>. Zero buffering on the biggest NFL
+            Sundays, NBA playoffs, and UFC pay-per-views — guaranteed.</p>
         </div>
         <div class="feature-card reveal reveal-delay-1">
           <div class="feature-icon">📡</div>
           <h3>No Regional Blackouts</h3>
-          <p>Stream your local NFL or NBA team <strong>from anywhere in the US</strong> — no geo-blocks, no cable zip-code restrictions, no blackouts. Every game, every market.</p>
+          <p>Stream your local NFL or NBA team <strong>from anywhere in the US</strong> — no geo-blocks, no cable
+            zip-code restrictions, no blackouts. Every game, every market.</p>
         </div>
         <div class="feature-card reveal reveal-delay-2">
           <div class="feature-icon">🏠</div>
           <h3>The Whole Family, All at Once</h3>
-          <p>Kids on cartoons, parents on the NFL, someone else binging a series — <strong>multiple screens streaming simultaneously</strong> without a single frame dropped.</p>
+          <p>Kids on cartoons, parents on the NFL, someone else binging a series — <strong>multiple screens streaming
+              simultaneously</strong> without a single frame dropped.</p>
         </div>
         <div class="feature-card reveal reveal-delay-3">
           <div class="feature-icon">💬</div>
           <h3>24/7 WhatsApp Support</h3>
-          <p>Real humans, not bots. Message us during <strong>any game, any time</strong> — average reply under 2 minutes. We stay live so your stream stays live.</p>
+          <p>Real humans, not bots. Message us during <strong>any game, any time</strong> — average reply under 2
+            minutes. We stay live so your stream stays live.</p>
         </div>
       </div>
     </div>
@@ -349,6 +387,41 @@
         </table>
       </div>
 
+      <!-- Cord-Cutter Savings Calculator -->
+      <div class="calculator-section reveal" id="savingsCalculator">
+        <div class="calc-header">
+          <span class="section-tag">🧮 Cord-Cutter Calculator</span>
+          <h3>See How Much You're Overpaying</h3>
+          <p>Tick the services you currently pay for and watch your annual savings stack up against Fire Store.</p>
+        </div>
+        <div class="calc-grid">
+          <div class="calc-checklist" id="calcChecklist"></div>
+          <div class="calc-results">
+            <div class="calc-result-row">
+              <span class="calc-result-label">Your Monthly Expense</span>
+              <span class="calc-result-value expense" id="calcMonthly">$0</span>
+            </div>
+            <div class="calc-bar-wrap">
+              <div class="calc-bar expense-bar" id="calcExpenseBar"></div>
+            </div>
+            <div class="calc-result-row">
+              <span class="calc-result-label">Fire Store Cost</span>
+              <span class="calc-result-value firestore" id="calcFirestore">$0</span>
+            </div>
+            <div class="calc-bar-wrap">
+              <div class="calc-bar firestore-bar" id="calcFirestoreBar"></div>
+            </div>
+            <div class="calc-savings">
+              <span class="calc-savings-label">Your Annual Savings</span>
+              <span class="calc-savings-value" id="calcSavings">$0</span>
+              <span class="calc-savings-note" id="calcSavingsNote">Select your current services above</span>
+            </div>
+            <a href="#plans" class="cta-primary calc-cta" id="calcCta"
+              onclick="document.getElementById('plans').scrollIntoView({behavior:'smooth'})">🔥 Start Saving Now</a>
+          </div>
+        </div>
+      </div>
+
       <!-- Payment Trust Strip -->
       <div class="payment-trust-strip reveal">
         <span class="trust-lock">🔒 Secure Checkout</span>
@@ -456,7 +529,8 @@
         </div>
         <div class="footer-col">
           <h4>Support</h4>
-          <a href="https://wa.me/12029927413" class="footer-wa-btn" target="_blank" rel="noopener">💬 WhatsApp Support</a>
+          <a href="https://wa.me/12029927413" class="footer-wa-btn" target="_blank" rel="noopener">💬 WhatsApp
+            Support</a>
           <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:8px;">contact@firestore.tv</p>
           <ul>
             <li><a href="#">Help Center</a></li>
