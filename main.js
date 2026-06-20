@@ -10,15 +10,11 @@
 const TMDB = 'https://image.tmdb.org/t/p/w500';
 const mediaItems = [
   { type: 'series', title: 'House of the Dragon', meta: 'Season 3 · Fantasy Drama', network: 'HBO', rating: '★★★★★', bg: 'linear-gradient(135deg,#1a0a2e,#4a1060)', poster: `${TMDB}/z2yahl2uefxDCl0nogcRBstwruJ.jpg` },
-  { type: 'movie',  title: 'Mission: Impossible 8', meta: '2025 · Action Thriller', network: 'Paramount+', rating: '★★★★☆', bg: 'linear-gradient(135deg,#0d1a2e,#0d3060)', poster: `${TMDB}/NNxYkU71-w7sb7mY5yvD4yd8B4.jpg` },
-  { type: 'series', title: 'The Last of Us', meta: 'Season 3 · Sci-Fi Drama', network: 'HBO', rating: '★★★★★', bg: 'linear-gradient(135deg,#0a1a0a,#1a4020)', poster: `${TMDB}/uKvVjHNqB5VmOrdxqAt2F7J78ED.jpg` },
-  { type: 'movie',  title: 'Thunderbolts*', meta: '2025 · Marvel Action', network: 'Disney+', rating: '★★★★☆', bg: 'linear-gradient(135deg,#0a0a2e,#1a1a60)', poster: `${TMDB}/9l1eZiJHmhr5jIlthMdJN5WYoff.jpg` },
-  { type: 'series', title: 'Stranger Things', meta: 'Season 5 · Sci-Fi', network: 'Netflix', rating: '★★★★★', bg: 'linear-gradient(135deg,#0d0028,#280d40)', poster: `${TMDB}/49WJfeN0moxb9IPfGn8AIqMGskD.jpg` },
-  { type: 'movie',  title: 'Avatar 3', meta: '2025 · Sci-Fi Epic', network: 'Disney+', rating: '★★★★☆', bg: 'linear-gradient(135deg,#001a2e,#003a5e)', poster: `${TMDB}/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg` },
-  { type: 'series', title: 'Peaky Blinders', meta: 'Movie Special · Crime', network: 'Netflix', rating: '★★★★★', bg: 'linear-gradient(135deg,#1a0a00,#3a1800)', poster: `${TMDB}/vUUqzWa2LnHIVqkaKVn3nyfVnBL.jpg` },
-  { type: 'movie',  title: 'Sinners', meta: '2025 · Horror Drama', network: 'Peacock', rating: '★★★★☆', bg: 'linear-gradient(135deg,#1a0000,#3a0008)', poster: `${TMDB}/aosm8NMQ3UyoBVpSxyimorCQykC.jpg` },
-  { type: 'series', title: 'The White Lotus', meta: 'Season 3 · Drama', network: 'HBO', rating: '★★★★★', bg: 'linear-gradient(135deg,#1a150a,#3a2a10)', poster: `${TMDB}/kgwjIb2JDHRhNk13lmSxiClFjVk.jpg` },
-  { type: 'movie',  title: 'Jurassic World 4', meta: '2025 · Adventure', network: 'Peacock', rating: '★★★☆☆', bg: 'linear-gradient(135deg,#0a1a0a,#1a3010)', poster: `${TMDB}/7xkEkEfheCJR0Dm8YdQUNMqcxIW.jpg` },
+  { type: 'series', title: 'The Bear', meta: 'Final Season · Comedy Drama', network: 'Hulu', rating: '★★★★★', bg: 'linear-gradient(135deg,#1a0a00,#3a1800)', poster: `${TMDB}/4fVddnbhcmzRZE14NJY03GKS6Fn.jpg` },
+  { type: 'series', title: 'Shōgun', meta: 'Season 2 · Historical Epic', network: 'Hulu', rating: '★★★★★', bg: 'linear-gradient(135deg,#1a1005,#3a2510)', poster: `${TMDB}/7O4iVfOMQmdCSxhOg1WnzG1AgYT.jpg` },
+  { type: 'movie',  title: 'Deadpool & Wolverine', meta: '2026 · Marvel Action', network: 'Disney+', rating: '★★★★★', bg: 'linear-gradient(135deg,#2e0a0a,#601010)', poster: `${TMDB}/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg` },
+  { type: 'movie',  title: 'Inside Out 2', meta: '2026 · Pixar Animation', network: 'Disney+', rating: '★★★★★', bg: 'linear-gradient(135deg,#0d1a2e,#1a3a60)', poster: `${TMDB}/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg` },
+  { type: 'series', title: 'The Boys', meta: 'Season 4 · Superhero Satire', network: 'Amazon Prime', rating: '★★★★☆', bg: 'linear-gradient(135deg,#2e0a0a,#3a0008)', poster: `${TMDB}/in1R2dDc421JxsoRWaIIAqVI2KE.jpg` },
 ];
 
 /* ============================================================
@@ -27,38 +23,36 @@ const mediaItems = [
 // image: Unsplash sport-specific action photos
 const IMG = {
   nfl:     'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&q=80',
-  nba:     'https://images.unsplash.com/photo-1546519638405-a1a3ff2cba13?w=600&q=80',
-  ufc:     'https://images.unsplash.com/photo-1552677426-5f09c6c2ef5c?w=600&q=80',
+  nba:     'https://images.unsplash.com/photo-1504450758481-7338eba7524a?w=600&q=80',
+  ufc:     'https://images.unsplash.com/photo-1583473848882-f9a5bc7fd2ee?w=600&q=80',
   mlb:     'https://images.unsplash.com/photo-1566577739112-5180d4bf9390?w=600&q=80',
   boxing:  'https://images.unsplash.com/photo-1517438476312-10d79c077509?w=600&q=80',
   soccer:  'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600&q=80',
+  golf:    'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=600&q=80',
   cinema:  'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600&q=80',
   drama:   'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&q=80',
 };
 
 const usSportsEvents = [
-  { league: 'nfl', team1: 'Chiefs', team2: 'Cowboys', date: 'Sun, Jun 22 · 4:25 PM ET', network: 'CBS', stadium: 'Arrowhead Stadium, KC', status: 'upcoming', image: IMG.nfl },
-  { league: 'nba', team1: 'Lakers', team2: 'Celtics', date: 'Mon, Jun 23 · 8:30 PM ET', network: 'ESPN', stadium: 'Crypto.com Arena, LA', status: 'live', image: IMG.nba },
-  { league: 'ufc', team1: 'Jon Jones', team2: 'Stipe Miocic', date: 'Sat, Jun 28 · 10:00 PM ET', network: 'ESPN+ PPV', stadium: 'T-Mobile Arena, Las Vegas', status: 'upcoming', image: IMG.ufc },
-  { league: 'mlb', team1: 'Yankees', team2: 'Red Sox', date: 'Fri, Jun 20 · 7:05 PM ET', network: 'FOX', stadium: 'Yankee Stadium, NY', status: 'upcoming', image: IMG.mlb },
-  { league: 'nfl', team1: 'Eagles', team2: 'Giants', date: 'Sun, Jun 22 · 1:00 PM ET', network: 'FOX', stadium: 'Lincoln Financial Field, PA', status: 'upcoming', image: IMG.nfl },
-  { league: 'nba', team1: 'Warriors', team2: 'Heat', date: 'Wed, Jun 25 · 9:00 PM ET', network: 'TNT', stadium: 'Chase Center, SF', status: 'upcoming', image: IMG.nba },
-  { league: 'boxing', team1: 'Canelo', team2: 'Benavidez', date: 'Sat, Jul 5 · 8:00 PM ET', network: 'DAZN', stadium: 'T-Mobile Arena, Las Vegas', status: 'upcoming', image: IMG.boxing },
-  { league: 'mlb', team1: 'Dodgers', team2: 'Giants', date: 'Tue, Jun 24 · 10:10 PM ET', network: 'FS1', stadium: 'Oracle Park, SF', status: 'live', image: IMG.mlb },
+  { league: 'ufc', team1: 'Kape', team2: 'Horiguchi', date: 'Fri, Jun 20 · 10:00 PM ET', network: 'ESPN+', stadium: 'UFC Apex, Las Vegas', status: 'live', image: IMG.ufc },
+  { league: 'golf', team1: 'U.S. Open', team2: 'Round 3', date: 'Fri, Jun 20 · Day 3 · Live', network: 'NBC', stadium: 'Shinnecock Hills, NY', status: 'live', image: IMG.golf },
+  { league: 'mlb', team1: 'Yankees', team2: 'Red Sox', date: 'Fri, Jun 20 · 7:05 PM ET', network: 'FOX', stadium: 'Yankee Stadium, NY', status: 'live', image: IMG.mlb },
+  { league: 'mlb', team1: 'Dodgers', team2: 'Giants', date: 'Fri, Jun 20 · 10:10 PM ET', network: 'FS1', stadium: 'Dodger Stadium, LA', status: 'live', image: IMG.mlb },
+  { league: 'wnba', team1: 'Fever', team2: 'Sky', date: 'Sat, Jun 21 · 7:00 PM ET', network: 'ESPN', stadium: 'Gainbridge Fieldhouse, IN', status: 'upcoming', image: IMG.nba },
 ];
 
 /* ============================================================
    DATA — HUB: TRENDING TODAY
    ============================================================ */
 const trendingItems = [
-  { rank: 1, category: 'Live Sport', title: 'NBA Lakers vs Celtics', desc: 'Game 5 · Playoffs — Live Now', image: IMG.nba, isLive: true },
-  { rank: 2, category: 'New Release', title: 'Mission: Impossible 8', desc: 'Just dropped on Paramount+ — watch now', image: IMG.cinema, isLive: false },
-  { rank: 3, category: 'Live Sport', title: 'UFC Fight Night', desc: 'Jones vs Miocic — Main Card Live', image: IMG.ufc, isLive: true },
-  { rank: 4, category: 'Trending Series', title: 'The White Lotus S3', desc: "Season finale — everyone's watching", image: IMG.drama, isLive: false },
-  { rank: 5, category: 'Live Sport', title: 'NFL Thursday Night', desc: 'Chiefs vs Cowboys · 4K HDR', image: IMG.nfl, isLive: true },
-  { rank: 6, category: 'New Episode', title: 'House of the Dragon', desc: 'S3 E4 · Available now on HBO', image: IMG.drama, isLive: false },
-  { rank: 7, category: 'World Cup 2026', title: 'Brazil vs Argentina', desc: 'Group Stage · Jun 18 · MetLife Stadium', image: IMG.soccer, isLive: true },
-  { rank: 8, category: 'Trending Movie', title: 'Sinners', desc: '#1 movie in the US this week', image: IMG.cinema, isLive: false },
+  { rank: 1, category: 'World Cup 2026', title: 'Germany vs Ivory Coast', desc: 'Group Stage · Live now · Toronto Stadium', image: IMG.soccer, isLive: true },
+  { rank: 2, category: 'Live Sport', title: 'UFC Fight Night', desc: 'Kape vs Horiguchi — Main Card Live on ESPN+', image: IMG.ufc, isLive: true },
+  { rank: 3, category: 'World Cup 2026', title: 'Netherlands vs Sweden', desc: 'Group Stage · Live now · Houston Stadium', image: IMG.soccer, isLive: true },
+  { rank: 4, category: 'New Release', title: 'Deadpool & Wolverine', desc: 'Now streaming on Disney+ — watch now', image: IMG.cinema, isLive: false },
+  { rank: 5, category: 'Live Sport', title: 'U.S. Open Golf', desc: 'Day 3 · Live today on NBC', image: IMG.golf, isLive: true },
+  { rank: 6, category: 'Trending Series', title: 'The Bear · Final Season', desc: "All episodes out on Hulu — everyone's watching", image: IMG.drama, isLive: false },
+  { rank: 7, category: 'Live Sport', title: 'Yankees vs Red Sox', desc: 'MLB tonight · 7:05 PM ET on FOX', image: IMG.mlb, isLive: true },
+  { rank: 8, category: 'New Episode', title: 'House of the Dragon', desc: 'Season 3 · New episode now on HBO', image: IMG.drama, isLive: false },
 ];
 
 /* ============================================================
@@ -96,15 +90,10 @@ const pricingPlans = {
    DATA
    ============================================================ */
 const games = [
-  { team1: 'Brazil', team2: 'Argentina', flag1: 'br', flag2: 'ar', color1: '#009C3B', color2: '#74ACDF', date: 'Jun 18, 2026', time: '20:00 UTC', stadium: 'MetLife Stadium, NJ', status: 'live', group: 'GROUP A' },
-  { team1: 'France', team2: 'England', flag1: 'fr', flag2: 'gb', color1: '#003189', color2: '#CF091D', date: 'Jun 19, 2026', time: '18:00 UTC', stadium: 'AT&T Stadium, TX', status: 'upcoming', group: 'GROUP B' },
-  { team1: 'Spain', team2: 'Germany', flag1: 'es', flag2: 'de', color1: '#AA151B', color2: '#000000', date: 'Jun 20, 2026', time: '20:00 UTC', stadium: 'SoFi Stadium, LA', status: 'upcoming', group: 'GROUP C' },
-  { team1: 'Portugal', team2: 'Morocco', flag1: 'pt', flag2: 'ma', color1: '#006600', color2: '#C1272D', date: 'Jun 21, 2026', time: '17:00 UTC', stadium: 'Estadio Azteca, MX', status: 'upcoming', group: 'GROUP D' },
-  { team1: 'Netherlands', team2: 'USA', flag1: 'nl', flag2: 'us', color1: '#FF6600', color2: '#002868', date: 'Jun 22, 2026', time: '21:00 UTC', stadium: "Levi's Stadium, SF", status: 'live', group: 'GROUP E' },
-  { team1: 'Italy', team2: 'Japan', flag1: 'it', flag2: 'jp', color1: '#003399', color2: '#BC002D', date: 'Jun 23, 2026', time: '15:00 UTC', stadium: 'Arrowhead Stadium, KC', status: 'upcoming', group: 'GROUP F' },
-  { team1: 'Mexico', team2: 'Canada', flag1: 'mx', flag2: 'ca', color1: '#006847', color2: '#D80621', date: 'Jun 24, 2026', time: '19:00 UTC', stadium: 'BC Place, Vancouver', status: 'upcoming', group: 'GROUP G' },
-  { team1: 'Senegal', team2: 'Belgium', flag1: 'sn', flag2: 'be', color1: '#00853F', color2: '#EF3340', date: 'Jun 25, 2026', time: '16:00 UTC', stadium: 'Gillette Stadium, MA', status: 'upcoming', group: 'GROUP H' },
-  { team1: 'Australia', team2: 'South Korea', flag1: 'au', flag2: 'kr', color1: '#00008B', color2: '#003478', date: 'Jun 26, 2026', time: '14:00 UTC', stadium: 'Rose Bowl, CA', status: 'upcoming', group: 'GROUP C' },
+  { team1: 'Germany', team2: 'Ivory Coast', flag1: 'de', flag2: 'ci', color1: '#000000', color2: '#FF8200', date: 'Jun 20, 2026', time: '17:00 UTC', stadium: 'Toronto Stadium', status: 'live', group: 'GROUP F' },
+  { team1: 'Ecuador', team2: 'Curaçao', flag1: 'ec', flag2: 'cw', color1: '#FFD100', color2: '#002B7F', date: 'Jun 20, 2026', time: '19:00 UTC', stadium: 'Kansas City Stadium', status: 'upcoming', group: 'GROUP G' },
+  { team1: 'Netherlands', team2: 'Sweden', flag1: 'nl', flag2: 'se', color1: '#FF6600', color2: '#006AA7', date: 'Jun 20, 2026', time: '21:00 UTC', stadium: 'Houston Stadium', status: 'live', group: 'GROUP E' },
+  { team1: 'Tunisia', team2: 'Japan', flag1: 'tn', flag2: 'jp', color1: '#E70013', color2: '#BC002D', date: 'Jun 20, 2026', time: '23:00 UTC', stadium: 'Monterrey Stadium', status: 'upcoming', group: 'GROUP H' },
 ];
 
 const testimonials = [
@@ -408,12 +397,12 @@ function initHeroTicker() {
   const tickerEl = document.getElementById('tickerText');
   if (!tickerEl) return;
   const items = [
-    '🏈 NFL Sunday Ticket · Live Now',
-    '🏀 NBA Playoffs · Watch in 4K',
-    '🥊 UFC Fight Night · Stream Live',
-    '🎬 New Movies & HBO Originals · On Demand',
-    '⚽ World Cup 2026 · USA · Canada · Mexico',
-    '📺 Trending TV Shows · Streaming Now',
+    '⚽ World Cup 2026 · Germany vs Ivory Coast · Live Now',
+    '🥊 UFC Fight Night · Kape vs Horiguchi · Live Tonight',
+    '⛳ U.S. Open Golf · Day 3 Live on NBC',
+    '⚾ MLB · Yankees vs Red Sox · Tonight in 4K',
+    '🎬 Deadpool & Wolverine · Now Streaming',
+    '📺 The Bear: Final Season · All Episodes Out',
   ];
   let idx = 0;
   setInterval(() => {
