@@ -531,63 +531,6 @@ section {
   font-weight: 600;
 }
 
-.countdown {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  margin-bottom: 40px;
-  animation: fadeInUp 0.7s ease 0.3s both;
-}
-
-.cd-unit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 16px 20px;
-  min-width: 80px;
-  position: relative;
-  overflow: hidden;
-}
-
-.cd-unit::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--fire-red), var(--fire-orange));
-}
-
-.cd-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.8rem;
-  line-height: 1;
-  color: var(--text-primary);
-  min-width: 2ch;
-  text-align: center;
-}
-
-.cd-label {
-  font-size: 0.65rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-top: 4px;
-}
-
-.cd-sep {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.8rem;
-  color: var(--fire-red);
-  align-self: center;
-  margin-top: -10px;
-  animation: blink 1s step-start infinite;
-}
-
 .hero-ctas {
   display: flex;
   gap: 16px;
@@ -2834,19 +2777,6 @@ section {
 
   .calc-savings-value {
     font-size: 2.8rem;
-  }
-
-  .countdown {
-    gap: 8px;
-  }
-
-  .cd-unit {
-    min-width: 60px;
-    padding: 12px 10px;
-  }
-
-  .cd-num {
-    font-size: 2rem;
   }
 
   .hero-ctas {

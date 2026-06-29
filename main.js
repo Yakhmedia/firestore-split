@@ -12,8 +12,8 @@ const mediaItems = [
   { type: 'series', title: 'House of the Dragon', meta: 'Season 3 · Fantasy Drama', network: 'HBO', rating: '★★★★★', bg: 'linear-gradient(135deg,#1a0a2e,#4a1060)', poster: `${TMDB}/z2yahl2uefxDCl0nogcRBstwruJ.jpg` },
   { type: 'series', title: 'The Bear', meta: 'Final Season · Comedy Drama', network: 'Hulu', rating: '★★★★★', bg: 'linear-gradient(135deg,#1a0a00,#3a1800)', poster: `${TMDB}/4fVddnbhcmzRZE14NJY03GKS6Fn.jpg` },
   { type: 'series', title: 'Shōgun', meta: 'Season 2 · Historical Epic', network: 'Hulu', rating: '★★★★★', bg: 'linear-gradient(135deg,#1a1005,#3a2510)', poster: `${TMDB}/7O4iVfOMQmdCSxhOg1WnzG1AgYT.jpg` },
-  { type: 'movie', title: 'Deadpool & Wolverine', meta: '2026 · Marvel Action', network: 'Disney+', rating: '★★★★★', bg: 'linear-gradient(135deg,#2e0a0a,#601010)', poster: `${TMDB}/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg` },
-  { type: 'movie', title: 'Inside Out 2', meta: '2026 · Pixar Animation', network: 'Disney+', rating: '★★★★★', bg: 'linear-gradient(135deg,#0d1a2e,#1a3a60)', poster: `${TMDB}/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg` },
+  { type: 'movie', title: 'Deadpool & Wolverine', meta: '2024 · Marvel Action', network: 'Disney+', rating: '★★★★★', bg: 'linear-gradient(135deg,#2e0a0a,#601010)', poster: `${TMDB}/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg` },
+  { type: 'movie', title: 'Inside Out 2', meta: '2024 · Pixar Animation', network: 'Disney+', rating: '★★★★★', bg: 'linear-gradient(135deg,#0d1a2e,#1a3a60)', poster: `${TMDB}/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg` },
   { type: 'series', title: 'The Boys', meta: 'Season 4 · Superhero Satire', network: 'Amazon Prime', rating: '★★★★☆', bg: 'linear-gradient(135deg,#2e0a0a,#3a0008)', poster: `${TMDB}/in1R2dDc421JxsoRWaIIAqVI2KE.jpg` },
 ];
 
@@ -31,28 +31,30 @@ const IMG = {
   golf: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=600&q=80',
   cinema: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600&q=80',
   drama: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&q=80',
+  tennis: 'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=600&q=80',
+  nascar: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
 };
 
 const usSportsEvents = [
-  { league: 'ufc', team1: 'Kape', team2: 'Horiguchi', date: 'Fri, Jun 20 · 10:00 PM ET', network: 'ESPN+', stadium: 'UFC Apex, Las Vegas', status: 'live', image: IMG.ufc },
-  { league: 'golf', team1: 'U.S. Open', team2: 'Round 3', date: 'Fri, Jun 20 · Day 3 · Live', network: 'NBC', stadium: 'Shinnecock Hills, NY', status: 'live', image: IMG.golf },
-  { league: 'mlb', team1: 'Yankees', team2: 'Red Sox', date: 'Fri, Jun 20 · 7:05 PM ET', network: 'FOX', stadium: 'Yankee Stadium, NY', status: 'live', image: IMG.mlb },
-  { league: 'mlb', team1: 'Dodgers', team2: 'Giants', date: 'Fri, Jun 20 · 10:10 PM ET', network: 'FS1', stadium: 'Dodger Stadium, LA', status: 'live', image: IMG.mlb },
-  { league: 'wnba', team1: 'Fever', team2: 'Sky', date: 'Sat, Jun 21 · 7:00 PM ET', network: 'ESPN', stadium: 'Gainbridge Fieldhouse, IN', status: 'upcoming', image: IMG.nba },
+  { league: 'mlb', team1: 'Dodgers', team2: 'Padres', date: 'Sun, Jun 28 · 8:10 PM ET', network: 'NBC / Peacock', stadium: 'Petco Park, San Diego', status: 'live', image: IMG.mlb },
+  { league: 'mlb', team1: 'Yankees', team2: 'Red Sox', date: 'Sun, Jun 28 · 7:20 PM ET', network: 'NBC / Peacock', stadium: 'Fenway Park, Boston', status: 'live', image: IMG.mlb },
+  { league: 'mlb', team1: 'Braves', team2: 'Giants', date: 'Sun, Jun 28 · 8:05 PM ET', network: 'ESPN', stadium: 'Oracle Park, San Francisco', status: 'live', image: IMG.mlb },
+  { league: 'tennis', team1: 'Wimbledon', team2: 'Round of 16', date: 'Sun, Jun 28 · All day', network: 'ESPN / ESPN2', stadium: 'All England Club, London', status: 'live', image: IMG.tennis },
+  { league: 'golf', team1: "Women's PGA", team2: 'Final Round', date: 'Sun, Jun 28 · Live', network: 'NBC', stadium: 'Hazeltine National, MN', status: 'live', image: IMG.golf },
 ];
 
 /* ============================================================
    DATA — HUB: TRENDING TODAY
    ============================================================ */
 const trendingItems = [
-  { rank: 1, category: 'World Cup 2026', title: 'Germany vs Ivory Coast', desc: 'Group Stage · Live now · Toronto Stadium', image: IMG.soccer, isLive: true },
-  { rank: 2, category: 'Live Sport', title: 'UFC Fight Night', desc: 'Kape vs Horiguchi — Main Card Live on ESPN+', image: IMG.ufc, isLive: true },
-  { rank: 3, category: 'World Cup 2026', title: 'Netherlands vs Sweden', desc: 'Group Stage · Live now · Houston Stadium', image: IMG.soccer, isLive: true },
-  { rank: 4, category: 'New Release', title: 'Deadpool & Wolverine', desc: 'Now streaming on Disney+ — watch now', image: IMG.cinema, isLive: false },
-  { rank: 5, category: 'Live Sport', title: 'U.S. Open Golf', desc: 'Day 3 · Live today on NBC', image: IMG.golf, isLive: true },
-  { rank: 6, category: 'Trending Series', title: 'The Bear · Final Season', desc: "All episodes out on Hulu — everyone's watching", image: IMG.drama, isLive: false },
-  { rank: 7, category: 'Live Sport', title: 'Yankees vs Red Sox', desc: 'MLB tonight · 7:05 PM ET on FOX', image: IMG.mlb, isLive: true },
-  { rank: 8, category: 'New Episode', title: 'House of the Dragon', desc: 'Season 3 · New episode now on HBO', image: IMG.drama, isLive: false },
+  { rank: 1, category: 'World Cup 2026', title: 'South Africa vs Canada', desc: 'Round of 32 · Live now · SoFi Stadium, LA', image: IMG.soccer, isLive: true },
+  { rank: 2, category: 'Live Sport', title: 'Wimbledon · Round of 16', desc: "Men's & Women's · Live today on ESPN", image: IMG.tennis, isLive: true },
+  { rank: 3, category: 'Live Sport', title: 'Dodgers vs Padres', desc: 'MLB · 8:10 PM ET · NBC / Peacock', image: IMG.mlb, isLive: true },
+  { rank: 4, category: 'World Cup 2026', title: 'Brazil vs Japan', desc: 'Round of 32 · Mon Jun 29 · Houston Stadium', image: IMG.soccer, isLive: false },
+  { rank: 5, category: 'Live Sport', title: 'Yankees vs Red Sox', desc: 'MLB · 7:20 PM ET · NBC / Peacock', image: IMG.mlb, isLive: true },
+  { rank: 6, category: 'Trending Series', title: 'House of the Dragon', desc: 'Season 3 · New episode now on HBO', image: IMG.drama, isLive: false },
+  { rank: 7, category: 'Live Sport', title: "Women's PGA Championship", desc: 'Final Round · Live on NBC', image: IMG.golf, isLive: true },
+  { rank: 8, category: 'New Release', title: 'Deadpool & Wolverine', desc: 'Now streaming on Disney+ — watch now', image: IMG.cinema, isLive: false },
 ];
 
 /* ============================================================
@@ -90,10 +92,10 @@ const pricingPlans = {
    DATA
    ============================================================ */
 const games = [
-  { team1: 'Germany', team2: 'Ivory Coast', flag1: 'de', flag2: 'ci', color1: '#000000', color2: '#FF8200', date: 'Jun 20, 2026', time: '17:00 UTC', stadium: 'Toronto Stadium', status: 'live', group: 'GROUP F' },
-  { team1: 'Ecuador', team2: 'Curaçao', flag1: 'ec', flag2: 'cw', color1: '#FFD100', color2: '#002B7F', date: 'Jun 20, 2026', time: '19:00 UTC', stadium: 'Kansas City Stadium', status: 'upcoming', group: 'GROUP G' },
-  { team1: 'Netherlands', team2: 'Sweden', flag1: 'nl', flag2: 'se', color1: '#FF6600', color2: '#006AA7', date: 'Jun 20, 2026', time: '21:00 UTC', stadium: 'Houston Stadium', status: 'live', group: 'GROUP E' },
-  { team1: 'Tunisia', team2: 'Japan', flag1: 'tn', flag2: 'jp', color1: '#E70013', color2: '#BC002D', date: 'Jun 20, 2026', time: '23:00 UTC', stadium: 'Monterrey Stadium', status: 'upcoming', group: 'GROUP H' },
+  { team1: 'South Africa', team2: 'Canada', flag1: 'za', flag2: 'ca', color1: '#007A4D', color2: '#FF0000', date: 'Jun 28, 2026', time: '3:00 PM ET', stadium: 'SoFi Stadium, LA', status: 'live', group: 'ROUND OF 32' },
+  { team1: 'Brazil', team2: 'Japan', flag1: 'br', flag2: 'jp', color1: '#009C3B', color2: '#BC002D', date: 'Jun 29, 2026', time: '1:00 PM ET', stadium: 'NRG Stadium, Houston', status: 'upcoming', group: 'ROUND OF 32' },
+  { team1: 'Germany', team2: 'Paraguay', flag1: 'de', flag2: 'py', color1: '#000000', color2: '#D52B1E', date: 'Jun 29, 2026', time: '4:30 PM ET', stadium: 'Gillette Stadium, Boston', status: 'upcoming', group: 'ROUND OF 32' },
+  { team1: 'Mexico', team2: 'Ecuador', flag1: 'mx', flag2: 'ec', color1: '#006847', color2: '#FFD100', date: 'Jun 30, 2026', time: '9:00 PM ET', stadium: 'Estadio Azteca, Mexico City', status: 'upcoming', group: 'ROUND OF 32' },
 ];
 
 const testimonials = [
@@ -397,12 +399,12 @@ function initHeroTicker() {
   const tickerEl = document.getElementById('tickerText');
   if (!tickerEl) return;
   const items = [
-    '⚽ World Cup 2026 · Germany vs Ivory Coast · Live Now',
-    '🥊 UFC Fight Night · Kape vs Horiguchi · Live Tonight',
-    '⛳ U.S. Open Golf · Day 3 Live on NBC',
-    '⚾ MLB · Yankees vs Red Sox · Tonight in 4K',
-    '🎬 Deadpool & Wolverine · Now Streaming',
-    '📺 The Bear: Final Season · All Episodes Out',
+    '⚽ World Cup 2026 · South Africa vs Canada · Live Now',
+    '🎾 Wimbledon · Round of 16 · Live Today on ESPN',
+    '⚾ MLB · Dodgers vs Padres · Tonight in 4K',
+    '⚽ World Cup 2026 · Brazil vs Japan · Mon Jun 29',
+    '⛳ Women\'s PGA Championship · Final Round Live',
+    '📺 House of the Dragon S3 · New Episode on HBO',
   ];
   let idx = 0;
   setInterval(() => {
@@ -414,29 +416,6 @@ function initHeroTicker() {
     }, 400);
   }, 4000);
   tickerEl.style.transition = 'opacity 0.4s ease';
-}
-
-/* ============================================================
-   COUNTDOWN TIMER
-   ============================================================ */
-const WORLD_CUP_DATE = new Date('2026-06-11T16:00:00Z');
-
-function updateCountdown() {
-  const diff = WORLD_CUP_DATE - new Date();
-  const el = document.getElementById('countdown');
-  if (!el) return;
-  if (diff <= 0) {
-    el.innerHTML = '<div style="color:var(--live-green);font-family:Bebas Neue;font-size:2rem;letter-spacing:3px">🔥 THE WORLD CUP IS LIVE NOW!</div>';
-    return;
-  }
-  const d = Math.floor(diff / 86400000);
-  const h = Math.floor((diff % 86400000) / 3600000);
-  const m = Math.floor((diff % 3600000) / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
-  document.getElementById('cd-days').textContent = String(d).padStart(3, '0');
-  document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
-  document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
-  document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
 }
 
 /* ============================================================
@@ -809,10 +788,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initDeviceSelector();
   initScrollReveal();
   initUrgencyCounter();
-
-  // Countdown
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
 
   // Testimonials slider
   initSlider(document.getElementById('testiSlider'), { autoSlide: true, interval: 4000 });
