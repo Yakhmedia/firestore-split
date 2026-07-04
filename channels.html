@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G4KYGXE4YK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-G4KYGXE4YK');
+  </script>
+  <title>Fire Store Channel List — 25,000+ Live Channels by Country</title>
+  <meta name="description"
+    content="Browse the full Fire Store channel list: 25,000+ live TV channels, 150,000+ movies and 48,000+ series across 22 countries. Search your country or channel.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- ── Global Stylesheet ── -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ── Navbar ─────────────────────────────────────── -->
+  <nav class="navbar scrolled" id="navbar">
+    <a href="/" class="nav-logo">
+      <img src="/assets/images/firestore-logo.svg" alt="Fire Store">
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/#why">Why Fire Store</a></li>
+      <li><a href="/#faq">FAQ</a></li>
+      <li><a href="https://wa.me/12029927413" target="_blank" rel="noopener">WhatsApp</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="btn-subscribe" onclick="window.location.href='/#plans'">Subscribe</button>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </nav>
+
+  <!-- ── Header + stats ─────────────────────────────── -->
+  <section class="channels-header">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">📡 Full Server Lineup</span>
+        <h2>Every Channel On Our Server</h2>
+        <p>Pick your country or search — everything below is included in every plan</p>
+      </div>
+      <div class="channels-stats" id="channelsStats">
+        <div class="channels-stat"><span class="stat-num" id="statLive">…</span><span class="stat-label">Live Channels</span></div>
+        <div class="channels-stat"><span class="stat-num" id="statVod">…</span><span class="stat-label">Movies</span></div>
+        <div class="channels-stat"><span class="stat-num" id="statSeries">…</span><span class="stat-label">Series</span></div>
+        <div class="channels-stat"><span class="stat-num" id="statCountries">…</span><span class="stat-label">Regions</span></div>
+      </div>
+
+      <!-- Search -->
+      <div class="channels-search-wrap">
+        <input type="search" id="channelSearch" class="channels-search" autocomplete="off"
+          placeholder="🔍 Search your country or channel… (e.g. USA, ESPN, beIN)">
+        <div class="search-results" id="searchResults" hidden></div>
+      </div>
+
+      <!-- Country pills -->
+      <div class="country-pills" id="countryPills"></div>
+    </div>
+  </section>
+
+  <!-- ── Country browser ────────────────────────────── -->
+  <section class="channels-browser">
+    <div class="container">
+      <div id="browserEmpty" class="browser-empty">
+        <p>👆 Select a country above to browse its full lineup</p>
+      </div>
+      <div id="browserContent" hidden>
+        <h3 class="browser-country-title" id="browserTitle"></h3>
+        <div class="browser-tabs" id="browserTabs">
+          <button class="browser-tab active" data-tab="live">📺 Live TV</button>
+          <button class="browser-tab" data-tab="vod">🎬 Movies</button>
+          <button class="browser-tab" data-tab="series">📼 Series</button>
+        </div>
+        <div class="browser-list" id="browserList"></div>
+      </div>
+      <div id="browserLoading" class="browser-loading" hidden>Loading…</div>
+      <div id="browserError" class="browser-error" hidden>
+        Couldn't load this country's list. <button id="browserRetry" class="btn-plan btn-plan-default">Retry</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Sticky CTA ─────────────────────────────────── -->
+  <div class="channels-cta-bar">
+    <span>All of this is included in every plan</span>
+    <a href="/#plans" class="cta-primary">⚡ Get Access →</a>
+  </div>
+
+  <!-- ── Footer ─────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid footer-grid-slim">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo">
+            <img src="/assets/images/firestore-logo.svg" alt="Fire Store">
+          </a>
+          <p>25,000+ live channels, 150,000+ movies and 48,000+ series — one subscription.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="https://wa.me/12029927413" class="footer-wa-btn" target="_blank" rel="noopener">💬 WhatsApp
+            Support</a>
+          <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:8px;">contact@firestore.tv</p>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/refund.html">Refund Policy</a></li>
+            <li><a href="/dmca.html">DMCA Notice</a></li>
+            <li><a href="/cookies.html">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Fire Store — fire-store.tv · All rights reserved</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Channels JavaScript ── -->
+  <script type="module" src="/channels.js"></script>
+
+</body>
+
+</html>
