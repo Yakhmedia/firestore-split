@@ -2789,3 +2789,164 @@ section {
     font-size: 0.85rem;
   }
 }
+/* ============================================================
+   SIMPLIFIED "RENEW / CHECKOUT-FIRST" LANDING
+   ============================================================ */
+
+/* ── Minimal hero ── */
+.hero-minimal {
+  min-height: 78vh;
+  padding: 120px 2rem 70px;
+}
+
+.hero-minimal h1 {
+  margin-bottom: 24px;
+}
+
+.hero-trust-line {
+  margin-top: 28px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  animation: fadeInUp 0.7s ease 0.5s both;
+}
+
+/* ── Compact 3-bullet plan list (replaces 7-bullet wall) ── */
+.plan-mini-features {
+  list-style: none;
+  margin: 18px 0 22px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+.plan-mini-features li {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  padding: 4px 0 4px 22px;
+  position: relative;
+}
+
+.plan-mini-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--fire-orange);
+  font-weight: 700;
+}
+
+.plan-mini-features li strong {
+  color: var(--text-primary);
+}
+
+.plan-card.popular .plan-mini-features {
+  background: rgba(255, 45, 0, 0.1);
+  border-color: rgba(255, 45, 0, 0.35);
+}
+
+/* ── Deep-link highlighted card ── */
+.plan-card.plan-highlight {
+  outline: 2px solid var(--fire-orange);
+  outline-offset: 3px;
+  box-shadow: 0 0 40px rgba(255, 107, 0, 0.28);
+}
+
+/* ── Slim footer ── */
+.footer-grid-slim {
+  grid-template-columns: 2fr 1fr 1fr;
+}
+
+@media (max-width: 720px) {
+  .footer-grid-slim {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   BALANCED LANDING — REFERRAL SALES LAYER
+   ============================================================ */
+
+/* ── Why Fire Store strip (3 items, 1 row) ── */
+.why-section {
+  padding: 40px 2rem;
+}
+
+.why-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.why-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px 22px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.why-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.why-item p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.why-item p strong {
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* ── Static channel strip (no marquee) ── */
+.channel-strip-section {
+  padding: 20px 2rem 50px;
+}
+
+.channel-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.channel-strip-caption {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-top: 22px;
+}
+
+/* ── FAQ group labels ── */
+.faq-group-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--fire-orange);
+  margin: 34px 0 14px;
+}
+
+.faq-group-label:first-child {
+  margin-top: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 720px) {
+  .why-strip {
+    grid-template-columns: 1fr;
+  }
+}
