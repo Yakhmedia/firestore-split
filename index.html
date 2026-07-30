@@ -1,301 +1,388 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G4KYGXE4YK"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-G4KYGXE4YK");
+    </script>
+    <title>
+      Fire Store – Live TV, Movies & Sports in 4K — One Subscription
+    </title>
+    <meta
+      name="description"
+      content="100,000+ live channels, movies and sports in 4K. New or renewing — pick your plan and you're live in under a minute. Instant activation via WhatsApp or Email."
+    />
+    <meta
+      name="keywords"
+      content="IPTV, live TV streaming, renew subscription, Fire Store, instant activation, 4K streaming, sports, movies"
+    />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G4KYGXE4YK"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-G4KYGXE4YK');
-  </script>
-  <title>Fire Store – Live TV, Movies & Sports in 4K — One Subscription</title>
-  <meta name="description"
-    content="100,000+ live channels, movies and sports in 4K. New or renewing — pick your plan and you're live in under a minute. Instant activation via WhatsApp or Email.">
-  <meta name="keywords"
-    content="IPTV, live TV streaming, renew subscription, Fire Store, instant activation, 4K streaming, sports, movies">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap"
-    rel="stylesheet">
+    <!-- ── Global Stylesheet ── -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-  <!-- ── Global Stylesheet ── -->
-  <link rel="stylesheet" href="styles.css">
-</head>
+  <body>
+    <!-- Flame particle canvas (fixed background) -->
+    <canvas id="flame-canvas"></canvas>
 
-<body>
+    <!-- ── SECTION 1 · Navbar (trimmed) ───────────────── -->
+    <nav class="navbar" id="navbar">
+      <a href="#" class="nav-logo">
+        <img src="/assets/images/firestore-logo.svg" alt="Fire Store" />
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/channels.html">Channels</a></li>
+        <li><a href="#why">Why Fire Store</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li>
+          <a href="https://wa.me/12029927413" target="_blank" rel="noopener"
+            >WhatsApp</a
+          >
+        </li>
+      </ul>
 
-  <!-- Flame particle canvas (fixed background) -->
-  <canvas id="flame-canvas"></canvas>
-
-  <!-- ── SECTION 1 · Navbar (trimmed) ───────────────── -->
-  <nav class="navbar" id="navbar">
-    <a href="#" class="nav-logo">
-      <img src="/assets/images/firestore-logo.svg" alt="Fire Store">
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="/channels.html">Channels</a></li>
-      <li><a href="#why">Why Fire Store</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="https://wa.me/12029927413" target="_blank" rel="noopener">WhatsApp</a></li>
-    </ul>
-
-    <div class="nav-actions">
-      <button class="btn-subscribe"
-        onclick="document.getElementById('plans').scrollIntoView({behavior:'smooth'})">Subscribe</button>
-    </div>
-    <!-- Hamburger Button -->
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-  </nav>
-
-  <!-- ── SECTION 2 · Hero (minimal, checkout-first) ─── -->
-  <section class="hero hero-minimal">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="dot"></span>
-        🔥 Trusted by thousands of streamers
+      <div class="nav-actions">
+        <button
+          class="btn-subscribe"
+          onclick="
+            document
+              .getElementById('plans')
+              .scrollIntoView({ behavior: 'smooth' })
+          "
+        >
+          Subscribe
+        </button>
       </div>
-      <h1>
-        <span class="line-fire" id="heroTitle">Live TV, Movies &amp; Sports — One Subscription</span>
-      </h1>
-      <p class="hero-sub" id="heroSub">
-        <strong>100,000+ channels in 4K.</strong> New or renewing — you're live in under a minute.
-      </p>
-      <div class="hero-ctas">
-        <a href="#plans" class="cta-primary">⚡ Choose Your Plan</a>
-      </div>
-      <p class="hero-trust-line">
-        🔒 Secure checkout · Credentials sent in ~5 minutes via WhatsApp or Email
-      </p>
-    </div>
-  </section>
+      <!-- Hamburger Button -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </nav>
 
-  <!-- ── SECTION 3 · Plans ─────────────────────────── -->
-  <section class="plans-section" id="plans">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">🔥 Choose Your Plan</span>
-        <h2>Pick Your Plan &amp; Check Out</h2>
-        <p>No hidden fees. Cancel anytime. Instant activation via WhatsApp or Email.</p>
+    <!-- ── SECTION 2 · Hero (minimal, checkout-first) ─── -->
+    <section class="hero hero-minimal">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          🔥 Trusted by thousands of streamers
+        </div>
+        <h1>
+          <span class="line-fire" id="heroTitle"
+            >Live TV, Movies &amp; Sports — One Subscription</span
+          >
+        </h1>
+        <p class="hero-sub" id="heroSub">
+          <strong>100,000+ channels in 4K.</strong> New or renewing — you're
+          live in under a minute.
+        </p>
+        <div class="hero-ctas">
+          <a href="#plans" class="cta-primary">⚡ Choose Your Plan</a>
+        </div>
+        <p class="hero-trust-line">
+          🔒 Secure checkout · Credentials sent in ~5 minutes via WhatsApp or
+          Email
+        </p>
       </div>
+    </section>
 
-      <!-- Device selector (always visible) -->
-      <div class="device-selector-container reveal">
-        <p class="device-selector-label">How many screens does your household need?</p>
-        <div class="device-selector-buttons" id="deviceSelector">
-          <button class="device-btn active" data-devices="1">1 screen</button>
-          <button class="device-btn" data-devices="2">2 screens</button>
-          <button class="device-btn" data-devices="3">3 screens</button>
-          <button class="device-btn" data-devices="4">4 screens</button>
-          <button class="device-btn" data-devices="5">5 screens</button>
+    <!-- ── SECTION 3 · Plans ─────────────────────────── -->
+    <section class="plans-section" id="plans">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">🔥 Choose Your Plan</span>
+          <h2>Pick Your Plan &amp; Check Out</h2>
+          <p>
+            No hidden fees. Cancel anytime. Instant activation via WhatsApp or
+            Email.
+          </p>
         </div>
-      </div>
 
-      <div class="plans-grid">
-        <div class="plan-card reveal reveal-delay-1">
-          <div class="plan-duration">1 Month</div>
-          <div class="plan-price" id="price-1m"><span>$</span>29</div>
-          <div class="plan-period" id="period-1m">per month, billed monthly</div>
-          <div class="plan-savings">Try the fire experience</div>
-          <ul class="plan-mini-features">
-            <li>100,000+ channels · 4K</li>
-            <li id="mini-screens-1m"><strong>1 screen</strong> at the same time</li>
-            <li>Instant activation via WhatsApp / Email</li>
-          </ul>
-          <button class="btn-plan btn-plan-default" id="btn-1m">Get Started →</button>
+        <!-- Device selector (always visible) -->
+        <div class="device-selector-container reveal">
+          <p class="device-selector-label">
+            How many screens does your household need?
+          </p>
+          <div class="device-selector-buttons" id="deviceSelector">
+            <button class="device-btn active" data-devices="1">1 screen</button>
+            <button class="device-btn" data-devices="2">2 screens</button>
+            <button class="device-btn" data-devices="3">3 screens</button>
+            <button class="device-btn" data-devices="4">4 screens</button>
+            <button class="device-btn" data-devices="5">5 screens</button>
+          </div>
         </div>
-        <div class="plan-card popular reveal reveal-delay-2">
-          <div class="plan-popular-badge">⭐ Most Popular — Best Value</div>
-          <div class="plan-duration" style="margin-top:20px">12 Months</div>
-          <div class="plan-price" id="price-12m"><span>$</span>79</div>
-          <div class="plan-period" id="period-12m">$6.58/month — billed once</div>
-          <div class="plan-savings">🔥 Save 50% — Full Year</div>
-          <ul class="plan-mini-features">
-            <li>100,000+ channels · 4K</li>
-            <li id="mini-screens-12m"><strong>1 screen</strong> at the same time</li>
-            <li>Instant activation via WhatsApp / Email</li>
-          </ul>
-          <button class="btn-plan btn-plan-popular" id="btn-12m">🔥 Get VIP Access →</button>
-        </div>
-        <div class="plan-card reveal reveal-delay-3">
-          <div class="plan-duration">6 Months</div>
-          <div class="plan-price" id="price-6m"><span>$</span>49</div>
-          <div class="plan-period" id="period-6m">$8.10/month — billed once</div>
-          <div class="plan-savings">Save 25% vs monthly</div>
-          <ul class="plan-mini-features">
-            <li>100,000+ channels · 4K</li>
-            <li id="mini-screens-6m"><strong>1 screen</strong> at the same time</li>
-            <li>Instant activation via WhatsApp / Email</li>
-          </ul>
-          <button class="btn-plan btn-plan-default" id="btn-6m">Get 6 Months →</button>
-        </div>
-      </div>
 
-      <!-- Payment Trust Strip (directly under the buy buttons) -->
-      <div class="payment-trust-strip reveal">
-        <span class="trust-lock">🔒 Secure Checkout</span>
-        <div class="trust-badges">
-          <span class="trust-badge visa">VISA</span>
-          <span class="trust-badge mastercard">Mastercard</span>
-          <span class="trust-badge paypal">PayPal</span>
-          <span class="trust-badge crypto">₿ Crypto</span>
+        <div class="plans-grid">
+          <div class="plan-card reveal reveal-delay-1">
+            <div class="plan-duration">1 Month</div>
+            <div class="plan-price" id="price-1m"><span>$</span>29</div>
+            <div class="plan-period" id="period-1m">
+              per month, billed monthly
+            </div>
+            <div class="plan-savings">Try the fire experience</div>
+            <ul class="plan-mini-features">
+              <li>100,000+ channels · 4K</li>
+              <li id="mini-screens-1m">
+                <strong>1 screen</strong> at the same time
+              </li>
+              <li>Instant activation via WhatsApp / Email</li>
+            </ul>
+            <button
+              class="btn-plan btn-plan-default firestore-buy-btn"
+              data-product-id="1051d075-1623-4fd5-939f-c963036bd428"
+            >
+              Get Started →
+            </button>
+          </div>
+          <div class="plan-card popular reveal reveal-delay-2">
+            <div class="plan-popular-badge">⭐ Most Popular — Best Value</div>
+            <div class="plan-duration" style="margin-top: 20px">12 Months</div>
+            <div class="plan-price" id="price-12m"><span>$</span>79</div>
+            <div class="plan-period" id="period-12m">
+              $6.58/month — billed once
+            </div>
+            <div class="plan-savings">🔥 Save 50% — Full Year</div>
+            <ul class="plan-mini-features">
+              <li>100,000+ channels · 4K</li>
+              <li id="mini-screens-12m">
+                <strong>1 screen</strong> at the same time
+              </li>
+              <li>Instant activation via WhatsApp / Email</li>
+            </ul>
+            <button
+              class="btn-plan btn-plan-popular firestore-buy-btn"
+              data-product-id="9831772c-f677-4b08-b8f9-58235c12c66f"
+            >
+              🔥 Get VIP Access →
+            </button>
+          </div>
+          <div class="plan-card reveal reveal-delay-3">
+            <div class="plan-duration">6 Months</div>
+            <div class="plan-price" id="price-6m"><span>$</span>49</div>
+            <div class="plan-period" id="period-6m">
+              $8.10/month — billed once
+            </div>
+            <div class="plan-savings">Save 25% vs monthly</div>
+            <ul class="plan-mini-features">
+              <li>100,000+ channels · 4K</li>
+              <li id="mini-screens-6m">
+                <strong>1 screen</strong> at the same time
+              </li>
+              <li>Instant activation via WhatsApp / Email</li>
+            </ul>
+            <button class="btn-plan btn-plan-default" id="btn-6m">
+              Get 6 Months →
+            </button>
+          </div>
         </div>
-        <span class="trust-secure">256-bit SSL Encrypted · No payment data stored</span>
-      </div>
-    </div>
-  </section>
 
-  <!-- ── SECTION 4 · Why Fire Store (compact strip) ── -->
-  <section class="why-section" id="why">
-    <div class="container">
-      <div class="why-strip reveal">
-        <div class="why-item">
-          <span class="why-icon">📺</span>
-          <p><strong>100,000+ channels &amp; 4K HDR</strong> — sports, movies, news &amp; kids, all in one place</p>
-        </div>
-        <div class="why-item">
-          <span class="why-icon">🛡️</span>
-          <p><strong>Anti-freeze guarantee</strong> — no buffering on game day, servers sized for the big events</p>
-        </div>
-        <div class="why-item">
-          <span class="why-icon">💬</span>
-          <p><strong>24/7 WhatsApp support</strong> — real humans, average reply under 2 minutes</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── SECTION 5 · Channel strip (static, no marquee) ── -->
-  <section class="channel-strip-section" id="entertainment">
-    <div class="container">
-      <div class="channel-strip reveal">
-        <div class="channel-logo" style="--accent:#d00404">ESPN</div>
-        <div class="channel-logo" style="--accent:#003da5">FOX Sports</div>
-        <div class="channel-logo" style="--accent:#002244">NBC Sports</div>
-        <div class="channel-logo" style="--accent:#005f9e">NFL Network</div>
-        <div class="channel-logo" style="--accent:#006bb6">NBA TV</div>
-        <div class="channel-logo" style="--accent:#5b2d8e">HBO / Max</div>
-        <div class="channel-logo" style="--accent:#e50914">Netflix</div>
-        <div class="channel-logo" style="--accent:#0063e5">Disney+</div>
-        <div class="channel-logo" style="--accent:#1ce783">Hulu</div>
-        <div class="channel-logo" style="--accent:#0064ff">Paramount+</div>
-      </div>
-      <p class="channel-strip-caption reveal">
-        <a href="/channels.html" class="channel-strip-link">+ thousands more — browse the full channel list →</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- ── SECTION 6 · How It Works (compact) ────────── -->
-  <section class="how-section" id="how">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">Simple 3 Steps</span>
-        <h2>You're Live In Under 60 Seconds</h2>
-      </div>
-      <div class="steps-grid">
-        <div class="step reveal reveal-delay-1">
-          <span class="step-num">1</span>
-          <div class="step-icon">🎯</div>
-          <h3>Pick Your Plan</h3>
-          <p>1, 6, or 12 months — all plans in full 4K.</p>
-        </div>
-        <div class="step reveal reveal-delay-2">
-          <span class="step-num">2</span>
-          <div class="step-icon">💳</div>
-          <h3>Secure Checkout</h3>
-          <p>Card, PayPal, or crypto — always encrypted.</p>
-        </div>
-        <div class="step reveal reveal-delay-3">
-          <span class="step-num">3</span>
-          <div class="step-icon">🔥</div>
-          <h3>Instant Access</h3>
-          <p>Credentials via WhatsApp/Email in ~5 minutes.</p>
+        <!-- Payment Trust Strip (directly under the buy buttons) -->
+        <div class="payment-trust-strip reveal">
+          <span class="trust-lock">🔒 Secure Checkout</span>
+          <div class="trust-badges">
+            <span class="trust-badge visa">VISA</span>
+            <span class="trust-badge mastercard">Mastercard</span>
+            <span class="trust-badge paypal">PayPal</span>
+            <span class="trust-badge crypto">₿ Crypto</span>
+          </div>
+          <span class="trust-secure"
+            >256-bit SSL Encrypted · No payment data stored</span
+          >
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── SECTION 7 · FAQ (two groups) ──────────────── -->
-  <section class="faq-section" id="faq">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">Quick Answers</span>
-        <h2>Questions? Answered.</h2>
-        <p>Whether you're new here or renewing — the answers you actually need</p>
-      </div>
-      <div class="faq-list" id="faqList"></div>
-      <div class="faq-cta reveal">
-        <p>Still have a question we didn't answer?</p>
-        <a href="https://wa.me/12029927413" class="btn-whatsapp" target="_blank" rel="noopener">
-          💬 Message Us on WhatsApp — Instant Reply
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── SECTION 5 · Footer (slim) ─────────────────── -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid footer-grid-slim">
-        <div class="footer-brand">
-          <a href="#" class="nav-logo">
-            <img src="/assets/images/firestore-logo.svg" alt="Fire Store">
-          </a>
-          <p>Renew your subscription in under a minute — instant activation via WhatsApp or Email.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Support</h4>
-          <a href="https://wa.me/12029927413" class="footer-wa-btn" target="_blank" rel="noopener">💬 WhatsApp
-            Support</a>
-          <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:8px;">contact@firestore.tv</p>
-          <ul>
-            <li><a href="/channels.html">Channel List</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="/terms.html">Terms of Service</a></li>
-            <li><a href="/privacy.html">Privacy Policy</a></li>
-            <li><a href="/refund.html">Refund Policy</a></li>
-            <li><a href="/dmca.html">DMCA Notice</a></li>
-            <li><a href="/cookies.html">Cookie Policy</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2026 Fire Store — fire-store.tv · All rights reserved</p>
-        <div class="footer-payment-row">
-          <span class="footer-payment-label">🔒 Secure &amp; Trusted</span>
-          <div class="footer-payment-badges">
-            <span class="footer-pay-badge visa">VISA</span>
-            <span class="footer-pay-badge mc">Mastercard</span>
-            <span class="footer-pay-badge pp">PayPal</span>
-            <span class="footer-pay-badge cr">₿ Crypto</span>
+    <!-- ── SECTION 4 · Why Fire Store (compact strip) ── -->
+    <section class="why-section" id="why">
+      <div class="container">
+        <div class="why-strip reveal">
+          <div class="why-item">
+            <span class="why-icon">📺</span>
+            <p>
+              <strong>100,000+ channels &amp; 4K HDR</strong> — sports, movies,
+              news &amp; kids, all in one place
+            </p>
+          </div>
+          <div class="why-item">
+            <span class="why-icon">🛡️</span>
+            <p>
+              <strong>Anti-freeze guarantee</strong> — no buffering on game day,
+              servers sized for the big events
+            </p>
+          </div>
+          <div class="why-item">
+            <span class="why-icon">💬</span>
+            <p>
+              <strong>24/7 WhatsApp support</strong> — real humans, average
+              reply under 2 minutes
+            </p>
           </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </section>
 
-  <!-- ── Fire-Store checkout popup widget ── -->
-  <script src="https://fire-store.shop/widget.js" defer></script>
+    <!-- ── SECTION 5 · Channel strip (static, no marquee) ── -->
+    <section class="channel-strip-section" id="entertainment">
+      <div class="container">
+        <div class="channel-strip reveal">
+          <div class="channel-logo" style="--accent: #d00404">ESPN</div>
+          <div class="channel-logo" style="--accent: #003da5">FOX Sports</div>
+          <div class="channel-logo" style="--accent: #002244">NBC Sports</div>
+          <div class="channel-logo" style="--accent: #005f9e">NFL Network</div>
+          <div class="channel-logo" style="--accent: #006bb6">NBA TV</div>
+          <div class="channel-logo" style="--accent: #5b2d8e">HBO / Max</div>
+          <div class="channel-logo" style="--accent: #e50914">Netflix</div>
+          <div class="channel-logo" style="--accent: #0063e5">Disney+</div>
+          <div class="channel-logo" style="--accent: #1ce783">Hulu</div>
+          <div class="channel-logo" style="--accent: #0064ff">Paramount+</div>
+        </div>
+        <p class="channel-strip-caption reveal">
+          <a href="/channels.html" class="channel-strip-link"
+            >+ thousands more — browse the full channel list →</a
+          >
+        </p>
+      </div>
+    </section>
 
-  <!-- ── Main JavaScript ── -->
-  <script type="module" src="/main.js"></script>
+    <!-- ── SECTION 6 · How It Works (compact) ────────── -->
+    <section class="how-section" id="how">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Simple 3 Steps</span>
+          <h2>You're Live In Under 60 Seconds</h2>
+        </div>
+        <div class="steps-grid">
+          <div class="step reveal reveal-delay-1">
+            <span class="step-num">1</span>
+            <div class="step-icon">🎯</div>
+            <h3>Pick Your Plan</h3>
+            <p>1, 6, or 12 months — all plans in full 4K.</p>
+          </div>
+          <div class="step reveal reveal-delay-2">
+            <span class="step-num">2</span>
+            <div class="step-icon">💳</div>
+            <h3>Secure Checkout</h3>
+            <p>Card, PayPal, or crypto — always encrypted.</p>
+          </div>
+          <div class="step reveal reveal-delay-3">
+            <span class="step-num">3</span>
+            <div class="step-icon">🔥</div>
+            <h3>Instant Access</h3>
+            <p>Credentials via WhatsApp/Email in ~5 minutes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</body>
+    <!-- ── SECTION 7 · FAQ (two groups) ──────────────── -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Quick Answers</span>
+          <h2>Questions? Answered.</h2>
+          <p>
+            Whether you're new here or renewing — the answers you actually need
+          </p>
+        </div>
+        <div class="faq-list" id="faqList"></div>
+        <div class="faq-cta reveal">
+          <p>Still have a question we didn't answer?</p>
+          <a
+            href="https://wa.me/12029927413"
+            class="btn-whatsapp"
+            target="_blank"
+            rel="noopener"
+          >
+            💬 Message Us on WhatsApp — Instant Reply
+          </a>
+        </div>
+      </div>
+    </section>
 
+    <!-- ── SECTION 5 · Footer (slim) ─────────────────── -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid footer-grid-slim">
+          <div class="footer-brand">
+            <a href="#" class="nav-logo">
+              <img src="/assets/images/firestore-logo.svg" alt="Fire Store" />
+            </a>
+            <p>
+              Renew your subscription in under a minute — instant activation via
+              WhatsApp or Email.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h4>Support</h4>
+            <a
+              href="https://wa.me/12029927413"
+              class="footer-wa-btn"
+              target="_blank"
+              rel="noopener"
+              >💬 WhatsApp Support</a
+            >
+            <p
+              style="
+                font-size: 0.82rem;
+                color: var(--text-muted);
+                margin-bottom: 8px;
+              "
+            >
+              contact@firestore.tv
+            </p>
+            <ul>
+              <li><a href="/channels.html">Channel List</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="/terms.html">Terms of Service</a></li>
+              <li><a href="/privacy.html">Privacy Policy</a></li>
+              <li><a href="/refund.html">Refund Policy</a></li>
+              <li><a href="/dmca.html">DMCA Notice</a></li>
+              <li><a href="/cookies.html">Cookie Policy</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 Fire Store — fire-store.tv · All rights reserved</p>
+          <div class="footer-payment-row">
+            <span class="footer-payment-label">🔒 Secure &amp; Trusted</span>
+            <div class="footer-payment-badges">
+              <span class="footer-pay-badge visa">VISA</span>
+              <span class="footer-pay-badge mc">Mastercard</span>
+              <span class="footer-pay-badge pp">PayPal</span>
+              <span class="footer-pay-badge cr">₿ Crypto</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ── Main JavaScript ── -->
+    <script type="module" src="/main.js"></script>
+    <script src="https://fire-store.shop/widget.js" defer></script>
+  </body>
 </html>
