@@ -21,7 +21,7 @@ const pricingPlans = {
     12: { price: 79, monthly: 6.58, productId: '9831772c-f677-4b08-b8f9-58235c12c66f' },
   },
   2: {
-    1: { price: 59, monthly: 59, productId: 'REPLACE_WITH_PRODUCT_ID' },
+    1: { price: 59, monthly: 59, productId: 'a129cfc0-ef8b-48bb-8f5c-c1257037d635' },
     6: { price: 99, monthly: 16, productId: 'REPLACE_WITH_PRODUCT_ID' },
     12: { price: 159, monthly: 13.25, productId: 'REPLACE_WITH_PRODUCT_ID' },
   },
