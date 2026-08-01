@@ -26,9 +26,9 @@ const pricingPlans = {
     12: { price: 159, monthly: 13.25, productId: '0bd73a76-04b8-470b-8409-731399f2cedd' },
   },
   3: {
-    1: { price: 89, monthly: 89, productId: 'REPLACE_WITH_PRODUCT_ID' },
-    6: { price: 149, monthly: 24, productId: 'REPLACE_WITH_PRODUCT_ID' },
-    12: { price: 209, monthly: 17.42, productId: 'REPLACE_WITH_PRODUCT_ID' },
+    1: { price: 89, monthly: 89, productId: '684b8256-23ec-4f6a-aad8-d689cfa779f2' },
+    6: { price: 149, monthly: 24, productId: '2d91a4ce-a8a7-4996-9a39-80f1002191d6' },
+    12: { price: 209, monthly: 17.42, productId: '38c339ea-fd7c-4e14-8986-c54b33de0787' },
   },
   4: {
     1: { price: 119, monthly: 119, productId: 'REPLACE_WITH_PRODUCT_ID' },
