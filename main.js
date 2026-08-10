@@ -16,30 +16,30 @@
    ============================================================ */
 const pricingPlans = {
   1: {
-    1: { price: 29, monthly: 29, productId: '1051d075-1623-4fd5-939f-c963036bd428' },
-    6: { price: 49, monthly: 8.1, productId: '6b1c7b94-6d18-4eee-940e-041b255ae128' },
-    12: { price: 79, monthly: 6.58, productId: '9831772c-f677-4b08-b8f9-58235c12c66f' },
-  },
-  2: {
-    1: { price: 59, monthly: 59, productId: 'a129cfc0-ef8b-48bb-8f5c-c1257037d635' },
-    6: { price: 99, monthly: 16, productId: 'f5f9e906-6465-4cf0-8ec5-142adf44eb1d' },
-    12: { price: 159, monthly: 13.25, productId: '0bd73a76-04b8-470b-8409-731399f2cedd' },
-  },
-  3: {
-    1: { price: 89, monthly: 89, productId: '684b8256-23ec-4f6a-aad8-d689cfa779f2' },
-    6: { price: 149, monthly: 24, productId: '2d91a4ce-a8a7-4996-9a39-80f1002191d6' },
-    12: { price: 209, monthly: 17.42, productId: '38c339ea-fd7c-4e14-8986-c54b33de0787' },
-  },
-  4: {
-    1: { price: 119, monthly: 119, productId: 'b9f7f235-021f-45d1-8e22-586edffc8cd3' },
-    6: { price: 159, monthly: 26.5, productId: 'b320fb9d-304e-4d13-b890-3cbd47ee1db5' },
-    12: { price: 239, monthly: 19.91, productId: '3524f282-7102-4166-b706-ffbe186a025b' },
-  },
-  5: {
-    1: { price: 129, monthly: 129, productId: '2f85bed4-27bc-4132-a379-45140cfa10b1' },
-    6: { price: 179, monthly: 29.83, productId: 'b2d0d8ef-037b-4688-b02d-98fa4734f311' },
-    12: { price: 289, monthly: 24.08, productId: 'eabe0679-cdc8-4dbc-8773-63aafa700412' },
-  },
+  1: { price: 29, monthly: 29, productId: 'e1f22bc1-bdbf-4737-bf86-2f8388639c93' },
+  6: { price: 49, monthly: 8.1, productId: '91f8e845-15a3-43e8-93f2-e47abdb03dd2' },
+  12: { price: 79, monthly: 6.58, productId: '92a116ae-bf73-4a82-864a-f643ce58cf8a' },
+},
+2: {
+  1: { price: 59, monthly: 59, productId: 'f8de3852-90e3-4cb8-b03e-1d09b96bb297' },
+  6: { price: 99, monthly: 16, productId: '183e5620-9bee-4257-9a32-ab259ec84483' },
+  12: { price: 159, monthly: 13.25, productId: '0319e334-96f9-4f50-b27c-392f6737efb5' },
+},
+3: {
+  1: { price: 89, monthly: 89, productId: 'e4654946-dcc9-4e34-9277-ff06b3dfd447' },
+  6: { price: 149, monthly: 24, productId: '2d508b86-b9e8-497d-8f7b-ac7db50aaf95' },
+  12: { price: 209, monthly: 17.42, productId: '4b43f74c-6280-4363-b685-12316cb01472' },
+},
+4: {
+  1: { price: 119, monthly: 119, productId: '5cf9c53a-b075-4349-85f8-00de1b12100b' },
+  6: { price: 159, monthly: 26.5, productId: 'c3af3f2a-ed65-4c54-bccc-4bbe0a68ee5d' },
+  12: { price: 239, monthly: 19.91, productId: '0502ce40-7bcc-4c11-9cdc-3fdfe7fe78bb' },
+},
+5: {
+  1: { price: 129, monthly: 129, productId: '2d446c17-8905-4d7b-8dc4-e6287f01a6e5' },
+  6: { price: 179, monthly: 29.83, productId: '529a376d-a2d0-42d9-9f58-8debf8d45ba2' },
+  12: { price: 289, monthly: 24.08, productId: 'd139f32e-a138-4e23-895f-f69652501015' },
+},
 };
 
 /* ============================================================
