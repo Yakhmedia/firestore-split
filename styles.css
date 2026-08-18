@@ -394,21 +394,40 @@ section {
   padding: 100px 2rem 60px;
 }
 
+/* Hero photo is a <picture> element, not a background-image, so the HTML
+   preload scanner can find it — as a CSS background it wasn't discoverable
+   until the stylesheet had parsed. Photo: college football at sunset,
+   Unsplash (photo-1517008655149), cropped to exclude stadium signage. */
 .hero-bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% 110%, rgba(255, 45, 0, 0.28) 0%, transparent 65%),
-    radial-gradient(ellipse 50% 40% at 85% 40%, rgba(255, 107, 0, 0.12) 0%, transparent 60%),
-    url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1800&q=85') center/cover no-repeat;
-  filter: brightness(0.38) saturate(1.1);
+  overflow: hidden;
+  /* 0.38 was tuned for the previous daylight photo, which survived being
+     dimmed that far. This one is shot at dusk and goes near-black at 0.38.
+     0.8 is the ceiling that keeps the centred hero text at WCAG AA:
+     sub-headline #888 at 4.94 (needs 4.5), h1 #FF2D00 at 4.03 (needs 3.0). */
+  filter: brightness(0.8) saturate(1.1);
 }
 
+.hero-bg img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* All overlay gradients live here so they paint above the photo. Layer order
+   matches the original: dark linear on top, then the two orange radials. */
 .hero-bg::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 0.95) 100%);
+  background:
+    linear-gradient(to bottom, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 0.95) 100%),
+    radial-gradient(ellipse 80% 50% at 50% 110%, rgba(255, 45, 0, 0.28) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 85% 40%, rgba(255, 107, 0, 0.12) 0%, transparent 60%);
 }
 
 .hero-content {
@@ -3463,5 +3482,53 @@ section {
 @media (max-width: 520px) {
   .shop-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   SEASONAL HERO COUNTDOWN (Aug 2026 — football season)
+   ============================================================ */
+
+.hero-countdown {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 26px;
+  padding: 8px 18px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  animation: fadeInUp 0.7s ease 0.45s both;
+}
+
+.hero-countdown[hidden] {
+  display: none;
+}
+
+.hc-label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.hc-clock {
+  font-family: 'Barlow Condensed', sans-serif;
+  color: var(--fire-orange);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 520px) {
+  .hero-badge {
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  .hc-label {
+    font-size: 0.8rem;
   }
 }

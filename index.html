@@ -91,27 +91,71 @@
 
     <!-- ── SECTION 2 · Hero (minimal, checkout-first) ─── -->
     <section class="hero hero-minimal">
-      <div class="hero-bg"></div>
+      <div class="hero-bg">
+        <picture>
+          <source
+            type="image/avif"
+            media="(max-width: 767px)"
+            srcset="/assets/images/hero-football-mobile-768.avif"
+          />
+          <source
+            type="image/webp"
+            media="(max-width: 767px)"
+            srcset="/assets/images/hero-football-mobile-768.webp"
+          />
+          <source
+            type="image/avif"
+            srcset="
+              /assets/images/hero-football-1280.avif 1280w,
+              /assets/images/hero-football-1920.avif 1920w
+            "
+            sizes="100vw"
+          />
+          <source
+            type="image/webp"
+            srcset="
+              /assets/images/hero-football-1280.webp 1280w,
+              /assets/images/hero-football-1920.webp 1920w
+            "
+            sizes="100vw"
+          />
+          <img
+            src="/assets/images/hero-football-1280.jpg"
+            alt=""
+            width="1280"
+            height="562"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
+      </div>
       <div class="hero-content">
-        <div class="hero-badge">
+        <div class="hero-badge" id="heroBadge">
           <span class="dot"></span>
-          🔥 Trusted by thousands of streamers
+          <span class="hb-text"
+            >🏈 Football season starts in
+            <span id="heroCountdownDays">11</span> days</span
+          >
         </div>
         <h1>
           <span class="line-fire" id="heroTitle"
-            >Live TV, Movies &amp; Sports — One Subscription</span
+            >Every Game. Every Network. One Subscription.</span
           >
         </h1>
         <p class="hero-sub" id="heroSub">
-          <strong>100,000+ channels in 4K.</strong> New or renewing — you're
-          live in under a minute.
+          <strong>NFL, college football, NBA and UFC</strong> — 100,000+
+          channels in 4K. New or renewing, you're live in under a minute.
         </p>
         <div class="hero-ctas">
           <a href="#plans" class="cta-primary">⚡ Choose Your Plan</a>
         </div>
+        <div class="hero-countdown" id="heroCountdown" hidden>
+          <span class="hc-label" id="hcLabel">College Football Week 0</span>
+          <span class="hc-clock" id="hcClock">—</span>
+        </div>
         <p class="hero-trust-line">
-          🔒 Secure checkout · Credentials sent in ~5 minutes via WhatsApp or
-          Email
+          🔒 Secure checkout · Trusted by thousands of streamers · Credentials
+          in ~5 minutes
         </p>
       </div>
     </section>

@@ -31,15 +31,15 @@ Align the Fire Store homepage with what US audiences are actually searching for 
 
 Target: [index.html:92-116](index.html:92)
 
-- [ ] **1.1** Replace hero badge text at [index.html:98](index.html:98)
+- [x] **1.1** Replace hero badge text at [index.html:98](index.html:98)
   - From: `🔥 Trusted by thousands of streamers`
   - To: `🏈 Football season starts in <span id="heroCountdownDays">11</span> days` (JS-driven, see 2.2)
-- [ ] **1.2** Replace `<h1>` at [index.html:100-103](index.html:100)
+- [x] **1.2** Replace `<h1>` at [index.html:100-103](index.html:100)
   - From: `Live TV, Movies & Sports — One Subscription`
   - To: `Every Game. Every Network. One Subscription.`
-- [ ] **1.3** Replace `.hero-sub` at [index.html:105-108](index.html:105)
+- [x] **1.3** Replace `.hero-sub` at [index.html:105-108](index.html:105)
   - To: `<strong>NFL, college football, NBA and UFC</strong> — 100,000+ channels in 4K. New or renewing, you're live in under a minute.`
-- [ ] **1.4** Insert countdown block between `.hero-ctas` ([index.html:109](index.html:109)) and `.hero-trust-line` ([index.html:112](index.html:112)):
+- [x] **1.4** Insert countdown block between `.hero-ctas` ([index.html:109](index.html:109)) and `.hero-trust-line` ([index.html:112](index.html:112)):
   ```html
   <div class="hero-countdown" id="heroCountdown" hidden>
     <span class="hc-label" id="hcLabel">College Football Week 0</span>
@@ -47,7 +47,7 @@ Target: [index.html:92-116](index.html:92)
   </div>
   ```
   Rendered `hidden` until JS fills it, so no layout flash before the script runs.
-- [ ] **1.5** Keep the "Trusted by thousands" line — move it into `.hero-trust-line` at [index.html:112](index.html:112) so the social proof is not lost:
+- [x] **1.5** Keep the "Trusted by thousands" line — move it into `.hero-trust-line` at [index.html:112](index.html:112) so the social proof is not lost:
   `🔒 Secure checkout · Trusted by thousands of streamers · Credentials in ~5 minutes`
 
 ### Phase 2 — Countdown module (`main.js`)
