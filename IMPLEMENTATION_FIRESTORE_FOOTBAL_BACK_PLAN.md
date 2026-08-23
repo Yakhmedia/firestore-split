@@ -1187,6 +1187,703 @@ Avoid unnecessary onboarding for previous customers.
 10. FAQ update
 11. Final CTA
 
+### Phase 2A — Fire Store App Promotion
+
+#### Objective
+
+Promote the Fire Store streaming app as a major product advantage and a simpler alternative to using third-party player apps.
+
+The app should solve a clear customer problem:
+
+```text
+OLD EXPERIENCE
+Download a third-party player
+→ Enter a playlist or portal URL
+→ Enter a separate username and password
+→ Configure a long server address
+→ Repeat setup on additional devices
+```
+
+```text
+FIRE STORE APP EXPERIENCE
+Download the Fire Store app
+→ Sign in with email and password
+→ Start watching
+```
+
+The app should be positioned as part of the Fire Store experience, not merely as another IPTV player.
+
+#### Core App Positioning
+
+Primary positioning statement:
+
+```text
+Fire Store combines your subscription, account and viewing experience in one simple app.
+```
+
+Primary customer promise:
+
+```text
+Download the Fire Store app, sign in with your email and password, and start watching. No playlists, portal URLs, server addresses or complicated setup.
+```
+
+Short positioning options:
+
+```text
+Your TV. One Simple Login.
+```
+
+```text
+Streaming Without the Complicated Setup.
+```
+
+```text
+One App. One Login. Everything You Watch.
+```
+
+Avoid positioning the app primarily around technical terms. Lead with convenience, simplicity and a familiar email-and-password login.
+
+#### Recommended Homepage Placement
+
+Add the app-promotion section immediately after the main Football Is Back hero and before pricing.
+
+Recommended revised order:
+
+```text
+[HEADER]
+↓
+[FOOTBALL IS BACK HERO]
+↓
+[FIRE STORE APP — ONE SIMPLE LOGIN]
+↓
+[FOOTBALL THIS WEEK / SEASONAL BLOCK]
+↓
+[BUILT FOR GAME DAY]
+↓
+[SPORTS + ENTERTAINMENT]
+↓
+[BEEN WITH US BEFORE?]
+↓
+[PRICING]
+↓
+[HOW IT WORKS]
+↓
+[TESTIMONIALS]
+↓
+[FAQ]
+↓
+[FINAL FOOTBALL CTA]
+↓
+[FOOTER]
+```
+
+The app section must explain why Fire Store is easier before the visitor is asked to choose a plan.
+
+#### Optional App-Led Hero Variant
+
+If the app becomes the primary differentiator, test an app-led version of the homepage hero.
+
+Eyebrow:
+
+```text
+🔥 THE FIRE STORE STREAMING APP
+```
+
+Headline:
+
+```text
+Your TV. One Simple Login.
+```
+
+Subheadline:
+
+```text
+Download the Fire Store app and enjoy your subscription using only your email and password — no playlists, server URLs or complicated setup.
+```
+
+Primary CTA:
+
+```text
+Get Fire Store
+```
+
+Recommended destination:
+
+```text
+#pricing
+```
+
+Secondary CTA:
+
+```text
+Download the App
+```
+
+Recommended destination:
+
+```text
+#download-app
+```
+
+Returning-customer link:
+
+```text
+Already a customer? Download the app and sign in.
+```
+
+Keep the Football Is Back seasonal message when using this variant. The campaign hook should attract attention, while the app should explain why the Fire Store experience is easier.
+
+#### App Promotion Section
+
+Section ID:
+
+```text
+download-app
+```
+
+Eyebrow:
+
+```text
+THE FIRE STORE APP
+```
+
+Heading:
+
+```text
+No More Complicated TV Setup
+```
+
+Primary copy:
+
+```text
+Everything you watch is available through one Fire Store account. Download the app, sign in with your email and password, and start watching without entering playlists, portal URLs or long server addresses.
+```
+
+Supporting copy:
+
+```text
+One Fire Store account keeps your subscription and viewing experience together.
+```
+
+Primary CTA:
+
+```text
+Download the Fire Store App
+```
+
+Secondary CTA:
+
+```text
+Choose Your Plan
+```
+
+Returning-customer CTA:
+
+```text
+Already a Customer? Sign In
+```
+
+Only show a direct Sign In CTA if a functioning customer sign-in destination exists. Otherwise, use:
+
+```text
+Already a Customer? Download the App
+```
+
+#### Old Way vs Fire Store Way Comparison
+
+Use a concise two-column comparison on desktop and stacked cards on mobile.
+
+Column 1:
+
+```text
+THE OLD WAY
+
+Install an unfamiliar third-party player
+Copy a playlist, server or portal URL
+Enter separate service credentials
+Configure the player manually
+Repeat setup on additional devices
+```
+
+Column 2:
+
+```text
+THE FIRE STORE WAY
+
+Download the Fire Store app
+Sign in with your email and password
+Start watching
+```
+
+Do not shame or name competing player apps. Focus on reducing setup friction.
+
+#### App Feature Cards
+
+Feature 1:
+
+**📧 Simple Email Login**
+
+```text
+Use one familiar email and password for your Fire Store account.
+```
+
+Feature 2:
+
+**🔗 No Playlist Setup**
+
+```text
+No M3U links, portal addresses or long server URLs to copy and configure.
+```
+
+Feature 3:
+
+**📺 Made for the TV**
+
+```text
+Use a clean viewing experience designed for compatible TV and streaming devices.
+```
+
+Feature 4:
+
+**🔄 Easy Reactivation**
+
+```text
+Renew your subscription and continue using the same Fire Store account.
+```
+
+Feature 5:
+
+**🎬 Everything in One Place**
+
+```text
+Browse available sports, live TV, movies and shows from one app.
+```
+
+Only include features that are currently operational and supported by the released app.
+
+#### App Visual Direction
+
+Show the real Fire Store app interface inside an appropriate device mockup.
+
+Recommended visuals:
+
+- App home screen displayed on a television.
+- Remote-control navigation context.
+- Sign-in screen showing email and password fields.
+- Browsing interface with neutral sports, live TV, movie and show categories.
+- Optional phone or tablet view only if those devices are supported.
+
+Requirements:
+
+- Use real, current app screenshots.
+- Keep screenshots readable at mobile sizes.
+- Avoid placing real customer information in screenshots.
+- Avoid copyrighted program artwork, league marks or network logos unless authorized.
+- Use WebP or AVIF for app screenshots where practical.
+- Lazy-load below-fold app images.
+- Provide accurate alt text describing the app screen.
+
+Suggested image alt text:
+
+```text
+Fire Store streaming app home screen displayed on a television
+```
+
+```text
+Fire Store app email and password sign-in screen
+```
+
+#### Platform and Device Accuracy
+
+Do not advertise a device or app-store platform until the app is genuinely available and tested there.
+
+Confirm before publishing references to:
+
+- Amazon Fire TV
+- Android TV
+- Google TV
+- Samsung Smart TV
+- LG Smart TV
+- Roku
+- Apple TV
+- Android phones or tablets
+- iPhone or iPad
+- Windows or Mac
+
+For each supported platform, verify:
+
+```text
+download_url
+minimum_version
+installation_method
+login_method
+support_instructions
+last_tested_date
+```
+
+If the app requires sideloading, explain the installation process accurately and do not imply that it is available in an official app store.
+
+#### Pricing Integration
+
+Add the app benefit to every applicable subscription plan.
+
+Recommended plan benefits:
+
+- Fire Store app access
+- Simple email and password login
+- No manual playlist configuration
+- Setup instructions included
+- Compatible-device support
+
+Use clear plan CTAs:
+
+```text
+Get 1 Month
+Get 6 Months
+Get 12 Months
+```
+
+Avoid vague buttons such as:
+
+```text
+Get VIP Access
+```
+
+Clarify whether the app is:
+
+- Included with every active subscription.
+- Free to download but requires an active subscription.
+- Available only with selected plans.
+- Sold separately.
+
+Do not use the word "free" unless the complete app and subscription relationship is explained accurately.
+
+#### Revised How It Works
+
+Update the main three-step flow to include the app.
+
+Step 1:
+
+**Choose Your Plan**
+
+```text
+Select the subscription option that fits you and complete checkout.
+```
+
+Step 2:
+
+**Download the Fire Store App**
+
+```text
+Install the app on a supported TV or streaming device using the instructions provided.
+```
+
+Step 3:
+
+**Sign In and Watch**
+
+```text
+Use your email and password — no playlist or server configuration required.
+```
+
+CTA:
+
+```text
+Get Fire Store
+```
+
+#### Returning-Customer App Journey
+
+Recommended journey:
+
+```text
+Win-back Email
+→ Football Is Back Landing Page
+→ Been With Us Before?
+→ Reactivate My Account
+→ Confirm Plan and Payment
+→ Download or Open the Fire Store App
+→ Sign In With Email and Password
+→ Start Watching
+```
+
+Returning-customer copy:
+
+```text
+Welcome back. Renew your subscription, open the Fire Store app and sign in with your email and password. There is no playlist or server setup to repeat.
+```
+
+Returning-customer CTA options:
+
+```text
+Reactivate and Use the App
+```
+
+```text
+Renew My Subscription
+```
+
+```text
+Download the App
+```
+
+Only promise retention of settings, favorites, watch history or credentials if the app currently preserves them after expiration and reactivation.
+
+#### Trial App Journey
+
+Recommended journey:
+
+```text
+Request a Trial
+→ Trial Availability Confirmed
+→ Fire Store Trial Account Created
+→ App Download Instructions Sent
+→ Customer Signs In With Email and Password
+→ Trial Follow-Up
+→ Subscription
+```
+
+Trial copy:
+
+```text
+If trial access is available, we will send your Fire Store app instructions and account details so you can sign in without configuring a playlist or server URL.
+```
+
+Do not promise a specific trial duration unless it is consistently available.
+
+#### Checkout and Activation Message Match
+
+After checkout, display:
+
+```text
+Your Fire Store subscription is being prepared.
+
+Download the Fire Store app and sign in using the email address associated with your order. We will send your activation and setup instructions through WhatsApp or email.
+```
+
+The checkout and confirmation flow should display:
+
+- Selected subscription plan.
+- Price and duration.
+- Whether Fire Store app access is included.
+- Supported-device requirements.
+- Activation method.
+- App download destination.
+- Support contact method.
+
+Remove unrelated retail language such as shipping from the digital-subscription checkout experience.
+
+#### App Download Links
+
+Use one canonical download section rather than scattering unverified links across the page.
+
+Recommended behavior:
+
+```text
+Download the App
+→ Detect or ask for device type
+→ Show the correct verified download or installation instructions
+```
+
+Each link should include campaign attribution where supported:
+
+```text
+utm_source=firestore_tv
+utm_medium=landing_page
+utm_campaign=football_back_2026
+utm_content=app_download
+```
+
+Preserve the original Brevo and campaign attribution through app-download and checkout steps where technically possible.
+
+#### App Conversion Events
+
+Track:
+
+```text
+app_section_view
+app_download_click
+app_download_fire_tv_click
+app_download_android_tv_click
+app_download_mobile_click
+app_sign_in_click
+app_returning_customer_click
+app_trial_request_click
+app_install_instructions_view
+app_activation_completed
+```
+
+Recommended event parameters:
+
+```text
+device_platform
+subscription_plan
+customer_type
+campaign_source
+campaign_medium
+campaign_name
+campaign_content
+```
+
+For known campaign contacts, recommended CRM fields include:
+
+```text
+APP_INTENT = high
+APP_PLATFORM = selected platform
+APP_STAGE = download_clicked | instructions_viewed | activated
+```
+
+When the customer successfully activates the app:
+
+```text
+APP_STAGE = activated
+STATUS = active
+```
+
+Do not mark activation complete based only on a download-link click.
+
+#### App FAQ Additions
+
+Recommended questions:
+
+- What is the Fire Store app?
+- How do I download the Fire Store app?
+- Which devices support the Fire Store app?
+- How do I sign in?
+- Do I need a playlist or server URL?
+- Is the app included with my subscription?
+- I am already a customer. Can I use the app?
+- What should I do if I cannot sign in?
+
+Suggested answer:
+
+**Question**
+
+```text
+Do I need a playlist or server URL?
+```
+
+**Answer**
+
+```text
+No. The Fire Store app uses your Fire Store email and password, so you do not need to enter an M3U playlist, portal address or long server URL.
+```
+
+Suggested answer:
+
+**Question**
+
+```text
+Is the app included with my subscription?
+```
+
+**Answer**
+
+```text
+The Fire Store app is available to customers with an eligible active subscription. Review the selected plan or contact support to confirm access and device compatibility.
+```
+
+Adjust this answer to match the actual commercial model before publishing.
+
+#### App SEO and Metadata
+
+Where accurate, incorporate the app into metadata without replacing the broader sports and entertainment positioning.
+
+Suggested title:
+
+```text
+Fire Store | Live Sports, TV, Movies & the Fire Store Streaming App
+```
+
+Suggested meta description:
+
+```text
+Get ready for football season with Fire Store. Download the Fire Store app, sign in with your email and password, and enjoy sports, live TV, movies and shows without complicated playlist setup.
+```
+
+Update:
+
+```text
+og:title
+og:description
+og:image
+twitter:title
+twitter:description
+twitter:image
+```
+
+If a dedicated app page is created, recommended URL:
+
+```text
+https://fire-store.tv/app
+```
+
+Use SoftwareApplication structured data only when the required app information, supported operating systems, download destination and pricing are accurate.
+
+#### App A/B Tests
+
+Test one variable at a time.
+
+Test 1 — App headline:
+
+```text
+A: Your TV. One Simple Login.
+B: Streaming Without the Complicated Setup.
+```
+
+Test 2 — App primary CTA:
+
+```text
+A: Download the App
+B: Get Fire Store
+```
+
+Test 3 — Comparison format:
+
+```text
+A: Old Way vs Fire Store Way
+B: Three Simple App Benefits
+```
+
+Judge results using qualified downloads, successful activations, renewals and purchases rather than clicks alone.
+
+#### App Promotion QA Checklist
+
+- [ ] Confirm the released app name and branding.
+- [ ] Confirm whether the app is included with each subscription plan.
+- [ ] Confirm every advertised platform is supported.
+- [ ] Test every app download link.
+- [ ] Test installation instructions on every advertised device.
+- [ ] Verify email-and-password login works for new customers.
+- [ ] Verify email-and-password login works for returning customers.
+- [ ] Verify expired customers receive an accurate reactivation path.
+- [ ] Confirm no playlist or server URL is required in the promoted flow.
+- [ ] Verify app screenshots match the current release.
+- [ ] Remove customer data from screenshots.
+- [ ] Review screenshots for unauthorized third-party artwork or logos.
+- [ ] Add accurate app image alt text.
+- [ ] Verify app CTAs at 320px, 375px, 390px and 430px.
+- [ ] Verify the comparison stacks cleanly on mobile.
+- [ ] Verify app CTAs do not compete confusingly with plan CTAs.
+- [ ] Verify campaign and UTM attribution survives the app-download journey.
+- [ ] Test all app conversion events.
+- [ ] Confirm checkout does not show shipping language for a digital subscription.
+- [ ] Confirm the confirmation page includes app download and sign-in instructions.
+- [ ] Confirm support can resolve app installation and login problems.
+
+#### App Promotion Success Criteria
+
+This phase is successful when:
+
+1. Visitors understand that Fire Store has its own streaming app.
+2. Visitors understand that the app uses an email-and-password login.
+3. Visitors understand that no manual playlist, portal or server URL setup is required.
+4. New customers can move from plan selection to app activation with minimal friction.
+5. Returning customers can reactivate and continue through the Fire Store app.
+6. Every advertised platform and app feature is accurate.
+7. App downloads and successful activations are tracked separately.
+8. The app improves subscriptions and renewals without distracting from the Football Is Back campaign.
+
 ### Phase 3 — Tracking
 
 12. UTM tracking
