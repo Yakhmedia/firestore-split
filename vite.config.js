@@ -11,6 +11,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: 'index.html',
+        app: 'app.html',
         channels: 'channels.html',
         terms: 'terms.html',
         privacy: 'privacy.html',
