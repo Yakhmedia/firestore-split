@@ -53,6 +53,15 @@
         <li><a href="/channels.html">Channels</a></li>
         <li><a href="#why">Why Fire Store</a></li>
         <li><a href="#faq">FAQ</a></li>
+        <!-- Shop link → fire-store.shop (swap URL when category pages are ready) -->
+        <li>
+          <a
+            href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=navbar"
+            target="_blank"
+            rel="noopener"
+            >🛒 Shop</a
+          >
+        </li>
         <li>
           <a href="https://wa.me/12029927413" target="_blank" rel="noopener"
             >WhatsApp</a
@@ -82,27 +91,71 @@
 
     <!-- ── SECTION 2 · Hero (minimal, checkout-first) ─── -->
     <section class="hero hero-minimal">
-      <div class="hero-bg"></div>
+      <div class="hero-bg">
+        <picture>
+          <source
+            type="image/avif"
+            media="(max-width: 767px)"
+            srcset="/assets/images/hero-football-mobile-768.avif"
+          />
+          <source
+            type="image/webp"
+            media="(max-width: 767px)"
+            srcset="/assets/images/hero-football-mobile-768.webp"
+          />
+          <source
+            type="image/avif"
+            srcset="
+              /assets/images/hero-football-1280.avif 1280w,
+              /assets/images/hero-football-1920.avif 1920w
+            "
+            sizes="100vw"
+          />
+          <source
+            type="image/webp"
+            srcset="
+              /assets/images/hero-football-1280.webp 1280w,
+              /assets/images/hero-football-1920.webp 1920w
+            "
+            sizes="100vw"
+          />
+          <img
+            src="/assets/images/hero-football-1280.jpg"
+            alt=""
+            width="1280"
+            height="562"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
+      </div>
       <div class="hero-content">
-        <div class="hero-badge">
+        <div class="hero-badge" id="heroBadge">
           <span class="dot"></span>
-          🔥 Trusted by thousands of streamers
+          <span class="hb-text"
+            >🏈 Football season starts in
+            <span id="heroCountdownDays">11</span> days</span
+          >
         </div>
         <h1>
           <span class="line-fire" id="heroTitle"
-            >Live TV, Movies &amp; Sports — One Subscription</span
+            >Every Game. Every Network. One Subscription.</span
           >
         </h1>
         <p class="hero-sub" id="heroSub">
-          <strong>100,000+ channels in 4K.</strong> New or renewing — you're
-          live in under a minute.
+          <strong>NFL, college football, NBA and UFC</strong> — 100,000+
+          channels in 4K. New or renewing, you're live in under a minute.
         </p>
         <div class="hero-ctas">
           <a href="#plans" class="cta-primary">⚡ Choose Your Plan</a>
         </div>
+        <div class="hero-countdown" id="heroCountdown" hidden>
+          <span class="hc-label" id="hcLabel">College Football Week 0</span>
+          <span class="hc-clock" id="hcClock">—</span>
+        </div>
         <p class="hero-trust-line">
-          🔒 Secure checkout · Credentials sent in ~5 minutes via WhatsApp or
-          Email
+          🔒 Secure checkout · Trusted by thousands of streamers · Credentials
+          in ~5 minutes
         </p>
       </div>
     </section>
@@ -150,6 +203,7 @@
             </ul>
             <button
               class="btn-plan btn-plan-default firestore-buy-btn"
+              id="btn-1m"
               data-product-id="1051d075-1623-4fd5-939f-c963036bd428"
             >
               Get Started →
@@ -172,6 +226,7 @@
             </ul>
             <button
               class="btn-plan btn-plan-popular firestore-buy-btn"
+              id="btn-12m"
               data-product-id="9831772c-f677-4b08-b8f9-58235c12c66f"
             >
               🔥 Get VIP Access →
@@ -191,7 +246,11 @@
               </li>
               <li>Instant activation via WhatsApp / Email</li>
             </ul>
-            <button class="btn-plan btn-plan-default" id="btn-6m">
+            <button
+              class="btn-plan btn-plan-default firestore-buy-btn"
+              id="btn-6m"
+              data-product-id="6b1c7b94-6d18-4eee-940e-041b255ae128"
+            >
               Get 6 Months →
             </button>
           </div>
@@ -209,6 +268,77 @@
           <span class="trust-secure"
             >256-bit SSL Encrypted · No payment data stored</span
           >
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 3B · Complete Your Setup (shop cross-sell) ── -->
+    <!-- Cards link to fire-store.shop homepage for now.
+         Swap each card's href for its category URL when ready. -->
+    <section class="shop-section" id="shop">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">🛒 Fire Store Shop</span>
+          <h2>Complete Your Setup</h2>
+          <p>Everything your screen needs — engineered to fit, certified to perform.</p>
+        </div>
+
+        <div class="shop-grid">
+          <a
+            class="shop-card reveal reveal-delay-1"
+            href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=setup&utm_content=firestick"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="shop-icon">📺</span>
+            <h3>Fire TV Sticks</h3>
+            <p>Plug-and-play 4K streaming devices</p>
+            <span class="shop-link">Shop now →</span>
+          </a>
+          <a
+            class="shop-card reveal reveal-delay-2"
+            href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=setup&utm_content=cables"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="shop-icon">🔌</span>
+            <h3>HDMI 2.1 Cables</h3>
+            <p>4K@120 &amp; 8K — no dropouts</p>
+            <span class="shop-link">Shop now →</span>
+          </a>
+          <a
+            class="shop-card reveal reveal-delay-3"
+            href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=setup&utm_content=mounts"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="shop-icon">🖥️</span>
+            <h3>TV Mounts</h3>
+            <p>Full-motion, tilting &amp; fixed, 32–80"</p>
+            <span class="shop-link">Shop now →</span>
+          </a>
+          <a
+            class="shop-card reveal reveal-delay-4"
+            href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=setup&utm_content=led"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="shop-icon">💡</span>
+            <h3>LED Backlights</h3>
+            <p>Bias &amp; screen-synced ambient glow</p>
+            <span class="shop-link">Shop now →</span>
+          </a>
+        </div>
+
+        <div class="shop-cta reveal">
+          <a
+            class="btn-shop-all"
+            href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=setup&utm_content=view_all"
+            target="_blank"
+            rel="noopener"
+            >🔥 Browse the Full Shop →</a
+          >
+          <p class="shop-trust">🚚 Free shipping over $50 · 🛡️ 2-year warranty · ⚡ Same-day dispatch before 3pm</p>
         </div>
       </div>
     </section>
@@ -354,6 +484,53 @@
             <ul>
               <li><a href="/channels.html">Channel List</a></li>
             </ul>
+          </div>
+          <!-- Shop column → fire-store.shop (swap for category URLs when ready) -->
+          <div class="footer-col">
+            <h4>Shop</h4>
+            <ul>
+              <li>
+                <a
+                  href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=footer&utm_content=firestick"
+                  target="_blank"
+                  rel="noopener"
+                  >Fire TV Sticks</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=footer&utm_content=cables"
+                  target="_blank"
+                  rel="noopener"
+                  >HDMI Cables</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=footer&utm_content=mounts"
+                  target="_blank"
+                  rel="noopener"
+                  >TV Mounts</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=footer&utm_content=led"
+                  target="_blank"
+                  rel="noopener"
+                  >LED Backlights</a
+                >
+              </li>
+            </ul>
+            <p
+              style="
+                font-size: 0.78rem;
+                color: var(--text-muted);
+                margin-top: 8px;
+              "
+            >
+              🚚 Free shipping over $50
+            </p>
           </div>
           <div class="footer-col">
             <h4>Legal</h4>

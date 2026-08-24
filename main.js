@@ -5,33 +5,41 @@
 
 /* ============================================================
    DATA — PRICING PLANS (device-based)
+   ------------------------------------------------------------
+   Checkout now opens the Fire-Store popup form (widget.js)
+   instead of redirecting. Each plan is identified by its
+   `productId` (the fire-store.shop product UUID).
+
+   👉 FILL IN ALL 15 PRODUCT IDs BELOW.
+   Structure:  pricingPlans[screens][months].productId
+   Example ID: 'a8101175-8572-4aef-a16c-eef8a07312bf'
    ============================================================ */
 const pricingPlans = {
   1: {
-    1: { price: 29, monthly: 29, checkoutLink: 'https://firepay.shop/step/1-month-premium-plan/' },
-    6: { price: 49, monthly: 8.1, checkoutLink: 'https://firepay.shop/step/6-month-premium-plan/' },
-    12: { price: 79, monthly: 6.58, checkoutLink: 'https://firepay.shop/step/12-month-premium-plan/' },
-  },
-  2: {
-    1: { price: 59, monthly: 59, checkoutLink: 'https://firepay.shop/step/2-devices-1-month/' },
-    6: { price: 99, monthly: 16, checkoutLink: 'https://firepay.shop/step/2-devices-6-month/' },
-    12: { price: 159, monthly: 13.25, checkoutLink: 'https://firepay.shop/step/2-devices-12-month/' },
-  },
-  3: {
-    1: { price: 89, monthly: 89, checkoutLink: 'https://firepay.shop/step/3-devices-1-month/' },
-    6: { price: 149, monthly: 24, checkoutLink: 'https://firepay.shop/step/3-devices-6-month/' },
-    12: { price: 209, monthly: 17.42, checkoutLink: 'https://firepay.shop/step/3-devices-12-month/' },
-  },
-  4: {
-    1: { price: 119, monthly: 119, checkoutLink: 'https://firepay.shop/step/4-devices-1-month/' },
-    6: { price: 159, monthly: 26.5, checkoutLink: 'https://firepay.shop/step/4-devices-6-month/' },
-    12: { price: 239, monthly: 19.91, checkoutLink: 'https://firepay.shop/step/4-devices-12-month/' },
-  },
-  5: {
-    1: { price: 129, monthly: 129, checkoutLink: 'https://firepay.shop/step/5-devices-1-month/' },
-    6: { price: 179, monthly: 29.83, checkoutLink: 'https://firepay.shop/step/5-devices-6-month/' },
-    12: { price: 289, monthly: 24.08, checkoutLink: 'https://firepay.shop/step/5-devices-12-month/' },
-  },
+  1: { price: 29, monthly: 29, productId: 'e1f22bc1-bdbf-4737-bf86-2f8388639c93' },
+  6: { price: 49, monthly: 8.1, productId: '91f8e845-15a3-43e8-93f2-e47abdb03dd2' },
+  12: { price: 79, monthly: 6.58, productId: '92a116ae-bf73-4a82-864a-f643ce58cf8a' },
+},
+2: {
+  1: { price: 59, monthly: 59, productId: 'f8de3852-90e3-4cb8-b03e-1d09b96bb297' },
+  6: { price: 99, monthly: 16, productId: '183e5620-9bee-4257-9a32-ab259ec84483' },
+  12: { price: 159, monthly: 13.25, productId: '0319e334-96f9-4f50-b27c-392f6737efb5' },
+},
+3: {
+  1: { price: 89, monthly: 89, productId: 'e4654946-dcc9-4e34-9277-ff06b3dfd447' },
+  6: { price: 149, monthly: 24, productId: '2d508b86-b9e8-497d-8f7b-ac7db50aaf95' },
+  12: { price: 209, monthly: 17.42, productId: '4b43f74c-6280-4363-b685-12316cb01472' },
+},
+4: {
+  1: { price: 119, monthly: 119, productId: '5cf9c53a-b075-4349-85f8-00de1b12100b' },
+  6: { price: 159, monthly: 26.5, productId: 'c3af3f2a-ed65-4c54-bccc-4bbe0a68ee5d' },
+  12: { price: 239, monthly: 19.91, productId: '0502ce40-7bcc-4c11-9cdc-3fdfe7fe78bb' },
+},
+5: {
+  1: { price: 129, monthly: 129, productId: '2d446c17-8905-4d7b-8dc4-e6287f01a6e5' },
+  6: { price: 179, monthly: 29.83, productId: '529a376d-a2d0-42d9-9f58-8debf8d45ba2' },
+  12: { price: 289, monthly: 24.08, productId: 'd139f32e-a138-4e23-895f-f69652501015' },
+},
 };
 
 /* ============================================================
@@ -248,13 +256,20 @@ function updatePriceCards(deviceCount) {
       true);
   });
 
-  // Checkout links
-  const btn1 = document.getElementById('btn-1m');
-  const btn6 = document.getElementById('btn-6m');
-  const btn12 = document.getElementById('btn-12m');
-  if (btn1) btn1.onclick = () => window.location.href = p1.checkoutLink;
-  if (btn6) btn6.onclick = () => window.location.href = p6.checkoutLink;
-  if (btn12) btn12.onclick = () => window.location.href = p12.checkoutLink;
+  // Checkout — wire each button to the Fire-Store popup (widget.js).
+  // The widget listens for clicks on ".firestore-buy-btn" and reads
+  // "data-product-id", so we just tag the button and set the id for
+  // the current screen/duration combo.
+  const wireBuyButton = (id, plan) => {
+    const btn = document.getElementById(id);
+    if (!btn) return;
+    btn.classList.add('firestore-buy-btn');
+    btn.setAttribute('data-product-id', plan.productId);
+    btn.onclick = null; // no more redirect — the popup handles the click
+  };
+  wireBuyButton('btn-1m', p1);
+  wireBuyButton('btn-6m', p6);
+  wireBuyButton('btn-12m', p12);
 }
 
 function initDeviceSelector() {
