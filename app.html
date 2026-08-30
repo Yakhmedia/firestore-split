@@ -71,15 +71,15 @@
         <li><a class="fs-navlink" href="#faq">FAQ</a></li>
         <!-- Sign in stays visible inside the mobile drawer -->
         <li class="fs-drawer-only">
-          <a class="fs-navlink" href="https://firestore.tv/" data-analytics="signin">Sign in</a>
+          <a class="fs-navlink" href="https://firestore.tv/login" data-analytics="signin">Sign in</a>
         </li>
       </ul>
 
       <div class="nav-actions fs-nav-actions">
-        <a class="fs-signin" href="https://firestore.tv/" data-analytics="signin">Sign in</a>
+        <a class="fs-signin" href="https://firestore.tv/login" data-analytics="signin">Sign in</a>
         <a
           class="fs-btn fs-btn-primary fs-nav-trial"
-          href="https://firestore.tv/"
+          href="https://firestore.tv/login?intent=trial"
           data-analytics="trial"
           data-loc="header"
           >Start free trial</a
@@ -89,7 +89,7 @@
       <!-- Trial stays visible next to the burger on mobile -->
       <a
         class="fs-btn fs-btn-primary fs-nav-trial-mobile"
-        href="https://firestore.tv/"
+        href="https://firestore.tv/login?intent=trial"
         data-analytics="trial"
         data-loc="header_mobile"
         >Free trial</a
@@ -129,7 +129,7 @@
             <div class="fs-hero-ctas">
               <a
                 class="fs-btn fs-btn-primary fs-btn-lg"
-                href="https://firestore.tv/"
+                href="https://firestore.tv/login?intent=trial"
                 data-analytics="trial"
                 data-loc="hero"
                 >⚡ Start free trial</a
@@ -143,79 +143,36 @@
             </p>
           </div>
 
-          <!-- Layered product composition (built UI, no third-party artwork) -->
-          <div class="fs-hero-visual" aria-hidden="true">
+          <!-- Real product screenshots (third-party artwork is present; confirm marketing rights before deployment). -->
+          <div class="fs-hero-visual">
             <div class="fs-hero-bloom"></div>
-
-            <!-- Main TV interface -->
-            <div class="fs-screen fs-hero-main fs-ui">
-              <div class="fs-ui-bar">
-                <span class="fs-ui-dot is-live"></span>
-                <span class="fs-ui-pill is-live">● Live now</span>
-                <span class="fs-ui-pill">Continue watching</span>
-              </div>
-              <div class="fs-ui-body">
-                <div class="fs-ui-hero g1">
-                  <div class="fs-ui-hero-text">
-                    <strong>Prime Time</strong>
-                    <span>Live · Sports · 4K</span>
-                  </div>
-                </div>
-                <div class="fs-ui-rowlabel">
-                  Continue watching <span>See all</span>
-                </div>
-                <div class="fs-ui-rail">
-                  <div class="fs-ui-tile g2">Ep. 4<span class="fs-ui-progress"></span></div>
-                  <div class="fs-ui-tile g3">Ep. 9<span class="fs-ui-progress"></span></div>
-                  <div class="fs-ui-tile g4">Live<span class="fs-ui-progress"></span></div>
-                  <div class="fs-ui-tile g5">Ep. 1<span class="fs-ui-progress"></span></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Floating program guide -->
-            <div class="fs-hero-guide fs-ui">
-              <div class="fs-ui-rowlabel" style="margin: 0 0 10px">
-                Program guide <span>Now</span>
-              </div>
-              <div class="fs-ui-chan is-active">
-                <span class="fs-ui-logo g1">01</span>
-                <span class="fs-ui-chan-info"
-                  ><b>Sports One</b><small>Live event</small
-                  ><span class="fs-ui-nowbar"></span
-                ></span>
-              </div>
-              <div class="fs-ui-chan">
-                <span class="fs-ui-logo g5">02</span>
-                <span class="fs-ui-chan-info"
-                  ><b>Cinema HD</b><small>Feature film</small></span
-                >
-              </div>
-              <div class="fs-ui-chan">
-                <span class="fs-ui-logo g6">03</span>
-                <span class="fs-ui-chan-info"
-                  ><b>News 24</b><small>Headlines</small></span
-                >
-              </div>
-            </div>
-
-            <!-- Phone layer -->
-            <div class="fs-hero-phone fs-ui">
-              <div class="fs-ui-hero g5" style="height: 88px; border-radius: 0">
-                <div class="fs-ui-hero-text">
-                  <strong style="font-size: 0.9rem">On the go</strong>
-                </div>
-              </div>
-              <div style="padding: 8px">
-                <div class="fs-ui-rail">
-                  <div class="fs-ui-tile is-tall g2" style="width: 46px; height: 64px"></div>
-                  <div class="fs-ui-tile is-tall g3" style="width: 46px; height: 64px"></div>
-                </div>
-              </div>
-            </div>
+            <figure class="fs-product-shot fs-product-shot-hero">
+              <img src="/assets/images/app-browse-home-desktop.jpg" width="1425" height="891" alt="Firestore.tv browse screen with featured content and live channels" fetchpriority="high" decoding="async" />
+            </figure>
+            <figure class="fs-product-shot fs-product-shot-phone fs-hero-phone-shot">
+              <img src="/assets/images/app-browse-movies-mobile.jpg" width="375" height="812" alt="Firestore.tv movie library on a mobile phone" decoding="async" />
+            </figure>
           </div>
         </div>
       </section>
+
+      <!-- ══════════════ SOCIAL PROOF ══════════════ -->
+      <div class="fs-social-proof" aria-label="Trust indicators">
+        <div class="fs-container fs-proof-row">
+          <div class="fs-proof-item">
+            <strong>100,000+</strong><span>Channels available</span>
+          </div>
+          <div class="fs-proof-item">
+            <strong>4K</strong><span>Ultra HD streaming</span>
+          </div>
+          <div class="fs-proof-item">
+            <strong>5</strong><span>Simultaneous screens</span>
+          </div>
+          <div class="fs-proof-item">
+            <strong>24/7</strong><span>Email support</span>
+          </div>
+        </div>
+      </div>
 
       <!-- ══════════════ PRODUCT SHOWCASE ══════════════ -->
       <section class="fs-section fs-section-alt" id="product">
@@ -238,242 +195,68 @@
             <button
               class="fs-tab"
               role="tab"
+              id="tab-browse"
+              aria-controls="panel-browse"
+              aria-selected="true"
+            >
+              Browse
+            </button>
+            <button
+              class="fs-tab"
+              role="tab"
               id="tab-live"
               aria-controls="panel-live"
-              aria-selected="true"
+              aria-selected="false"
+              tabindex="-1"
             >
               Live TV
             </button>
             <button
               class="fs-tab"
               role="tab"
-              id="tab-movies"
-              aria-controls="panel-movies"
+              id="tab-vod"
+              aria-controls="panel-vod"
               aria-selected="false"
               tabindex="-1"
             >
-              Movies
+              Movies &amp; Series
             </button>
             <button
               class="fs-tab"
               role="tab"
-              id="tab-series"
-              aria-controls="panel-series"
+              id="tab-mobile"
+              aria-controls="panel-mobile"
               aria-selected="false"
               tabindex="-1"
             >
-              Series
-            </button>
-            <button
-              class="fs-tab"
-              role="tab"
-              id="tab-sports"
-              aria-controls="panel-sports"
-              aria-selected="false"
-              tabindex="-1"
-            >
-              Sports
+              Mobile
             </button>
           </div>
 
           <div class="fs-showcase-stage reveal">
-            <!-- LIVE TV -->
-            <div
-              class="fs-panel"
-              role="tabpanel"
-              id="panel-live"
-              aria-labelledby="tab-live"
-              tabindex="0"
-            >
-              <div class="fs-panel-split fs-ui">
-                <div class="fs-panel-side">
-                  <div class="fs-ui-rowlabel">Channels <span>120+</span></div>
-                  <div class="fs-ui-chan is-active">
-                    <span class="fs-ui-logo g1">01</span>
-                    <span class="fs-ui-chan-info"
-                      ><b>Sports One</b><small>Live · Prime Time</small
-                      ><span class="fs-ui-nowbar"></span
-                    ></span>
-                  </div>
-                  <div class="fs-ui-chan">
-                    <span class="fs-ui-logo g3">02</span>
-                    <span class="fs-ui-chan-info"
-                      ><b>News 24</b><small>Headlines</small></span
-                    >
-                  </div>
-                  <div class="fs-ui-chan">
-                    <span class="fs-ui-logo g6">03</span>
-                    <span class="fs-ui-chan-info"
-                      ><b>Discovery+</b><small>Documentary</small></span
-                    >
-                  </div>
-                  <div class="fs-ui-chan">
-                    <span class="fs-ui-logo g5">04</span>
-                    <span class="fs-ui-chan-info"
-                      ><b>Cinema HD</b><small>Feature film</small></span
-                    >
-                  </div>
-                </div>
-                <div class="fs-panel-main">
-                  <div class="fs-ui-hero g1" style="height: 200px">
-                    <div class="fs-ui-hero-text">
-                      <strong>Sports One · Live</strong>
-                      <span>Prime Time · 4K · Now playing</span>
-                    </div>
-                  </div>
-                  <div class="fs-ui-rowlabel">
-                    Up next <span>Full guide</span>
-                  </div>
-                  <div class="fs-ui-rail is-scroll">
-                    <div class="fs-ui-tile g2">8:00</div>
-                    <div class="fs-ui-tile g3">9:30</div>
-                    <div class="fs-ui-tile g4">11:00</div>
-                    <div class="fs-ui-tile g7">12:30</div>
-                  </div>
-                </div>
-              </div>
-              <p class="fs-panel-caption">
-                Browse live channels with clear program information and fast
-                switching.
-              </p>
+            <div class="fs-panel" role="tabpanel" id="panel-browse" aria-labelledby="tab-browse" tabindex="0">
+              <figure class="fs-product-shot fs-product-shot-editorial">
+                <img src="/assets/images/app-browse-home-desktop.jpg" width="1425" height="891" alt="Firestore.tv browse screen with featured content and live channels" loading="lazy" decoding="async" />
+              </figure>
+              <p class="fs-shot-caption">Featured content and live channels together on one home screen.</p>
             </div>
-
-            <!-- MOVIES -->
-            <div
-              class="fs-panel"
-              role="tabpanel"
-              id="panel-movies"
-              aria-labelledby="tab-movies"
-              tabindex="0"
-              hidden
-            >
-              <div class="fs-ui" style="padding: 4px">
-                <div class="fs-ui-body">
-                  <div class="fs-ui-hero g4" style="height: 200px">
-                    <div class="fs-ui-hero-text">
-                      <strong>Featured tonight</strong>
-                      <span>Drama · 2h 14m · 4K</span>
-                    </div>
-                  </div>
-                  <div class="fs-ui-rowlabel">Trending now <span>See all</span></div>
-                  <div class="fs-ui-rail is-scroll">
-                    <div class="fs-ui-tile is-tall g5"></div>
-                    <div class="fs-ui-tile is-tall g2"></div>
-                    <div class="fs-ui-tile is-tall g8"></div>
-                    <div class="fs-ui-tile is-tall g3"></div>
-                    <div class="fs-ui-tile is-tall g6"></div>
-                    <div class="fs-ui-tile is-tall g7"></div>
-                  </div>
-                  <div class="fs-ui-rowlabel" style="margin-top: 14px">
-                    New releases <span>See all</span>
-                  </div>
-                  <div class="fs-ui-rail is-scroll">
-                    <div class="fs-ui-tile is-tall g3"></div>
-                    <div class="fs-ui-tile is-tall g4"></div>
-                    <div class="fs-ui-tile is-tall g5"></div>
-                    <div class="fs-ui-tile is-tall g2"></div>
-                    <div class="fs-ui-tile is-tall g8"></div>
-                  </div>
-                </div>
-              </div>
-              <p class="fs-panel-caption">
-                A large featured pick plus easy-to-browse discovery rows.
-              </p>
+            <div class="fs-panel" role="tabpanel" id="panel-live" aria-labelledby="tab-live" tabindex="0" hidden>
+              <figure class="fs-product-shot fs-product-shot-editorial">
+                <img src="/assets/images/app-browse-live-desktop.jpg" width="1425" height="891" alt="Firestore.tv Live TV screen showing channel categories and a channel list" loading="lazy" decoding="async" />
+              </figure>
+              <p class="fs-shot-caption">Filter channel groups and move between live streams quickly.</p>
             </div>
-
-            <!-- SERIES -->
-            <div
-              class="fs-panel"
-              role="tabpanel"
-              id="panel-series"
-              aria-labelledby="tab-series"
-              tabindex="0"
-              hidden
-            >
-              <div class="fs-ui" style="padding: 4px">
-                <div class="fs-ui-body">
-                  <div class="fs-ui-hero g5" style="height: 200px">
-                    <div class="fs-ui-hero-text">
-                      <strong>Keep watching · S2 E4</strong>
-                      <span>Resume where you left off</span>
-                    </div>
-                  </div>
-                  <div class="fs-ui-rowlabel">Continue watching <span>See all</span></div>
-                  <div class="fs-ui-rail is-scroll">
-                    <div class="fs-ui-tile g2">S2·E4<span class="fs-ui-progress"></span></div>
-                    <div class="fs-ui-tile g3">S1·E9<span class="fs-ui-progress"></span></div>
-                    <div class="fs-ui-tile g6">S3·E1<span class="fs-ui-progress"></span></div>
-                    <div class="fs-ui-tile g4">S1·E2<span class="fs-ui-progress"></span></div>
-                  </div>
-                  <div class="fs-ui-rowlabel" style="margin-top: 14px">
-                    Recently added <span>See all</span>
-                  </div>
-                  <div class="fs-ui-rail is-scroll">
-                    <div class="fs-ui-tile is-tall g8"></div>
-                    <div class="fs-ui-tile is-tall g5"></div>
-                    <div class="fs-ui-tile is-tall g3"></div>
-                    <div class="fs-ui-tile is-tall g2"></div>
-                    <div class="fs-ui-tile is-tall g7"></div>
-                  </div>
-                </div>
-              </div>
-              <p class="fs-panel-caption">
-                Episode progress, favorites, and recently added — all in one row.
-              </p>
+            <div class="fs-panel" role="tabpanel" id="panel-vod" aria-labelledby="tab-vod" tabindex="0" hidden>
+              <figure class="fs-product-shot fs-product-shot-editorial">
+                <img src="/assets/images/app-browse-movies-desktop.jpg" width="1425" height="891" alt="Firestore.tv movies and series screen showing poster collections" loading="lazy" decoding="async" />
+              </figure>
+              <p class="fs-shot-caption">Browse large poster collections in familiar category rows.</p>
             </div>
-
-            <!-- SPORTS -->
-            <div
-              class="fs-panel"
-              role="tabpanel"
-              id="panel-sports"
-              aria-labelledby="tab-sports"
-              tabindex="0"
-              hidden
-            >
-              <div class="fs-panel-split fs-ui">
-                <div class="fs-panel-side">
-                  <div class="fs-ui-rowlabel">Live &amp; upcoming</div>
-                  <div class="fs-ui-chan is-active">
-                    <span class="fs-ui-logo g8">●</span>
-                    <span class="fs-ui-chan-info"
-                      ><b>Football</b><small>Live now</small
-                      ><span class="fs-ui-nowbar"></span
-                    ></span>
-                  </div>
-                  <div class="fs-ui-chan">
-                    <span class="fs-ui-logo g3">▶</span>
-                    <span class="fs-ui-chan-info"
-                      ><b>Basketball</b><small>Starts 9:00</small></span
-                    >
-                  </div>
-                  <div class="fs-ui-chan">
-                    <span class="fs-ui-logo g6">▶</span>
-                    <span class="fs-ui-chan-info"
-                      ><b>Combat sports</b><small>Starts 11:00</small></span
-                    >
-                  </div>
-                </div>
-                <div class="fs-panel-main">
-                  <div class="fs-ui-hero g8" style="height: 200px">
-                    <div class="fs-ui-hero-text">
-                      <strong>Live · Football</strong>
-                      <span>2nd half · 4K</span>
-                    </div>
-                  </div>
-                  <div class="fs-ui-rowlabel">Categories <span>Browse</span></div>
-                  <div class="fs-ui-rail is-scroll">
-                    <div class="fs-ui-tile g1">Football</div>
-                    <div class="fs-ui-tile g3">Basketball</div>
-                    <div class="fs-ui-tile g4">Combat</div>
-                    <div class="fs-ui-tile g7">Racing</div>
-                  </div>
-                </div>
-              </div>
-              <p class="fs-panel-caption">
-                Jump straight to supported live sports without digging through
-                menus.
-              </p>
+            <div class="fs-panel" role="tabpanel" id="panel-mobile" aria-labelledby="tab-mobile" tabindex="0" hidden>
+              <figure class="fs-product-shot fs-product-shot-phone fs-showcase-phone">
+                <img src="/assets/images/app-browse-movies-mobile.jpg" width="375" height="812" alt="Firestore.tv movie library adapted for a phone" loading="lazy" decoding="async" />
+              </figure>
+              <p class="fs-shot-caption">The same library experience adapted for a phone.</p>
             </div>
           </div>
         </div>
@@ -497,33 +280,9 @@
               </p>
             </div>
             <div class="fs-exp-media">
-              <div class="fs-screen fs-ui">
-                <div class="fs-ui-bar">
-                  <span class="fs-ui-dot is-live"></span>
-                  <span class="fs-ui-pill is-live">● Live</span>
-                </div>
-                <div class="fs-ui-body">
-                  <div class="fs-ui-chan is-active">
-                    <span class="fs-ui-logo g1">01</span>
-                    <span class="fs-ui-chan-info"
-                      ><b>Sports One</b><small>Live · Prime Time</small
-                      ><span class="fs-ui-nowbar"></span
-                    ></span>
-                  </div>
-                  <div class="fs-ui-chan">
-                    <span class="fs-ui-logo g6">02</span>
-                    <span class="fs-ui-chan-info"
-                      ><b>News 24</b><small>Headlines</small></span
-                    >
-                  </div>
-                  <div class="fs-ui-chan">
-                    <span class="fs-ui-logo g5">03</span>
-                    <span class="fs-ui-chan-info"
-                      ><b>Cinema HD</b><small>Now: Feature film</small></span
-                    >
-                  </div>
-                </div>
-              </div>
+              <figure class="fs-product-shot fs-product-shot-editorial">
+                <img src="/assets/images/app-browse-live-desktop.jpg" width="1425" height="891" alt="Firestore.tv live channel browsing screen" loading="lazy" decoding="async" />
+              </figure>
             </div>
           </div>
 
@@ -538,24 +297,9 @@
               </p>
             </div>
             <div class="fs-exp-media">
-              <div class="fs-screen fs-ui">
-                <div class="fs-ui-body">
-                  <div class="fs-ui-hero g4" style="height: 120px">
-                    <div class="fs-ui-hero-text">
-                      <strong>Featured tonight</strong>
-                      <span>Drama · 4K</span>
-                    </div>
-                  </div>
-                  <div class="fs-ui-rowlabel">Trending <span>See all</span></div>
-                  <div class="fs-ui-rail is-scroll">
-                    <div class="fs-ui-tile is-tall g5"></div>
-                    <div class="fs-ui-tile is-tall g2"></div>
-                    <div class="fs-ui-tile is-tall g8"></div>
-                    <div class="fs-ui-tile is-tall g3"></div>
-                    <div class="fs-ui-tile is-tall g6"></div>
-                  </div>
-                </div>
-              </div>
+              <figure class="fs-product-shot fs-product-shot-editorial">
+                <img src="/assets/images/app-browse-movies-desktop.jpg" width="1425" height="891" alt="Firestore.tv movies and series browsing screen" loading="lazy" decoding="async" />
+              </figure>
             </div>
           </div>
 
@@ -569,26 +313,9 @@
               </p>
             </div>
             <div class="fs-exp-media">
-              <div class="fs-screen fs-ui">
-                <div class="fs-ui-bar">
-                  <span class="fs-ui-dot is-live"></span>
-                  <span class="fs-ui-pill is-live">● Live sports</span>
-                </div>
-                <div class="fs-ui-body">
-                  <div class="fs-ui-hero g8" style="height: 120px">
-                    <div class="fs-ui-hero-text">
-                      <strong>Football · Live</strong>
-                      <span>2nd half · 4K</span>
-                    </div>
-                  </div>
-                  <div class="fs-ui-rail is-scroll">
-                    <div class="fs-ui-tile g1">Football</div>
-                    <div class="fs-ui-tile g3">Basketball</div>
-                    <div class="fs-ui-tile g4">Combat</div>
-                    <div class="fs-ui-tile g7">Racing</div>
-                  </div>
-                </div>
-              </div>
+              <figure class="fs-product-shot fs-product-shot-editorial fs-product-shot-sports">
+                <img src="/assets/images/app-browse-home-desktop.jpg" width="1425" height="891" alt="Firestore.tv home screen with live sports content" loading="lazy" decoding="async" />
+              </figure>
             </div>
           </div>
 
@@ -607,52 +334,13 @@
           </div>
 
           <div class="fs-devices">
-            <div class="fs-device-stage reveal" aria-hidden="true">
-              <!-- Laptop -->
-              <div class="fs-device-small fs-device-laptop">
-                <div class="fs-screen fs-ui">
-                  <div class="fs-ui-hero g3" style="height: 74px; border-radius: 0">
-                    <div class="fs-ui-hero-text">
-                      <strong style="font-size: 0.9rem">Laptop</strong>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- TV (dominant) -->
-              <div class="fs-device-tv">
-                <div class="fs-screen fs-ui">
-                  <div class="fs-ui-bar">
-                    <span class="fs-ui-dot is-live"></span>
-                    <span class="fs-ui-pill is-live">● Live now</span>
-                    <span class="fs-ui-pill">4K</span>
-                  </div>
-                  <div class="fs-ui-body">
-                    <div class="fs-ui-hero g1" style="height: 120px">
-                      <div class="fs-ui-hero-text">
-                        <strong>On your TV</strong>
-                        <span>Living room · 4K</span>
-                      </div>
-                    </div>
-                    <div class="fs-ui-rail is-scroll">
-                      <div class="fs-ui-tile g2"></div>
-                      <div class="fs-ui-tile g3"></div>
-                      <div class="fs-ui-tile g5"></div>
-                      <div class="fs-ui-tile g6"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="fs-device-stand"></div>
-              </div>
-              <!-- Phone -->
-              <div class="fs-device-small fs-device-phone">
-                <div class="fs-screen fs-ui" style="border-radius: 16px">
-                  <div class="fs-ui-hero g5" style="height: 96px; border-radius: 0">
-                    <div class="fs-ui-hero-text">
-                      <strong style="font-size: 0.8rem">Phone</strong>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="fs-device-stage reveal">
+              <figure class="fs-product-shot fs-device-tv-shot">
+                <img src="/assets/images/app-browse-home-desktop.jpg" width="1425" height="891" alt="Firestore.tv browse screen displayed on a large screen" loading="lazy" decoding="async" />
+              </figure>
+              <figure class="fs-product-shot fs-product-shot-phone fs-device-phone-shot">
+                <img src="/assets/images/app-browse-movies-mobile.jpg" width="375" height="812" alt="Firestore.tv movie library on a phone" loading="lazy" decoding="async" />
+              </figure>
             </div>
 
             <div class="reveal">
@@ -704,7 +392,7 @@
               <div class="fs-compare-cell fs-compare-head">Typical setup</div>
               <div class="fs-compare-cell fs-compare-head is-brand">Firestore.tv</div>
             </div>
-            <div class="fs-compare-row">
+            <div class="fs-compare-row reveal reveal-delay-1">
               <div class="fs-compare-cell">
                 <span class="fs-cross">✕</span> Playlist URLs to manage
               </div>
@@ -712,7 +400,7 @@
                 <span class="fs-check">✓</span> One secure login
               </div>
             </div>
-            <div class="fs-compare-row">
+            <div class="fs-compare-row reveal reveal-delay-2">
               <div class="fs-compare-cell">
                 <span class="fs-cross">✕</span> Manual configuration
               </div>
@@ -720,7 +408,7 @@
                 <span class="fs-check">✓</span> Guided TV pairing
               </div>
             </div>
-            <div class="fs-compare-row">
+            <div class="fs-compare-row reveal reveal-delay-3">
               <div class="fs-compare-cell">
                 <span class="fs-cross">✕</span> Disconnected menus
               </div>
@@ -728,7 +416,7 @@
                 <span class="fs-check">✓</span> One familiar interface
               </div>
             </div>
-            <div class="fs-compare-row">
+            <div class="fs-compare-row reveal reveal-delay-4">
               <div class="fs-compare-cell">
                 <span class="fs-cross">✕</span> Repeated setup steps
               </div>
@@ -769,7 +457,7 @@
           <div class="fs-steps-cta reveal">
             <a
               class="fs-btn fs-btn-primary fs-btn-lg"
-              href="https://firestore.tv/"
+              href="https://firestore.tv/login?intent=trial"
               data-analytics="trial"
               data-loc="how_it_works"
               >Create my account</a
@@ -790,7 +478,7 @@
             <div class="fs-banner-ctas">
               <a
                 class="fs-btn fs-btn-primary fs-btn-lg"
-                href="https://firestore.tv/"
+                href="https://firestore.tv/login?intent=trial"
                 data-analytics="trial"
                 data-loc="trial_banner"
                 >⚡ Start my free trial</a
@@ -863,14 +551,14 @@
             <div class="fs-banner-ctas">
               <a
                 class="fs-btn fs-btn-primary fs-btn-lg"
-                href="https://firestore.tv/"
+                href="https://firestore.tv/login?intent=trial"
                 data-analytics="trial"
                 data-loc="final_banner"
                 >Start free trial</a
               >
               <a
                 class="fs-btn fs-btn-ghost fs-btn-lg"
-                href="https://firestore.tv/"
+                href="https://firestore.tv/login"
                 data-analytics="signin"
                 >Sign in</a
               >
@@ -878,6 +566,16 @@
           </div>
         </div>
       </section>
+
+      <div class="fs-sticky-cta" id="fsStickyBar" aria-hidden="true" inert>
+        <a
+          class="fs-btn fs-btn-primary"
+          href="https://firestore.tv/login?intent=trial"
+          data-analytics="trial"
+          data-loc="sticky_bar"
+          >⚡ Start free trial</a
+        >
+      </div>
     </main>
 
     <!-- ══════════════ FOOTER ══════════════ -->
@@ -906,7 +604,7 @@
           <div class="footer-col">
             <h4>Support</h4>
             <ul>
-              <li><a href="https://firestore.tv/">Sign in</a></li>
+              <li><a href="https://firestore.tv/login">Sign in</a></li>
               <li><a href="mailto:contact@firestore.tv">contact@firestore.tv</a></li>
               <li><a href="/channels.html">Channel list</a></li>
             </ul>

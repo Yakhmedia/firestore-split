@@ -122,6 +122,12 @@ function initNavbar() {
     link.addEventListener('click', () => setOpen(false));
   });
 
+  // The mobile backdrop is the nav list's pseudo-element. Clicking its
+  // exposed area closes the drawer without requiring another button.
+  navLinks.addEventListener('click', (e) => {
+    if (e.target === navLinks) setOpen(false);
+  });
+
   // Close on Escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && toggleBtn.classList.contains('active')) {
@@ -138,6 +144,7 @@ function initShowcaseTabs() {
   const tablist = document.getElementById('fsTabs');
   if (!tablist) return;
   const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+  const stage = document.querySelector('.fs-showcase-stage');
 
   const selectTab = (tab, setFocus = true) => {
     tabs.forEach((t) => {
@@ -167,6 +174,82 @@ function initShowcaseTabs() {
       }
     });
   });
+
+  if (stage) {
+    let startX = null;
+    let startY = null;
+    let lastSwipeAt = 0;
+
+    stage.addEventListener('touchstart', (e) => {
+      const touch = e.changedTouches[0];
+      startX = touch ? touch.clientX : null;
+      startY = touch ? touch.clientY : null;
+    }, { passive: true });
+
+    stage.addEventListener('touchend', (e) => {
+      const touch = e.changedTouches[0];
+      if (startX === null || startY === null || !touch) return;
+
+      const deltaX = touch.clientX - startX;
+      const deltaY = touch.clientY - startY;
+      const now = Date.now();
+      startX = null;
+      startY = null;
+
+      if (Math.abs(deltaX) < 50 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+      if (now - lastSwipeAt < 450) return;
+      lastSwipeAt = now;
+
+      const currentIndex = tabs.findIndex(
+        (tab) => tab.getAttribute('aria-selected') === 'true'
+      );
+      const nextIndex = deltaX < 0
+        ? (currentIndex + 1) % tabs.length
+        : (currentIndex - 1 + tabs.length) % tabs.length;
+      selectTab(tabs[nextIndex], false);
+    }, { passive: true });
+  }
+}
+
+/* ============================================================
+   STICKY MOBILE CTA
+   ============================================================ */
+function initStickyBar() {
+  const bar = document.getElementById('fsStickyBar');
+  const heroCtas = document.querySelector('.fs-hero-ctas');
+  const finalBanner = document.querySelector(
+    'section[aria-label="Get started"] .fs-banner'
+  );
+  if (!bar || !heroCtas) return;
+
+  let heroVisible = true;
+  let finalVisible = false;
+
+  const updateVisibility = () => {
+    const visible = !heroVisible && !finalVisible;
+    bar.classList.toggle('visible', visible);
+    bar.setAttribute('aria-hidden', String(!visible));
+    bar.inert = !visible;
+  };
+
+  if (!('IntersectionObserver' in window)) {
+    updateVisibility();
+    return;
+  }
+
+  const heroObserver = new IntersectionObserver(([entry]) => {
+    heroVisible = entry.isIntersecting;
+    updateVisibility();
+  }, { threshold: 0.05 });
+  heroObserver.observe(heroCtas);
+
+  if (finalBanner) {
+    const finalObserver = new IntersectionObserver(([entry]) => {
+      finalVisible = entry.isIntersecting;
+      updateVisibility();
+    }, { threshold: 0.15 });
+    finalObserver.observe(finalBanner);
+  }
 }
 
 /* ============================================================
@@ -201,10 +284,20 @@ function initFlameCanvas() {
 
   const ctx = canvas.getContext('2d');
   const particles = [];
+  const isMobile = window.innerWidth < 768;
+  const particleCount = isMobile ? 30 : 90;
+  let viewportWidth = window.innerWidth;
+  let viewportHeight = window.innerHeight * 0.4;
+  let animId = null;
+  let isAnimating = false;
 
   function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight * 0.4;
+    viewportWidth = window.innerWidth;
+    viewportHeight = window.innerHeight * 0.4;
+    const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = viewportWidth * dpr;
+    canvas.height = viewportHeight * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
   resize();
   window.addEventListener('resize', resize);
@@ -214,8 +307,8 @@ function initFlameCanvas() {
       this.reset();
     }
     reset() {
-      this.x = Math.random() * canvas.width;
-      this.y = canvas.height;
+      this.x = Math.random() * viewportWidth;
+      this.y = viewportHeight;
       this.size = Math.random() * 4 + 2;
       this.speedX = (Math.random() - 0.5) * 1.5;
       this.speedY = -(Math.random() * 3 + 1);
@@ -240,22 +333,44 @@ function initFlameCanvas() {
     }
   }
 
-  for (let i = 0; i < 90; i++) {
+  for (let i = 0; i < particleCount; i++) {
     const p = new FlameParticle();
-    p.y = Math.random() * canvas.height;
+    p.y = Math.random() * viewportHeight;
     p.life = Math.random();
     particles.push(p);
   }
 
   function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (document.hidden) {
+      animId = null;
+      isAnimating = false;
+      return;
+    }
+    ctx.clearRect(0, 0, viewportWidth, viewportHeight);
     particles.forEach((p) => {
       p.update();
       p.draw();
     });
-    requestAnimationFrame(animate);
+    animId = requestAnimationFrame(animate);
   }
-  animate();
+
+  function startAnimation() {
+    if (isAnimating || document.hidden) return;
+    isAnimating = true;
+    animate();
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      if (animId !== null) cancelAnimationFrame(animId);
+      animId = null;
+      isAnimating = false;
+    } else {
+      startAnimation();
+    }
+  });
+
+  startAnimation();
 }
 
 /* ============================================================
@@ -290,6 +405,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderFaq();
   initNavbar();
   initShowcaseTabs();
+  initStickyBar();
   initScrollReveal();
   initFlameCanvas();
   initAnalytics();
