@@ -145,6 +145,15 @@ body.fs-app #flame-canvas {
   gap: 56px;
   align-items: center;
 }
+/* Grid/flex items default to min-width:auto and refuse to shrink below
+   their content's min-content size, which blows the page wider than the
+   viewport on mobile. Allow them to shrink. */
+.fs-hero-grid > *,
+.fs-exp > *,
+.fs-devices > *,
+.fs-panel-split > * {
+  min-width: 0;
+}
 .fs-eyebrow {
   display: inline-flex;
   align-items: center;
@@ -985,6 +994,8 @@ body.fs-app #flame-canvas {
   .fs-hero-visual {
     min-height: 360px;
     max-width: 480px;
+    width: 100%;
+    margin: 0 auto;
   }
   .fs-hero-main {
     transform: none;
@@ -1194,7 +1205,8 @@ body.fs-app #flame-canvas {
     border-right: none;
     border-bottom: 1px solid var(--fs-line);
   }
-  .fs-hero-guide {
+  .fs-hero-guide,
+  .fs-hero-phone {
     display: none;
   }
   .fs-nav-trial-mobile {
