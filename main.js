@@ -3,6 +3,8 @@
    main.js  ·  Simplified "renew / checkout-first" landing page
    ============================================================ */
 
+import { initWinback, maybeInjectWinbackFaq } from './winback.js';
+
 /* ============================================================
    DATA — PRICING PLANS (device-based)
    ------------------------------------------------------------
@@ -14,32 +16,32 @@
    Structure:  pricingPlans[screens][months].productId
    Example ID: 'a8101175-8572-4aef-a16c-eef8a07312bf'
    ============================================================ */
-const pricingPlans = {
+export const pricingPlans = {
   1: {
-  1: { price: 29, monthly: 29, productId: 'e1f22bc1-bdbf-4737-bf86-2f8388639c93' },
-  6: { price: 49, monthly: 8.1, productId: '91f8e845-15a3-43e8-93f2-e47abdb03dd2' },
-  12: { price: 79, monthly: 6.58, productId: '92a116ae-bf73-4a82-864a-f643ce58cf8a' },
-},
-2: {
-  1: { price: 59, monthly: 59, productId: 'f8de3852-90e3-4cb8-b03e-1d09b96bb297' },
-  6: { price: 99, monthly: 16, productId: '183e5620-9bee-4257-9a32-ab259ec84483' },
-  12: { price: 159, monthly: 13.25, productId: '0319e334-96f9-4f50-b27c-392f6737efb5' },
-},
-3: {
-  1: { price: 89, monthly: 89, productId: 'e4654946-dcc9-4e34-9277-ff06b3dfd447' },
-  6: { price: 149, monthly: 24, productId: '2d508b86-b9e8-497d-8f7b-ac7db50aaf95' },
-  12: { price: 209, monthly: 17.42, productId: '4b43f74c-6280-4363-b685-12316cb01472' },
-},
-4: {
-  1: { price: 119, monthly: 119, productId: '5cf9c53a-b075-4349-85f8-00de1b12100b' },
-  6: { price: 159, monthly: 26.5, productId: 'c3af3f2a-ed65-4c54-bccc-4bbe0a68ee5d' },
-  12: { price: 239, monthly: 19.91, productId: '0502ce40-7bcc-4c11-9cdc-3fdfe7fe78bb' },
-},
-5: {
-  1: { price: 129, monthly: 129, productId: '2d446c17-8905-4d7b-8dc4-e6287f01a6e5' },
-  6: { price: 179, monthly: 29.83, productId: '529a376d-a2d0-42d9-9f58-8debf8d45ba2' },
-  12: { price: 289, monthly: 24.08, productId: 'd139f32e-a138-4e23-895f-f69652501015' },
-},
+    1: { price: 29, monthly: 29, productId: 'e1f22bc1-bdbf-4737-bf86-2f8388639c93' },
+    6: { price: 49, monthly: 8.1, productId: '91f8e845-15a3-43e8-93f2-e47abdb03dd2' },
+    12: { price: 79, monthly: 6.58, productId: '92a116ae-bf73-4a82-864a-f643ce58cf8a' },
+  },
+  2: {
+    1: { price: 59, monthly: 59, productId: 'f8de3852-90e3-4cb8-b03e-1d09b96bb297' },
+    6: { price: 99, monthly: 16, productId: '183e5620-9bee-4257-9a32-ab259ec84483' },
+    12: { price: 159, monthly: 13.25, productId: '0bd73a76-04b8-470b-8409-731399f2cedd' },
+  },
+  3: {
+    1: { price: 89, monthly: 89, productId: 'e4654946-dcc9-4e34-9277-ff06b3dfd447' },
+    6: { price: 149, monthly: 24, productId: '2d508b86-b9e8-497d-8f7b-ac7db50aaf95' },
+    12: { price: 209, monthly: 17.42, productId: '4b43f74c-6280-4363-b685-12316cb01472' },
+  },
+  4: {
+    1: { price: 119, monthly: 119, productId: '5cf9c53a-b075-4349-85f8-00de1b12100b' },
+    6: { price: 159, monthly: 26.5, productId: '0bd73a76-04b8-470b-8409-731399f2cedd' },
+    12: { price: 239, monthly: 19.91, productId: '3524f282-7102-4166-b706-ffbe186a025b' },
+  },
+  5: {
+    1: { price: 129, monthly: 129, productId: '2f85bed4-27bc-4132-a379-45140cfa10b1' },
+    6: { price: 179, monthly: 29.83, productId: 'b2d0d8ef-037b-4688-b02d-98fa4734f311' },
+    12: { price: 289, monthly: 24.08, productId: 'eabe0679-cdc8-4dbc-8773-63aafa700412' },
+  },
 };
 
 /* ============================================================
@@ -241,16 +243,23 @@ function updatePriceCards(deviceCount) {
     if (isHTML) el.innerHTML = html; else el.textContent = html;
   };
 
+  // The win-back campaign card is a fixed offer (12mo / 2 screens / $79),
+  // not a configurable plan — the screen selector must not rewrite it.
+  // Inert without the root class, so the public page is unaffected.
+  const annualLocked = document.documentElement.classList.contains('promo-winback');
+
   // Prices & periods
   set('price-1m', `<span>$</span>${p1.price}`, true);
   set('period-1m', 'per month, billed monthly');
   set('price-6m', `<span>$</span>${p6.price}`, true);
   set('period-6m', `$${p6.monthly.toFixed(2)}/month — billed once`);
-  set('price-12m', `<span>$</span>${p12.price}`, true);
-  set('period-12m', `$${p12.monthly.toFixed(2)}/month — billed once`);
+  if (!annualLocked) {
+    set('price-12m', `<span>$</span>${p12.price}`, true);
+    set('period-12m', `$${p12.monthly.toFixed(2)}/month — billed once`);
+  }
 
   // Screens bullet (only the middle mini-feature changes with device count)
-  ['1m', '6m', '12m'].forEach(suffix => {
+  (annualLocked ? ['1m', '6m'] : ['1m', '6m', '12m']).forEach(suffix => {
     set(`mini-screens-${suffix}`,
       `<strong>${deviceCount} ${deviceWord}</strong> at the same time`,
       true);
@@ -269,7 +278,7 @@ function updatePriceCards(deviceCount) {
   };
   wireBuyButton('btn-1m', p1);
   wireBuyButton('btn-6m', p6);
-  wireBuyButton('btn-12m', p12);
+  if (!annualLocked) wireBuyButton('btn-12m', p12);
 }
 
 function initDeviceSelector() {
@@ -291,7 +300,7 @@ function initDeviceSelector() {
    DEEP-LINKING — email pre-selection
    ?devices=<1-5>&plan=<1|6|12>&renew=1
    ============================================================ */
-function selectDevice(deviceCount) {
+export function selectDevice(deviceCount) {
   const selector = document.getElementById('deviceSelector');
   if (selector) {
     selector.querySelectorAll('.device-btn').forEach(b => {
@@ -343,19 +352,47 @@ function initDeepLink() {
 }
 
 /* ============================================================
+   HERO SEASON BADGE — drive the day count from a real date
+   ------------------------------------------------------------
+   Was a hardcoded "<span>11</span> days" that no JS updated and
+   that went stale. Now derived from SEASON_START so it can never
+   silently lie on the page a campaign email points to.
+   ============================================================ */
+const SEASON_START = '2026-09-10T00:00:00-04:00'; // NFL 2026 opener
+
+function initHeroSeasonBadge() {
+  const text = document.querySelector('#heroBadge .hb-text');
+  if (!text) return;
+  const days = Math.ceil((Date.parse(SEASON_START) - Date.now()) / 86_400_000);
+  if (days > 1) {
+    text.textContent = `🏈 Football season starts in ${days} days`;
+  } else if (days === 1) {
+    text.textContent = '🏈 Football season starts tomorrow';
+  } else {
+    text.textContent = '🏈 Football season is live now';
+  }
+}
+
+/* ============================================================
    INIT — runs after DOM ready
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
-  // Dynamic content
+  // Dynamic content — winback FAQ group (if any) must be unshifted before render
+  maybeInjectWinbackFaq(faqGroups);
   renderFaq();
 
   // UI behaviours
   initNavbar();
   initDeviceSelector();
   initScrollReveal();
+  initHeroSeasonBadge();
 
   // Hero background flame effect
   initFlameCanvas();
+
+  // Win-back campaign state — after initDeviceSelector() so selectDevice(2)
+  // wins, before initDeepLink() so an explicit ?devices=N still overrides.
+  initWinback();
 
   // Email deep-link pre-selection (run after selector is wired up)
   initDeepLink();

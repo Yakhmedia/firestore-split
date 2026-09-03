@@ -3532,3 +3532,290 @@ section {
     font-size: 0.8rem;
   }
 }
+
+/* ============================================================
+   WIN-BACK CAMPAIGN  ·  everything scoped under
+   .promo-winback / .promo-expired on <html>
+   ------------------------------------------------------------
+   A visitor without ?promo=winback never reaches any rule
+   below. --promo-bar-h resolves to 0px for them, so the
+   layout declarations that reference it are no-ops.
+   Spec: IMPLEMENTATION_WINBACK_LANDING_2SCREEN.md
+   ============================================================ */
+
+/* ---- shared utilities (needed by the campaign, harmless otherwise) ---- */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:root { --promo-bar-h: 0px; }
+.promo-winback { --promo-bar-h: 44px; }
+@media (max-width: 720px) {
+  .promo-winback { --promo-bar-h: 64px; } /* announcement copy wraps to 2 lines */
+}
+
+/* The fixed navbar and hero padding shift down by the bar height.
+   With --promo-bar-h at 0px these are identical to today's values. */
+.navbar { top: var(--promo-bar-h); }
+.hero-minimal { padding-top: calc(120px + var(--promo-bar-h)); }
+#plans { scroll-margin-top: calc(70px + var(--promo-bar-h) + 16px); }
+
+/* ---- announcement bar ---- */
+.promo-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--promo-bar-h);
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  background: linear-gradient(135deg, var(--fire-red), var(--fire-orange));
+  color: #fff;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+}
+
+.promo-bar-inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 1100px;
+  width: 100%;
+  justify-content: center;
+}
+
+.promo-bar-text {
+  font-size: 0.9rem;
+  line-height: 1.25;
+  font-weight: 600;
+  text-align: center;
+}
+
+.promo-bar-text strong { font-weight: 800; }
+
+.promo-bar-sub {
+  display: block;
+  font-weight: 500;
+  font-size: 0.78rem;
+  opacity: 0.9;
+}
+
+.promo-bar-cta {
+  flex-shrink: 0;
+  background: #fff;
+  color: var(--fire-red);
+  border: 0;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 800;
+  font-size: 0.82rem;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.promo-bar-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+.promo-bar-cta:focus-visible { outline: 3px solid #000; outline-offset: 2px; }
+
+@media (max-width: 720px) {
+  .promo-bar-inner { gap: 10px; }
+  .promo-bar-text { font-size: 0.8rem; }
+  .promo-bar-sub { display: none; }
+}
+
+/* ---- hero in campaign state ---- */
+.promo-winback .hero-badge {
+  border-color: rgba(255, 107, 0, 0.5);
+}
+
+/* ---- plans-section heading / selector note ---- */
+.promo-selector-note {
+  max-width: 640px;
+  margin: -32px auto 40px;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* ---- the annual campaign card ---- */
+/* Hide the standard annual-card content until winback.js rebuilds it, so the
+   real prices never flash the wrong numbers. Fail-safe: if winback.js never
+   runs, the animation reveals the standard card after 2s rather than leaving
+   the primary conversion card blank forever. */
+.promo-winback .plan-card.popular:not(.promo-card) {
+  visibility: hidden;
+  animation: promo-card-failsafe 0s linear 2s forwards;
+}
+@keyframes promo-card-failsafe { to { visibility: visible; } }
+
+.plan-card.promo-card { text-align: center; }
+
+.promo-badge {
+  background: linear-gradient(90deg, var(--fire-red), var(--fire-orange)) !important;
+  color: #fff !important;
+  letter-spacing: 2px;
+}
+
+.promo-card .promo-screens {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--fire-orange);
+  margin: 4px 0 14px;
+}
+
+.promo-price-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 6px;
+}
+
+.promo-was s {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  text-decoration-thickness: 2px;
+}
+
+.promo-now {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 2.9rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text-primary);
+}
+.promo-now em {
+  font-style: normal;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.promo-value {
+  display: inline-block;
+  margin: 10px 0 4px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  background: rgba(0, 255, 106, 0.12);
+  color: var(--live-green);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.promo-fineprint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 4px 0 18px;
+}
+
+.promo-deadline {
+  margin-top: 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--fire-gold);
+}
+
+/* ---- objection-handling block ---- */
+.promo-objections {
+  margin: 32px auto 0;
+  max-width: 760px;
+  text-align: center;
+}
+.promo-objections h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+}
+.promo-objections-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.promo-objection {
+  display: block;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: border-color 0.2s, background 0.2s;
+}
+.promo-objection:hover {
+  border-color: rgba(255, 107, 0, 0.45);
+  background: rgba(255, 107, 0, 0.06);
+}
+.promo-objection strong { display: block; margin-bottom: 4px; }
+.promo-objection span { font-size: 0.85rem; color: var(--text-muted); }
+.promo-objection:focus-visible { outline: 2px solid var(--fire-orange); outline-offset: 2px; }
+
+@media (max-width: 560px) {
+  .promo-objections-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- suppress the external-shop cross-sell for churned visitors ---- */
+.promo-winback .shop-section { display: none; }
+
+/* ---- expired state ---- */
+.promo-expired-notice {
+  margin: 0 auto 32px;
+  max-width: 720px;
+  padding: 16px 20px;
+  border: 1px solid rgba(255, 107, 0, 0.4);
+  border-radius: 10px;
+  background: rgba(255, 107, 0, 0.08);
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.promo-expired-notice a { color: var(--fire-orange); font-weight: 700; }
+
+/* ---- sticky mobile CTA ---- */
+.promo-sticky {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 1090;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 56px;
+  padding: 8px 14px;
+  background: rgba(10, 10, 10, 0.96);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 107, 0, 0.4);
+  transform: translateY(100%);
+  transition: transform 0.25s ease;
+}
+.promo-sticky.is-visible { transform: translateY(0); }
+.promo-sticky-info { font-size: 0.9rem; font-weight: 700; color: var(--text-primary); }
+.promo-sticky-cta {
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--fire-red), var(--fire-orange));
+  color: #fff;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 800;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.promo-sticky-cta:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+@media (max-width: 768px) {
+  .promo-winback .promo-sticky { display: flex; }
+}
