@@ -17,6 +17,7 @@
    ============================================================ */
 
 import { pricingPlans, selectDevice } from './main.js';
+import { captureUtms, track as trackBase, formatDeadline as formatDeadlineBase } from './campaign-utils.js';
 
 /* ---- campaign constants -------------------------------------------------- */
 
@@ -41,77 +42,20 @@ const isExpired = () => root.classList.contains('promo-expired');
 
 /* ---- analytics ------------------------------------------------------------ */
 
-const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
-
-function captureUtms() {
-  try {
-    const params = new URLSearchParams(location.search);
-    const existing = JSON.parse(sessionStorage.getItem('winback_utms') || '{}');
-    let changed = false;
-    UTM_KEYS.forEach(k => {
-      const v = params.get(k);
-      if (v && existing[k] !== v) { existing[k] = v; changed = true; }
-    });
-    if (changed) sessionStorage.setItem('winback_utms', JSON.stringify(existing));
-    return existing;
-  } catch (_) {
-    return {};
-  }
-}
-
-function readUtms() {
-  try {
-    return JSON.parse(sessionStorage.getItem('winback_utms') || '{}');
-  } catch (_) {
-    return {};
-  }
-}
-
 function track(event, params = {}) {
-  const base = {
-    campaign: 'winback_screen_upgrade',
-    source: readUtms().utm_source || 'direct',
-    ...readUtms(),
-  };
-  if (typeof window.gtag === 'function') {
-    window.gtag('event', event, { ...base, ...params });
-  }
+  trackBase('winback_screen_upgrade', event, params);
 }
 
 /* ---- deadline formatting ------------------------------------------------- */
 
 /**
- * Formats `window.WINBACK.endAt` for display in the campaign's own timezone
- * (taken from the ISO offset), never the visitor's. Single source of truth:
- * the constant declared once in the inline <head> script.
+ * Formats `window.WINBACK.endAt` for display in the campaign's own timezone.
+ * Single source of truth: the constant declared once in the inline <head> script.
  * e.g. "Sat, Sep 14 · 11:59 PM ET"
  */
 function formatDeadline() {
   const cfg = window.WINBACK || {};
-  const iso = cfg.endAt;
-  const tzLabel = cfg.tzLabel || '';
-  if (!iso) return '';
-
-  const date = new Date(iso);
-  if (isNaN(date.getTime())) return '';
-
-  // Shift the instant so that reading it as UTC yields the campaign-tz wall clock.
-  const m = iso.match(/([+-])(\d{2}):?(\d{2})$/);
-  let shifted = date;
-  if (m) {
-    const sign = m[1] === '-' ? -1 : 1;
-    const offsetMin = sign * (parseInt(m[2], 10) * 60 + parseInt(m[3], 10));
-    shifted = new Date(date.getTime() + offsetMin * 60000);
-  }
-
-  const parts = new Intl.DateTimeFormat('en-US', {
-    weekday: 'short', month: 'short', day: 'numeric',
-    hour: 'numeric', minute: '2-digit', hour12: true,
-    timeZone: 'UTC',
-  }).formatToParts(shifted).reduce((acc, p) => (acc[p.type] = p.value, acc), {});
-
-  const stamp = `${parts.weekday}, ${parts.month} ${parts.day} · ${parts.hour}:${parts.minute} ${parts.dayPeriod}`;
-  return tzLabel ? `${stamp} ${tzLabel}` : stamp;
+  return formatDeadlineBase(cfg.endAt, cfg.tzLabel || '');
 }
 
 /* ---- scroll helper ----------------------------------------------------- */

@@ -47,6 +47,45 @@
     })();
   </script>
 
+  <!-- ══ NFL OPENING WEEKEND CAMPAIGN — pre-paint state ═══════════════
+         Delete this block, the `import './nfl.js'` line + `initNfl()`
+         call in main.js, and the `.promo-nfl` CSS block + schedule-strip
+         shell below to disable the entire campaign. Runs before the body
+         is parsed so the public page never flashes evergreen copy then
+         swaps. The campaign also self-expires at `endAt` with no deploy.
+         Spec: IMPLEMENTATION_NFL_OPENING_WEEKEND.md
+    -->
+  <script>
+    window.NFLWEEK1 = {
+      startAt: "2026-09-11T00:00:00-04:00",
+      endAt: "2026-09-14T23:59:00-04:00",
+      tzLabel: "ET",
+    };
+    (function () {
+      var p = new URLSearchParams(location.search);
+      if (p.get("promo") === "winback") return; // win-back wins — see D8
+      var force = p.get("nflpreview"); // QA override: ?nflpreview=1 forces live, =0 forces off
+      if (force === "0") return;
+      var now = Date.now();
+      var live = force === "1" ||
+        (now >= Date.parse(window.NFLWEEK1.startAt) && now < Date.parse(window.NFLWEEK1.endAt));
+      if (live) document.documentElement.classList.add("promo-nfl");
+    })();
+  </script>
+
+  <!-- ── Share preview (evergreen — survives every campaign) ── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Fire Store – Live TV, Movies & Sports in 4K" />
+  <meta property="og:description"
+    content="100,000+ live channels, movies and sports in 4K. New or renewing — pick your plan and you're live in under a minute." />
+  <meta property="og:image" content="https://fire-store.tv/assets/images/hero-football-1280.jpg" />
+  <meta property="og:url" content="https://fire-store.tv/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Fire Store – Live TV, Movies & Sports in 4K" />
+  <meta name="twitter:description"
+    content="100,000+ live channels, movies and sports in 4K. Instant activation via WhatsApp or Email." />
+  <meta name="twitter:image" content="https://fire-store.tv/assets/images/hero-football-1280.jpg" />
+
   <!-- ── Global Stylesheet ── -->
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -130,6 +169,11 @@
       </p>
     </div>
   </section>
+
+  <!-- ── NFL OPENING WEEKEND · weekend schedule strip ──
+         Empty shell — content rendered by nfl.js only in campaign
+         state. [hidden] means it costs nothing if the JS fails. -->
+  <section class="nfl-strip" id="weekend" hidden></section>
 
   <!-- ── SECTION 3 · Plans ─────────────────────────── -->
   <section class="plans-section" id="plans">

@@ -4,6 +4,7 @@
    ============================================================ */
 
 import { initWinback, maybeInjectWinbackFaq } from './winback.js';
+import { initNfl } from './nfl.js';
 
 /* ============================================================
    DATA — PRICING PLANS (device-based)
@@ -393,6 +394,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Win-back campaign state — after initDeviceSelector() so selectDevice(2)
   // wins, before initDeepLink() so an explicit ?devices=N still overrides.
   initWinback();
+
+  // NFL campaign state — after initHeroSeasonBadge() so its copy isn't
+  // stomped back to the evergreen badge text; before initDeepLink() so an
+  // explicit ?devices=N still overrides.
+  initNfl();
 
   // Email deep-link pre-selection (run after selector is wired up)
   initDeepLink();

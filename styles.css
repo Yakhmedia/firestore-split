@@ -3817,5 +3817,138 @@ section {
 .promo-sticky-cta:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
 
 @media (max-width: 768px) {
-  .promo-winback .promo-sticky { display: flex; }
+  .promo-winback .promo-sticky,
+  .promo-nfl .promo-sticky { display: flex; }
+}
+
+/* ============================================================
+   NFL OPENING WEEKEND CAMPAIGN  ·  everything scoped under
+   .promo-nfl on <html>
+   ------------------------------------------------------------
+   No top bar is added (D7) — --promo-bar-h stays 0px for this
+   campaign, so the navbar and hero layout are untouched and
+   there is no possible double-bar stack.
+   Spec: IMPLEMENTATION_NFL_OPENING_WEEKEND.md
+   ============================================================ */
+
+/* ---- hero accent ---- */
+.promo-nfl .hero-badge {
+  border-color: rgba(255, 107, 0, 0.5);
+}
+
+/* ---- hero countdown timer ----
+   min-height reserves space so injecting this above the CTA row
+   does not shift the LCP hero image (CLS). */
+.nfl-countdown {
+  margin: 0 0 28px;
+  min-height: 96px;
+  animation: fadeInUp 0.7s ease 0.3s both;
+}
+
+.nfl-countdown-digits {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.nfl-countdown-seg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 64px;
+  padding: 10px 6px;
+  border: 1px solid rgba(255, 107, 0, 0.4);
+  border-radius: 8px;
+  background: rgba(255, 45, 0, 0.08);
+}
+
+.nfl-countdown-seg span {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.nfl-countdown-seg small {
+  margin-top: 2px;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.nfl-countdown-deadline {
+  margin-top: 10px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .nfl-countdown { min-height: 88px; }
+  .nfl-countdown-seg { min-width: 54px; padding: 8px 4px; }
+  .nfl-countdown-seg span { font-size: 1.4rem; }
+}
+
+/* ---- plans-section deadline line ---- */
+.nfl-deadline {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--fire-gold);
+}
+
+/* ---- weekend schedule strip ---- */
+.nfl-strip {
+  padding: 60px 0;
+}
+
+.nfl-strip-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.nfl-strip-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 18px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  text-align: center;
+}
+
+.nfl-strip-day {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--fire-orange);
+}
+
+.nfl-strip-item strong {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.1rem;
+}
+
+.nfl-strip-item span:last-child {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.nfl-strip-cta {
+  display: flex;
+  margin: 28px auto 0;
+  width: fit-content;
+}
+
+@media (max-width: 720px) {
+  .nfl-strip-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 480px) {
+  .nfl-strip-grid { grid-template-columns: 1fr; }
 }
