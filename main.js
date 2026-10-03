@@ -26,7 +26,7 @@ export const pricingPlans = {
   2: {
     1: { price: 59, monthly: 59, productId: 'f8de3852-90e3-4cb8-b03e-1d09b96bb297' },
     6: { price: 99, monthly: 16, productId: '183e5620-9bee-4257-9a32-ab259ec84483' },
-    12: { price: 159, monthly: 13.25, productId: '0bd73a76-04b8-470b-8409-731399f2cedd' },
+    12: { price: 159, monthly: 13.25, productId: '0319e334-96f9-4f50-b27c-392f6737efb5' },
   },
   3: {
     1: { price: 89, monthly: 89, productId: 'e4654946-dcc9-4e34-9277-ff06b3dfd447' },
@@ -35,13 +35,13 @@ export const pricingPlans = {
   },
   4: {
     1: { price: 119, monthly: 119, productId: '5cf9c53a-b075-4349-85f8-00de1b12100b' },
-    6: { price: 159, monthly: 26.5, productId: '0bd73a76-04b8-470b-8409-731399f2cedd' },
-    12: { price: 239, monthly: 19.91, productId: '3524f282-7102-4166-b706-ffbe186a025b' },
+    6: { price: 159, monthly: 26.5, productId: 'c3af3f2a-ed65-4c54-bccc-4bbe0a68ee5d' },
+    12: { price: 239, monthly: 19.91, productId: '0502ce40-7bcc-4c11-9cdc-3fdfe7fe78bb' },
   },
   5: {
-    1: { price: 129, monthly: 129, productId: '2f85bed4-27bc-4132-a379-45140cfa10b1' },
-    6: { price: 179, monthly: 29.83, productId: 'b2d0d8ef-037b-4688-b02d-98fa4734f311' },
-    12: { price: 289, monthly: 24.08, productId: 'eabe0679-cdc8-4dbc-8773-63aafa700412' },
+    1: { price: 129, monthly: 129, productId: '2d446c17-8905-4d7b-8dc4-e6287f01a6e5' },
+    6: { price: 179, monthly: 29.83, productId: '529a376d-a2d0-42d9-9f58-8debf8d45ba2' },
+    12: { price: 289, monthly: 24.08, productId: 'd139f32e-a138-4e23-895f-f69652501015' },
   },
 };
 
