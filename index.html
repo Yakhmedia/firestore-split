@@ -30,6 +30,24 @@
       gtag("js", new Date());
       gtag("config", "AW-700280271");
     </script>
+    <!-- Google Ads — Purchase conversion (fired on shop click-through) -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof url != "undefined") {
+            window.location = url;
+          }
+        };
+        gtag("event", "conversion", {
+          send_to: "AW-700280271/JvIyCKqwk5gdEM_b9c0C",
+          value: 1.0,
+          currency: "MAD",
+          transaction_id: "",
+          event_callback: callback,
+        });
+        return false;
+      }
+    </script>
 
     <title>Fire Store — 4K Streaming Devices, Cables & Setup Help</title>
     <meta
@@ -174,8 +192,7 @@
           <a
             class="shop-card reveal reveal-delay-1"
             href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=stick"
-            target="_blank"
-            rel="noopener"
+            onclick="return gtag_report_conversion('https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=stick');"
           >
             <span class="shop-icon">📺</span>
             <h3>4K Streaming Stick</h3>
@@ -185,8 +202,7 @@
           <a
             class="shop-card reveal reveal-delay-2"
             href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=cables"
-            target="_blank"
-            rel="noopener"
+            onclick="return gtag_report_conversion('https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=cables');"
           >
             <span class="shop-icon">🔌</span>
             <h3>HDMI 2.1 Cable</h3>
@@ -196,8 +212,7 @@
           <a
             class="shop-card reveal reveal-delay-3"
             href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=mounts"
-            target="_blank"
-            rel="noopener"
+            onclick="return gtag_report_conversion('https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=mounts');"
           >
             <span class="shop-icon">🖥️</span>
             <h3>TV Mount</h3>
@@ -207,8 +222,7 @@
           <a
             class="shop-card reveal reveal-delay-4"
             href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=led"
-            target="_blank"
-            rel="noopener"
+            onclick="return gtag_report_conversion('https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=led');"
           >
             <span class="shop-icon">💡</span>
             <h3>LED Backlight</h3>
@@ -221,8 +235,7 @@
           <a
             class="btn-shop-all"
             href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=view_all"
-            target="_blank"
-            rel="noopener"
+            onclick="return gtag_report_conversion('https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=view_all');"
             >🔥 Browse the Full Shop →</a
           >
           <p class="shop-trust">
