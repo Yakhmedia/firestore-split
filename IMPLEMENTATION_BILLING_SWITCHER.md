@@ -8,7 +8,7 @@ Status: Ready for implementation planning; no application or live price changes 
 Implement a Hostinger-inspired billing-period switcher and simultaneous-screen dropdown, backed by the existing checkout app. Keep checkout in its current application.
 
 - Landing repository: `C:\dev\firestore-split`
-- Checkout repository: `C:\Users\khalo\OneDrive\سطح المكتب\code\fire-store-shop-e-com-website`
+- Checkout repository: `https://github.com/Yakhmedia/fire-store-shop.git`
 - Store identical copies of this document at each repository root as `IMPLEMENTATION_BILLING_SWITCHER.md`. Update both copies when scope changes.
 
 The screenshots are visual references, not implementation instructions. Do not copy Hostinger's products, prices, payment details, or renewal behavior.
