@@ -3,8 +3,7 @@
    campaign-utils.js
 
    Deadline formatting and analytics tracking shared by every
-   campaign module (winback.js, nfl.js, …). Extracted so a second
-   campaign doesn't duplicate the same ~30 lines.
+   campaign module (winback.js, …) without duplicating shared logic.
    ============================================================ */
 
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];

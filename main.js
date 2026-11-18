@@ -1,22 +1,11 @@
 /* ============================================================
-   FIRE STORE — MAIN JAVASCRIPT
-   main.js  ·  Simplified "renew / checkout-first" landing page
+   FIRE STORE TV — RENEWAL LANDING PAGE
    ============================================================ */
 
 import { initWinback, maybeInjectWinbackFaq } from './winback.js';
-import { initNfl } from './nfl.js';
+import { captureUtms, track as trackBase } from './campaign-utils.js';
 
-/* ============================================================
-   DATA — PRICING PLANS (device-based)
-   ------------------------------------------------------------
-   Checkout now opens the Fire-Store popup form (widget.js)
-   instead of redirecting. Each plan is identified by its
-   `productId` (the fire-store.shop product UUID).
-
-   👉 FILL IN ALL 15 PRODUCT IDs BELOW.
-   Structure:  pricingPlans[screens][months].productId
-   Example ID: 'a8101175-8572-4aef-a16c-eef8a07312bf'
-   ============================================================ */
+/* Standard plan prices and product IDs are the checkout source of truth. */
 export const pricingPlans = {
   1: {
     1: { price: 29, monthly: 29, productId: 'e1f22bc1-bdbf-4737-bf86-2f8388639c93' },
@@ -45,361 +34,249 @@ export const pricingPlans = {
   },
 };
 
-/* ============================================================
-   DATA — FAQ (two groups: new visitors + renewals)
-   ============================================================ */
-const faqNewHere = [
-  {
-    q: 'Is Fire Store legal and safe to use?',
-    a: 'Fire Store operates as a premium reseller of licensed streaming content. All connections are encrypted and your data is never sold or shared with third parties. <strong>Thousands of users across 60+ countries rely on Fire Store daily.</strong>'
-  },
-  {
-    q: 'Which devices work with Fire Store?',
-    a: 'Fire Store works flawlessly on <strong>Amazon Firestick (all generations), Smart TVs (Samsung, LG, Sony), Android &amp; iOS devices, Windows and Mac computers, Chromecast, Roku, and MAG boxes.</strong>'
-  },
-  {
-    q: 'Can I test it before buying a full plan?',
-    a: '<strong>Yes! Message us on WhatsApp and request a free 24-hour trial.</strong> Genuine test access — no credit card required.'
-  },
-];
-
 const faqRenewing = [
   {
-    q: 'How do I renew without losing my settings or playlist?',
-    a: 'Just pick your plan and check out — <strong>your existing line stays exactly as it was.</strong> Once payment is confirmed we extend your current subscription, so all your settings, favorites, and playlist remain untouched. Nothing to reinstall.'
+    q: 'Will my login and settings still be available?',
+    a: 'Buying a renewal adds time to your existing subscription. If you are unsure which account to renew or whether your previous settings are available, contact support before paying.'
   },
   {
-    q: 'Will my username and password stay the same?',
-    a: '<strong>Yes.</strong> Renewing keeps your same login credentials and device setup. You do not need to re-enter anything or reconfigure your Firestick, Smart TV, or app — it simply keeps working.'
+    q: 'How is my existing account identified?',
+    a: 'For order help, email contact@firestore.tv from the address used at checkout and include your order number. Do not put login credentials or personal identifiers in a URL.'
   },
   {
-    q: 'Can I add another screen to my existing plan?',
-    a: '<strong>Absolutely.</strong> Open “Change plan / add screens” above the plans, pick the number of screens you need (1–5), and check out. Message us on WhatsApp and we’ll link the extra screens to your current account.'
+    q: 'How long does reactivation take?',
+    a: 'Activation is handled by the team and is not instant. They email your sign-in details and will let you know if it is taking longer than usual. If you have not received the email, contact support with your order number.'
   },
   {
-    q: 'My subscription expired yesterday — can I still renew?',
-    a: '<strong>Yes, and you keep your same account.</strong> Renewing after expiry reactivates your original line rather than creating a new one. Just check out with your usual plan and you’ll be back up within minutes.'
+    q: 'What if I have lost my account details?',
+    a: 'Email contact@firestore.tv from the address used at checkout and include your order number. Do not send passwords in a website link or URL.'
   },
   {
-    q: 'How fast am I reactivated after paying?',
-    a: '<strong>Instant to 5 minutes maximum.</strong> Once payment is confirmed, our automated system reactivates your line and sends confirmation via WhatsApp or Email. During peak hours our support team personally ensures every renewal is handled within minutes — never hours.'
+    q: 'How many screens are included in the $79 returning customer offer?',
+    a: 'The included screen count and eligibility are still being confirmed. Ask support before checkout. The offer is for one fixed screen count and does not change with the standard plan selector.'
+  },
+  {
+    q: 'What happens after the 13-month offer ends?',
+    a: 'The post-term renewal behavior has not been confirmed. Please ask support to explain the available options before checkout.'
+  },
+  {
+    q: 'How is the $79 offer different from the standard annual plan?',
+    a: 'The featured offer is 13 months of access for $79 total. The standard one-screen annual plan is 12 months for $79. The featured offer checkout is not available until its fulfillment details are confirmed.'
+  },
+  {
+    q: 'Where can I read the refund terms?',
+    a: 'Standard plans include a full refund within 7 days of payment. See the <a href="/refund.html">subscription refund policy</a>. Campaign-specific refund terms for the featured offer are still being confirmed.'
+  },
+  {
+    q: 'Which devices and apps are compatible?',
+    a: 'Compatibility can depend on your device, app, and region. Message support with your device model and app name so they can confirm before you purchase.'
+  },
+  {
+    q: 'Can I get help setting up the app?',
+    a: 'Contact support on WhatsApp with your device and app details and ask for the current setup steps.'
+  },
+  {
+    q: 'Where can I check the current channel list?',
+    a: 'Channel availability can change. Contact support to ask about current availability for your region before selecting a plan.'
   },
 ];
 
-const faqGroups = [
-  { label: 'New here?', items: faqNewHere },
-  { label: 'Renewing?', items: faqRenewing },
-];
+const faqGroups = [{ label: 'Renewing?', items: faqRenewing }];
 
-/* ============================================================
-   RENDER — FAQ ACCORDION
-   ============================================================ */
+function track(event, params = {}) {
+  trackBase('renewal', event, params);
+}
+
 function renderFaq() {
   const list = document.getElementById('faqList');
   if (!list) return;
-  let idx = 0;
+  list.replaceChildren();
+
+  let index = 0;
   faqGroups.forEach(group => {
-    const label = document.createElement('div');
+    const label = document.createElement('h3');
     label.className = 'faq-group-label';
     label.textContent = group.label;
     list.appendChild(label);
 
     group.items.forEach(item => {
-      const i = idx++;
-      const div = document.createElement('div');
-      div.className = 'faq-item';
-      div.innerHTML = `
-        <button class="faq-q">
-          <span>${item.q}</span>
-          <span class="faq-icon">+</span>
+      const id = `faq-answer-${index++}`;
+      const row = document.createElement('div');
+      row.className = 'faq-item';
+      row.innerHTML = `
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="${id}">
+          <span>${item.q}</span><span class="faq-icon" aria-hidden="true">+</span>
         </button>
-        <div class="faq-a" id="faq-a-${i}">
-          <div class="faq-a-inner">${item.a}</div>
-        </div>`;
-      const btn = div.querySelector('.faq-q');
-      const ans = div.querySelector('.faq-a');
-      btn.addEventListener('click', () => {
-        const isOpen = ans.classList.contains('open');
-        document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
-        document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('active'));
-        if (!isOpen) { ans.classList.add('open'); btn.classList.add('active'); }
+        <div class="faq-a" id="${id}" hidden><div class="faq-a-inner">${item.a}</div></div>`;
+
+      const button = row.querySelector('.faq-q');
+      const answer = row.querySelector('.faq-a');
+      button.addEventListener('click', () => {
+        const shouldOpen = button.getAttribute('aria-expanded') !== 'true';
+        list.querySelectorAll('.faq-q').forEach(other => {
+          other.setAttribute('aria-expanded', 'false');
+          other.classList.remove('active');
+        });
+        list.querySelectorAll('.faq-a').forEach(other => {
+          other.hidden = true;
+          other.classList.remove('open');
+        });
+        if (shouldOpen) {
+          button.setAttribute('aria-expanded', 'true');
+          button.classList.add('active');
+          answer.hidden = false;
+          answer.classList.add('open');
+        }
       });
-      list.appendChild(div);
+      list.appendChild(row);
     });
   });
 }
 
-/* ============================================================
-   NAVBAR SCROLL STATE
-   ============================================================ */
-function initNavbar() {
-  window.addEventListener('scroll', () => {
-    const nav = document.getElementById('navbar');
-    if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
-  });
-
-  const toggleBtn = document.getElementById('navToggle');
-  const navLinks = document.getElementById('navLinks');
-  if (toggleBtn && navLinks) {
-    toggleBtn.addEventListener('click', () => {
-      const isActive = toggleBtn.classList.toggle('active');
-      navLinks.classList.toggle('active');
-      document.body.style.overflow = isActive ? 'hidden' : '';
-    });
-
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        toggleBtn.classList.remove('active');
-        navLinks.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
-  }
-}
-
-/* ============================================================
-   SCROLL REVEAL
-   ============================================================ */
-function initScrollReveal() {
-  const observer = new IntersectionObserver(
-    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-  );
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-}
-
-/* ============================================================
-   FLAME CANVAS
-   ============================================================ */
-function initFlameCanvas() {
-  const canvas = document.getElementById('flame-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const particles = [];
-
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight * 0.4;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  class FlameParticle {
-    constructor() { this.reset(); }
-    reset() {
-      this.x = Math.random() * canvas.width;
-      this.y = canvas.height;
-      this.size = Math.random() * 4 + 2;
-      this.speedX = (Math.random() - 0.5) * 1.5;
-      this.speedY = -(Math.random() * 3 + 1);
-      this.life = 1;
-      this.decay = Math.random() * 0.015 + 0.008;
-      this.hue = Math.random() * 30 + 5; // red-orange range
-    }
-    update() {
-      this.x += this.speedX + Math.sin(this.y * 0.05) * 0.5;
-      this.y += this.speedY;
-      this.life -= this.decay;
-      if (this.life <= 0) this.reset();
-    }
-    draw() {
-      ctx.save();
-      ctx.globalAlpha = this.life * 0.6;
-      ctx.fillStyle = `hsl(${this.hue}, 100%, ${50 + (1 - this.life) * 30}%)`;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size * this.life, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-    }
-  }
-
-  for (let i = 0; i < 120; i++) {
-    const p = new FlameParticle();
-    p.y = Math.random() * canvas.height;
-    p.life = Math.random();
-    particles.push(p);
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => { p.update(); p.draw(); });
-    requestAnimationFrame(animate);
-  }
-  animate();
-}
-
-/* ============================================================
-   DEVICE SELECTOR + PRICING UPDATE
-   ============================================================ */
 function updatePriceCards(deviceCount) {
   const plans = pricingPlans[deviceCount];
   if (!plans) return;
 
-  const p1 = plans[1], p6 = plans[6], p12 = plans[12];
   const deviceWord = deviceCount === 1 ? 'screen' : 'screens';
-
-  const set = (id, html, isHTML) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    if (isHTML) el.innerHTML = html; else el.textContent = html;
+  const setText = (id, value) => {
+    const node = document.getElementById(id);
+    if (node) node.textContent = value;
+  };
+  const setPrice = (id, value) => {
+    const node = document.getElementById(id);
+    if (node) node.innerHTML = `<span>$</span>${value}`;
   };
 
-  // The win-back campaign card is a fixed offer (12mo / 2 screens / $79),
-  // not a configurable plan — the screen selector must not rewrite it.
-  // Inert without the root class, so the public page is unaffected.
-  const annualLocked = document.documentElement.classList.contains('promo-winback');
+  [1, 6, 12].forEach(months => {
+    const plan = plans[months];
+    const suffix = `${months}m`;
+    setPrice(`price-${suffix}`, plan.price);
+    setText(`mini-screens-${suffix}`, `${deviceCount} ${deviceWord}`);
+    setText(`period-${suffix}`, months === 1
+      ? 'per month, billed monthly'
+      : `$${plan.monthly.toFixed(2)}/month — billed once`);
 
-  // Prices & periods
-  set('price-1m', `<span>$</span>${p1.price}`, true);
-  set('period-1m', 'per month, billed monthly');
-  set('price-6m', `<span>$</span>${p6.price}`, true);
-  set('period-6m', `$${p6.monthly.toFixed(2)}/month — billed once`);
-  if (!annualLocked) {
-    set('price-12m', `<span>$</span>${p12.price}`, true);
-    set('period-12m', `$${p12.monthly.toFixed(2)}/month — billed once`);
-  }
+    const button = document.getElementById(`btn-${suffix}`);
+    if (!button) return;
+    button.classList.add('firestore-buy-btn');
+    button.dataset.productId = plan.productId;
+    button.dataset.planMonths = String(months);
+    button.dataset.screenCount = String(deviceCount);
+    button.onclick = null;
 
-  // Screens bullet (only the middle mini-feature changes with device count)
-  (annualLocked ? ['1m', '6m'] : ['1m', '6m', '12m']).forEach(suffix => {
-    set(`mini-screens-${suffix}`,
-      `<strong>${deviceCount} ${deviceWord}</strong> at the same time`,
-      true);
+    if (button.dataset.analyticsBound !== 'true') {
+      button.dataset.analyticsBound = 'true';
+      button.addEventListener('click', () => {
+        track('renewal_checkout_open', {
+          plan: `${button.dataset.planMonths}_month`,
+          screens: Number(button.dataset.screenCount),
+          price: pricingPlans[Number(button.dataset.screenCount)][Number(button.dataset.planMonths)].price,
+          currency: 'USD',
+        });
+      });
+    }
   });
+}
 
-  // Checkout — wire each button to the Fire-Store popup (widget.js).
-  // The widget listens for clicks on ".firestore-buy-btn" and reads
-  // "data-product-id", so we just tag the button and set the id for
-  // the current screen/duration combo.
-  const wireBuyButton = (id, plan) => {
-    const btn = document.getElementById(id);
-    if (!btn) return;
-    btn.classList.add('firestore-buy-btn');
-    btn.setAttribute('data-product-id', plan.productId);
-    btn.onclick = null; // no more redirect — the popup handles the click
-  };
-  wireBuyButton('btn-1m', p1);
-  wireBuyButton('btn-6m', p6);
-  if (!annualLocked) wireBuyButton('btn-12m', p12);
+export function selectDevice(deviceCount) {
+  const selector = document.getElementById('deviceSelector');
+  selector?.querySelectorAll('.device-btn').forEach(button => {
+    const selected = Number(button.dataset.devices) === deviceCount;
+    button.classList.toggle('active', selected);
+    button.setAttribute('aria-pressed', String(selected));
+  });
+  updatePriceCards(deviceCount);
 }
 
 function initDeviceSelector() {
   const selector = document.getElementById('deviceSelector');
   if (!selector) return;
-
-  selector.querySelectorAll('.device-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      selector.querySelectorAll('.device-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      updatePriceCards(Number(btn.dataset.devices));
-    });
+  selector.querySelectorAll('.device-btn').forEach(button => {
+    button.addEventListener('click', () => selectDevice(Number(button.dataset.devices)));
   });
-
-  updatePriceCards(1);
-}
-
-/* ============================================================
-   DEEP-LINKING — email pre-selection
-   ?devices=<1-5>&plan=<1|6|12>&renew=1
-   ============================================================ */
-export function selectDevice(deviceCount) {
-  const selector = document.getElementById('deviceSelector');
-  if (selector) {
-    selector.querySelectorAll('.device-btn').forEach(b => {
-      b.classList.toggle('active', Number(b.dataset.devices) === deviceCount);
-    });
-  }
-  updatePriceCards(deviceCount);
+  selectDevice(1);
 }
 
 function initDeepLink() {
   const params = new URLSearchParams(window.location.search);
-  const devices = parseInt(params.get('devices'), 10);
+  const devices = Number(params.get('devices'));
   const plan = params.get('plan');
-  const renew = params.get('renew') === '1';
+  const validDevices = Number.isInteger(devices) && devices >= 1 && devices <= 5;
+  const validPlan = ['1', '6', '12'].includes(plan);
+  if (!validDevices && !validPlan) return;
 
-  let didPreselect = false;
-
-  // Pre-select device count (clamped 1–5)
-  if (Number.isInteger(devices) && devices >= 1 && devices <= 5) {
-    selectDevice(devices);
-    didPreselect = true;
+  if (validDevices) selectDevice(devices);
+  if (validPlan) {
+    const card = document.getElementById(`btn-${plan}m`)?.closest('.plan-card');
+    card?.classList.add('plan-highlight');
   }
 
-  // Highlight the chosen plan card
-  const planBtnIds = { '1': 'btn-1m', '6': 'btn-6m', '12': 'btn-12m' };
-  let targetCard = null;
-  if (plan && planBtnIds[plan]) {
-    const btn = document.getElementById(planBtnIds[plan]);
-    targetCard = btn ? btn.closest('.plan-card') : null;
-    if (targetCard) targetCard.classList.add('plan-highlight');
-    didPreselect = true;
-  }
-
-  // "Welcome back" hero variant for renewals
-  if (renew) {
-    const title = document.getElementById('heroTitle');
-    const sub = document.getElementById('heroSub');
-    if (title) title.textContent = 'Welcome back';
-    if (sub) sub.textContent = 'Renew your Fire Store subscription — pick your plan and check out in under a minute.';
-  }
-
-  // Scroll straight to the plans for warm/renewal traffic
-  if (renew || didPreselect) {
-    setTimeout(() => {
-      (targetCard || document.getElementById('plans'))
-        ?.scrollIntoView({ behavior: 'smooth', block: renew ? 'start' : 'center' });
-    }, 400);
-  }
+  window.setTimeout(() => {
+    document.getElementById('plans')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 0);
 }
 
-/* ============================================================
-   HERO SEASON BADGE — drive the day count from a real date
-   ------------------------------------------------------------
-   Was a hardcoded "<span>11</span> days" that no JS updated and
-   that went stale. Now derived from SEASON_START so it can never
-   silently lie on the page a campaign email points to.
-   ============================================================ */
-const SEASON_START = '2026-09-10T00:00:00-04:00'; // NFL 2026 opener
+function initNavbar() {
+  const nav = document.getElementById('navbar');
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
 
-function initHeroSeasonBadge() {
-  const text = document.querySelector('#heroBadge .hb-text');
-  if (!text) return;
-  const days = Math.ceil((Date.parse(SEASON_START) - Date.now()) / 86_400_000);
-  if (days > 1) {
-    text.textContent = `🏈 Football season starts in ${days} days`;
-  } else if (days === 1) {
-    text.textContent = '🏈 Football season starts tomorrow';
-  } else {
-    text.textContent = '🏈 Football season is live now';
-  }
+  window.addEventListener('scroll', () => nav?.classList.toggle('scrolled', window.scrollY > 30));
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', String(expanded));
+    toggle.setAttribute('aria-label', expanded ? 'Close navigation' : 'Open navigation');
+    toggle.classList.toggle('active', expanded);
+    links?.classList.toggle('active', expanded);
+    document.body.classList.toggle('nav-open', expanded);
+  });
+  links?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    toggle?.setAttribute('aria-expanded', 'false');
+    toggle?.setAttribute('aria-label', 'Open navigation');
+    toggle?.classList.remove('active');
+    links.classList.remove('active');
+    document.body.classList.remove('nav-open');
+  }));
+  document.addEventListener('keydown', event => {
+    if (event.key !== 'Escape' || toggle?.getAttribute('aria-expanded') !== 'true') return;
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open navigation');
+    toggle.classList.remove('active');
+    links?.classList.remove('active');
+    document.body.classList.remove('nav-open');
+    toggle.focus();
+  });
 }
 
-/* ============================================================
-   INIT — runs after DOM ready
-   ============================================================ */
+function installPurchaseConfirmationBridge() {
+  // The checkout integration must call this only after a confirmed payment.
+  // No purchase conversion is fired from a plan-button click.
+  window.fireStoreTrackCompletedPurchase = ({ transactionId, value, currency = 'USD', items = [] } = {}) => {
+    if (!transactionId || !Number.isFinite(Number(value)) || !/^[A-Z]{3}$/.test(currency)) return false;
+    try {
+      const key = `firestore_purchase_${transactionId}`;
+      if (localStorage.getItem(key)) return false;
+      localStorage.setItem(key, '1');
+    } catch (_) {
+      // Still report a confirmed purchase when storage is unavailable.
+    }
+    track('purchase', {
+      transaction_id: String(transactionId),
+      value: Number(value),
+      currency,
+      items,
+    });
+    return true;
+  };
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Dynamic content — winback FAQ group (if any) must be unshifted before render
+  captureUtms();
   maybeInjectWinbackFaq(faqGroups);
   renderFaq();
-
-  // UI behaviours
   initNavbar();
   initDeviceSelector();
-  initScrollReveal();
-  initHeroSeasonBadge();
-
-  // Hero background flame effect
-  initFlameCanvas();
-
-  // Win-back campaign state — after initDeviceSelector() so selectDevice(2)
-  // wins, before initDeepLink() so an explicit ?devices=N still overrides.
   initWinback();
-
-  // NFL campaign state — after initHeroSeasonBadge() so its copy isn't
-  // stomped back to the evergreen badge text; before initDeepLink() so an
-  // explicit ?devices=N still overrides.
-  initNfl();
-
-  // Email deep-link pre-selection (run after selector is wired up)
+  installPurchaseConfirmationBridge();
   initDeepLink();
 });

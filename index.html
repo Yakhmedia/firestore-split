@@ -1,511 +1,259 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="promo-winback">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0a0a" />
 
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-G4KYGXE4YK"
-    ></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-G4KYGXE4YK");
-    </script>
-    <!-- Google Ads tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=AW-700280271"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "AW-700280271");
-    </script>
-    <!-- Google Ads — Purchase conversion (fired on shop click-through) -->
-    <script>
-      function gtag_report_conversion(url) {
-        var callback = function () {
-          if (typeof url != "undefined") {
-            window.location = url;
-          }
-        };
-        gtag("event", "conversion", {
-          send_to: "AW-700280271/JvIyCKqwk5gdEM_b9c0C",
-          value: 1.0,
-          currency: "MAD",
-          transaction_id: "",
-          event_callback: callback,
-        });
-        return false;
-      }
+      // Manually switch the offer off with active: false. Keep the product
+      // ID empty and checkoutVerified false until its price and fulfillment
+      // have both been confirmed.
+      window.WINBACK = {
+        active: true,
+        endAt: null,
+        tzLabel: '',
+        checkoutProductId: '',
+        checkoutVerified: false,
+        includedScreens: null,
+        eligibilityText: '',
+        accountMatchingText: '',
+        activationText: '',
+        postTermText: '',
+        refundTermsText: '',
+      };
+      (() => {
+        const root = document.documentElement;
+        const offer = window.WINBACK;
+        const endAt = offer.endAt ? Date.parse(offer.endAt) : NaN;
+        root.classList.remove('promo-winback', 'promo-expired', 'promo-off');
+        if (!offer.active) {
+          root.classList.add('promo-off');
+        } else if (Number.isFinite(endAt) && endAt <= Date.now()) {
+          root.classList.add('promo-expired');
+        } else {
+          root.classList.add('promo-winback');
+        }
+      })();
     </script>
 
-    <title>Fire Store — 4K Streaming Devices, Cables & Setup Help</title>
-    <meta
-      name="description"
-      content="Shop 4K streaming devices, HDMI 2.1 cables, mounts and accessories — fast free shipping, 2-year warranty, and real human setup help."
-    />
-    <meta
-      name="keywords"
-      content="4K streaming stick, HDMI 2.1 cable, full motion TV mount, LED backlight, TV setup help, streaming device accessories, Fire Store"
-    />
+    <title>Welcome Back — Fire Store TV</title>
+    <meta name="description" content="Welcome back to Fire Store TV. Review the returning customer offer or choose a standard subscription plan." />
     <link rel="canonical" href="https://fire-store.tv/" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/assets/images/firestore_favicon.svg"
-    />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/firestore_favicon.svg" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- ── Share preview (hardware only — no content/brand claims) ── -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Fire Store" />
-    <meta
-      property="og:title"
-      content="Fire Store — 4K Streaming Devices, Cables & Setup Help"
-    />
-    <meta
-      property="og:description"
-      content="Shop 4K streaming devices, HDMI 2.1 cables, mounts and accessories — fast free shipping, 2-year warranty, and real human setup help."
-    />
+    <meta property="og:site_name" content="Fire Store TV" />
+    <meta property="og:title" content="Welcome Back — Fire Store TV" />
+    <meta property="og:description" content="Welcome back to Fire Store TV. Review renewal plans or contact support for help with your account." />
     <meta property="og:url" content="https://fire-store.tv/" />
     <meta name="twitter:card" content="summary" />
-    <meta
-      name="twitter:title"
-      content="Fire Store — 4K Streaming Devices, Cables & Setup Help"
-    />
-    <meta
-      name="twitter:description"
-      content="Shop 4K streaming devices, cables, mounts and accessories — fast shipping, 2-year warranty, real human setup help."
-    />
+    <meta name="twitter:title" content="Welcome Back — Fire Store TV" />
+    <meta name="twitter:description" content="Review the returning customer offer or choose a standard subscription plan." />
 
-    <!-- ── Global Stylesheet ── -->
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G4KYGXE4YK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-G4KYGXE4YK');
+    </script>
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/main.js"></script>
   </head>
 
   <body>
-    <!-- ── SECTION 1 · Navbar (hardware only) ─────────── -->
-    <nav class="navbar" id="navbar">
-      <a href="/" class="nav-logo">
-        <img src="/assets/images/firestore-logo.svg" alt="Fire Store" />
+    <div class="promo-bar offer-only" role="region" aria-label="Returning customer offer">
+      <p><strong>Returning customer offer:</strong> 13 months of access · $79 total</p>
+      <a href="#featuredOffer" class="promo-bar-cta">Offer details</a>
+    </div>
+
+    <nav class="navbar" id="navbar" aria-label="Main navigation">
+      <a href="/" class="nav-logo" aria-label="Fire Store TV home">
+        <img src="/brand/firestore-logo-dark.png" alt="Fire Store TV" />
       </a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#devices">Devices</a></li>
-        <li><a href="#setup">Setup Help</a></li>
+        <li><a href="#plans">Renewal plans</a></li>
+        <li><a href="#faq">FAQs</a></li>
         <li><a href="#support">Support</a></li>
-        <li>
-          <a
-            href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=navbar"
-            target="_blank"
-            rel="noopener"
-            >🛒 Shop</a
-          >
-        </li>
-        <li>
-          <a href="https://wa.me/12029927413" target="_blank" rel="noopener"
-            >WhatsApp</a
-          >
-        </li>
       </ul>
-
       <div class="nav-actions">
-        <button
-          class="btn-subscribe"
-          onclick="
-            document
-              .getElementById('devices')
-              .scrollIntoView({ behavior: 'smooth' })
-          "
-        >
-          Shop Devices
-        </button>
+        <a class="btn-subscribe" href="#plans">Renew</a>
       </div>
-      <!-- Hamburger Button -->
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
       </button>
     </nav>
 
-    <!-- ── SECTION 2 · Hero (hardware benefit, no imagery) ─ -->
-    <section class="hero hero-minimal">
-      <!-- Empty bg div: .hero-bg::after paints the branded dark+orange
-           gradient. No photo — no sports, no broadcast imagery. -->
-      <div class="hero-bg"></div>
-      <div class="hero-content">
-        <div class="hero-badge">
-          <span class="dot"></span>
-          <span class="hb-text">📦 Shipped fast · Set up with real help</span>
-        </div>
-        <h1>
-          <span class="line-fire">Stream in 4K — set up in minutes.</span>
-        </h1>
-        <p class="hero-sub">
-          The right streaming device, the right cable, and real human help
-          getting it running. Shipped fast, backed by a 2-year warranty.
-        </p>
-        <div class="hero-ctas">
-          <a href="#devices" class="cta-primary">Shop Streaming Devices →</a>
-          <a
-            href="https://wa.me/12029927413"
-            class="cta-secondary"
-            target="_blank"
-            rel="noopener"
-            >Get Setup Help</a
-          >
-        </div>
-        <p class="hero-trust-line">
-          🚚 Free shipping over $50 · 🛡️ 2-year warranty · 💬 Real human support
-        </p>
-      </div>
-    </section>
-
-    <!-- ── SECTION 3 · Devices & Accessories (product grid) ── -->
-    <section class="shop-section" id="devices">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">🛒 Fire Store Shop</span>
-          <h2>Devices &amp; Accessories</h2>
-          <p>
-            Everything your screen needs — engineered to fit, certified to
-            perform.
-          </p>
-        </div>
-
-        <div class="shop-grid">
-          <a
-            class="shop-card reveal reveal-delay-1"
-            href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=stick"
-            onclick="return gtag_report_conversion('https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=stick');"
-          >
-            <span class="shop-icon">📺</span>
-            <h3>4K Streaming Stick</h3>
-            <p>Plug-and-play 4K HDR streaming device</p>
-            <span class="shop-link">Shop now →</span>
-          </a>
-          <a
-            class="shop-card reveal reveal-delay-2"
-            href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=cables"
-            onclick="return gtag_report_conversion('https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=cables');"
-          >
-            <span class="shop-icon">🔌</span>
-            <h3>HDMI 2.1 Cable</h3>
-            <p>4K@120 &amp; 8K — no dropouts</p>
-            <span class="shop-link">Shop now →</span>
-          </a>
-          <a
-            class="shop-card reveal reveal-delay-3"
-            href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=mounts"
-            onclick="return gtag_report_conversion('https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=mounts');"
-          >
-            <span class="shop-icon">🖥️</span>
-            <h3>TV Mount</h3>
-            <p>Full-motion, tilting &amp; fixed, 32–80"</p>
-            <span class="shop-link">Shop now →</span>
-          </a>
-          <a
-            class="shop-card reveal reveal-delay-4"
-            href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=led"
-            onclick="return gtag_report_conversion('https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=led');"
-          >
-            <span class="shop-icon">💡</span>
-            <h3>LED Backlight</h3>
-            <p>Bias &amp; screen-synced ambient glow</p>
-            <span class="shop-link">Shop now →</span>
-          </a>
-        </div>
-
-        <div class="shop-cta reveal">
-          <a
-            class="btn-shop-all"
-            href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=view_all"
-            onclick="return gtag_report_conversion('https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=devices&utm_content=view_all');"
-            >🔥 Browse the Full Shop →</a
-          >
-          <p class="shop-trust">
-            🚚 Free shipping over $50 · 🛡️ 2-year warranty · ⚡ Same-day
-            dispatch before 3pm
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── SECTION 4 · Setup & Support (device-only) ──── -->
-    <section class="how-section" id="setup">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Setup &amp; Support</span>
-          <h2>We'll Get You Running</h2>
-          <p>Three simple steps — from picking the right gear to first light.</p>
-        </div>
-        <div class="steps-grid">
-          <div class="step reveal reveal-delay-1">
-            <span class="step-num">1</span>
-            <div class="step-icon">🎯</div>
-            <h3>Pick Your Device</h3>
-            <p>We help you choose the right stick and cable for your TV.</p>
+    <main>
+      <section class="hero hero-minimal" aria-labelledby="heroTitle">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="hb-text">Returning customer offer</span>
           </div>
-          <div class="step reveal reveal-delay-2">
-            <span class="step-num">2</span>
-            <div class="step-icon">🚚</div>
-            <h3>Ship &amp; Unbox</h3>
-            <p>Same-day dispatch before 3pm — free shipping over $50.</p>
+          <h1 id="heroTitle"><span class="line-fire">Welcome back</span><span class="hero-title-rest">to Fire Store TV</span></h1>
+          <p class="hero-sub">Renew your subscription and get back to watching.</p>
+          <p class="hero-offer offer-only"><strong>12 months + 1 month free</strong><br />13 months of access for <strong>$79 total.</strong></p>
+          <p class="hero-offer hero-fallback">Choose a standard renewal plan below. Contact support if you need help matching your account.</p>
+          <div class="hero-ctas">
+            <a href="#featuredOffer" class="cta-primary offer-only" id="heroRenewCta">Renew my subscription <span aria-hidden="true">→</span></a>
+            <a href="#plans" class="cta-primary hero-fallback">Renew my subscription <span aria-hidden="true">→</span></a>
+            <a href="https://wa.me/12029927413?text=I%20need%20help%20renewing%20my%20Fire%20Store%20TV%20subscription" class="cta-secondary" target="_blank" rel="noopener">Need help? WhatsApp us</a>
           </div>
-          <div class="step reveal reveal-delay-3">
-            <span class="step-num">3</span>
-            <div class="step-icon">💬</div>
-            <h3>We Get You Running</h3>
-            <p>WhatsApp or email setup help from real humans, replies under 2 minutes.</p>
-          </div>
+          <p class="hero-trust-line offer-only">Screen count and eligibility are being confirmed. Ask support before checkout.</p>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ── SECTION 5 · Why Fire Store (hardware trust) ── -->
-    <section class="why-section" id="support">
-      <div class="container">
-        <div class="why-strip reveal">
-          <div class="why-item">
-            <span class="why-icon">📦</span>
-            <p>
-              <strong>Certified, tested gear</strong> — every device
-              hand-checked before it ships
-            </p>
+      <section class="plans-section" id="plans" aria-labelledby="plansTitle">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag">Your subscription</span>
+            <h2 id="plansTitle">Choose how you’d like to renew</h2>
+            <p>Compare available plan terms and screen counts. Contact support for account-specific questions.</p>
           </div>
-          <div class="why-item">
-            <span class="why-icon">⚡</span>
-            <p>
-              <strong>Fast dispatch &amp; free shipping</strong> — out the door
-              same day, free over $50
-            </p>
-          </div>
-          <div class="why-item">
-            <span class="why-icon">💬</span>
-            <p>
-              <strong>Real human support</strong> — setup help under 2 minutes,
-              7 days a week
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ── SECTION 6 · FAQ (hardware / shipping / returns) ── -->
-    <section class="faq-section" id="faq">
-      <div class="container">
-        <div class="section-header reveal">
-          <span class="section-tag">Quick Answers</span>
-          <h2>Questions? Answered.</h2>
-          <p>Devices, shipping, returns and setup — the answers you actually need</p>
-        </div>
-        <div class="faq-list" id="faqList">
-          <div class="faq-item">
-            <button class="faq-q">
-              <span>Which streaming device do I need for my TV?</span>
-              <span class="faq-icon">+</span>
+          <div class="promo-expired-notice" id="expiredOfferNotice" hidden>
+            <strong>This returning customer offer has ended.</strong>
+            Standard renewal plans are available below. Message us on WhatsApp if you need help.
+          </div>
+
+          <article class="plan-card promo-card offer-only" id="featuredOffer" aria-labelledby="featuredOfferTitle">
+            <span class="plan-popular-badge promo-badge">Returning customer offer</span>
+            <div class="plan-duration">13 months of access</div>
+            <h3 id="featuredOfferTitle" class="promo-headline">12 months + 1 month free</h3>
+            <p class="promo-price"><span>$79</span> total</p>
+            <ul class="plan-mini-features promo-features">
+              <li id="campaignScreenDetail">Included screen count: pending confirmation</li>
+              <li id="campaignEligibility">Eligibility: pending confirmation</li>
+              <li id="campaignAccountMatching">Account matching: pending confirmation</li>
+              <li id="campaignActivation">Activation timing: pending confirmation</li>
+              <li id="campaignPostTerm">After the 13-month term: pending confirmation</li>
+              <li id="campaignRefundTerms">Refund terms: pending confirmation</li>
+            </ul>
+            <button type="button" class="btn-plan btn-plan-popular promo-checkout" id="btn-winback" disabled aria-describedby="campaignCheckoutStatus">
+              Renewal checkout is not configured yet
             </button>
-            <div class="faq-a">
-              <div class="faq-a-inner">
-                Almost any TV with a spare HDMI port works with our 4K streaming
-                stick. If you're not sure, message us your TV model on WhatsApp
-                and we'll tell you exactly which device and cable to get.
-              </div>
+            <p class="promo-status" id="campaignCheckoutStatus" aria-live="polite">The product, screen count, eligibility, account matching, activation, refund terms, and 13-month fulfillment are pending confirmation. Contact support before choosing this offer.</p>
+            <a class="promo-support-link" href="https://wa.me/12029927413?text=Please%20confirm%20the%20returning%20customer%20offer%20for%20my%20account" target="_blank" rel="noopener">Ask about this offer on WhatsApp</a>
+            <p class="promo-terms">13 months total. $79 total. No deadline has been set. Review the eligibility and post-term details above before checkout.</p>
+            <p class="campaign-deadline" id="campaignDeadline" hidden></p>
+          </article>
+
+          <div class="standard-plans-heading">
+            <h3>Standard renewal plans</h3>
+            <p>Choose the number of screens for these 1-, 6-, and 12-month plans.</p>
+          </div>
+
+          <div class="device-selector-container">
+            <span class="device-selector-label" id="deviceSelectorLabel">Number of screens</span>
+            <div class="device-selector-buttons" id="deviceSelector" role="group" aria-labelledby="deviceSelectorLabel">
+              <button type="button" class="device-btn active" data-devices="1" aria-pressed="true">1 screen</button>
+              <button type="button" class="device-btn" data-devices="2" aria-pressed="false">2 screens</button>
+              <button type="button" class="device-btn" data-devices="3" aria-pressed="false">3 screens</button>
+              <button type="button" class="device-btn" data-devices="4" aria-pressed="false">4 screens</button>
+              <button type="button" class="device-btn" data-devices="5" aria-pressed="false">5 screens</button>
             </div>
           </div>
-          <div class="faq-item">
-            <button class="faq-q">
-              <span>How fast do you ship and what does it cost?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
-              <div class="faq-a-inner">
-                Orders placed before 3pm dispatch the same day. Shipping is
-                <strong>free on orders over $50</strong>; smaller orders show a
-                flat rate at checkout before you pay.
-              </div>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-q">
-              <span>What's your return and warranty policy?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
-              <div class="faq-a-inner">
-                Hardware is covered by a <strong>2-year warranty</strong> and a
-                30-day return window for unused items in their original
-                packaging. See our <a href="/refund.html">Refund Policy</a> for
-                the full details.
-              </div>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-q">
-              <span>Can you help me set it up?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
-              <div class="faq-a-inner">
-                Yes — real humans, 7 days a week. Message us on WhatsApp or email
-                and we'll walk you through plugging in and configuring your
-                device and network, step by step.
-              </div>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-q">
-              <span>Do the devices work worldwide?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-a">
-              <div class="faq-a-inner">
-                Our devices ship with the correct plug and voltage for your
-                region, and the streaming stick is a standard HDMI device that
-                works with TVs globally. Tell us your country at checkout if
-                you'd like us to confirm compatibility.
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="faq-cta reveal">
-          <p>Still have a question we didn't answer?</p>
-          <a
-            href="https://wa.me/12029927413"
-            class="btn-whatsapp"
-            target="_blank"
-            rel="noopener"
-          >
-            💬 Message Us on WhatsApp — Instant Reply
-          </a>
-        </div>
-      </div>
-    </section>
 
-    <!-- ── SECTION 7 · Footer (slim) ─────────────────── -->
+          <div class="plans-grid" id="standardPlans">
+            <article class="plan-card" aria-labelledby="plan-1m-title">
+              <div class="plan-duration" id="plan-1m-title">1 month</div>
+              <div class="plan-price" id="price-1m"><span>$</span>29</div>
+              <p class="plan-period" id="period-1m">per month, billed monthly</p>
+              <ul class="plan-mini-features"><li><strong id="mini-screens-1m">1 screen</strong> at the same time</li><li>1 month of access</li></ul>
+              <button type="button" class="btn-plan btn-plan-default" id="btn-1m">Choose 1 month</button>
+            </article>
+            <article class="plan-card" aria-labelledby="plan-6m-title">
+              <div class="plan-duration" id="plan-6m-title">6 months</div>
+              <div class="plan-price" id="price-6m"><span>$</span>49</div>
+              <p class="plan-period" id="period-6m">$8.10/month — billed once</p>
+              <ul class="plan-mini-features"><li><strong id="mini-screens-6m">1 screen</strong> at the same time</li><li>6 months of access</li></ul>
+              <button type="button" class="btn-plan btn-plan-default" id="btn-6m">Choose 6 months</button>
+            </article>
+            <article class="plan-card popular" aria-labelledby="plan-12m-title">
+              <span class="plan-popular-badge">Standard annual plan</span>
+              <div class="plan-duration" id="plan-12m-title">12 months</div>
+              <div class="plan-price" id="price-12m"><span>$</span>79</div>
+              <p class="plan-period" id="period-12m">$6.58/month — billed once</p>
+              <ul class="plan-mini-features"><li><strong id="mini-screens-12m">1 screen</strong> at the same time</li><li>12 months of access</li></ul>
+              <button type="button" class="btn-plan btn-plan-popular" id="btn-12m">Choose 12 months</button>
+            </article>
+          </div>
+
+          <p class="standard-price-note">Standard plans are a single payment with no auto-renewal and include a full refund within 7 days. The featured offer is 13 months for $79; the standard annual plan is 12 months for $79. See the <a href="/refund.html">refund policy</a>.</p>
+          <div class="payment-trust-strip">
+            <span>Questions about your account or the plan terms?</span>
+            <a href="https://wa.me/12029927413?text=I%20need%20help%20with%20my%20Fire%20Store%20TV%20renewal" target="_blank" rel="noopener">Contact support on WhatsApp</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="how-section" aria-labelledby="howTitle">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag">Renewal help</span>
+            <h2 id="howTitle">Need help with your account?</h2>
+            <p>Get the details you need before selecting a renewal plan.</p>
+          </div>
+          <div class="steps-grid">
+            <article class="step"><span class="step-num" aria-hidden="true">1</span><div class="step-icon" aria-hidden="true">📋</div><h3>Choose a plan</h3><p>Compare the term, screen count, and total shown for each standard plan.</p></article>
+            <article class="step"><span class="step-num" aria-hidden="true">2</span><div class="step-icon" aria-hidden="true">💬</div><h3>Confirm account details</h3><p>Ask support how your existing account is matched before you check out.</p></article>
+            <article class="step"><span class="step-num" aria-hidden="true">3</span><div class="step-icon" aria-hidden="true">✅</div><h3>Review the terms</h3><p>Confirm activation timing, refund terms, and what happens at the end of your term.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section" id="faq" aria-labelledby="faqTitle">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag">Renewal questions</span>
+            <h2 id="faqTitle">Before you renew</h2>
+            <p>Ask support to confirm account-specific details before checkout.</p>
+          </div>
+          <div class="faq-list" id="faqList"></div>
+          <div class="faq-cta" id="support">
+            <p>Need help with a renewal or account detail?</p>
+            <a href="https://wa.me/12029927413?text=I%20need%20help%20renewing%20my%20Fire%20Store%20TV%20subscription" class="btn-whatsapp" target="_blank" rel="noopener">WhatsApp support</a>
+            <p class="support-email">Or email <a href="mailto:contact@firestore.tv">contact@firestore.tv</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
     <footer class="footer">
       <div class="container">
         <div class="footer-grid footer-grid-slim">
           <div class="footer-brand">
-            <a href="/" class="nav-logo">
-              <img src="/assets/images/firestore-logo.svg" alt="Fire Store" />
-            </a>
-            <p>
-              4K streaming devices, cables, mounts and accessories — shipped
-              fast and set up with real human help.
-            </p>
+            <a href="/" class="nav-logo"><img src="/brand/firestore-logo-dark.png" alt="Fire Store TV" /></a>
+            <p>Subscription renewal plans and account support for returning Fire Store TV customers.</p>
           </div>
           <div class="footer-col">
             <h4>Support</h4>
-            <a
-              href="https://wa.me/12029927413"
-              class="footer-wa-btn"
-              target="_blank"
-              rel="noopener"
-              >💬 WhatsApp Support</a
-            >
-            <p
-              style="
-                font-size: 0.82rem;
-                color: var(--text-muted);
-                margin-bottom: 8px;
-              "
-            >
-              contact@firestore.tv
-            </p>
-          </div>
-          <!-- Shop column → fire-store.shop -->
-          <div class="footer-col">
-            <h4>Shop</h4>
             <ul>
-              <li>
-                <a
-                  href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=footer&utm_content=stick"
-                  target="_blank"
-                  rel="noopener"
-                  >4K Streaming Sticks</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=footer&utm_content=cables"
-                  target="_blank"
-                  rel="noopener"
-                  >HDMI Cables</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=footer&utm_content=mounts"
-                  target="_blank"
-                  rel="noopener"
-                  >TV Mounts</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://www.fire-store.shop/?utm_source=firestore-tv&utm_medium=footer&utm_content=led"
-                  target="_blank"
-                  rel="noopener"
-                  >LED Backlights</a
-                >
-              </li>
+              <li><a href="https://wa.me/12029927413" target="_blank" rel="noopener">WhatsApp: +1 (202) 992-7413</a></li>
+              <li><a href="mailto:contact@firestore.tv">contact@firestore.tv</a></li>
             </ul>
-            <p
-              style="
-                font-size: 0.78rem;
-                color: var(--text-muted);
-                margin-top: 8px;
-              "
-            >
-              🚚 Free shipping over $50
-            </p>
           </div>
           <div class="footer-col">
-            <h4>Legal</h4>
+            <h4>Policies</h4>
             <ul>
               <li><a href="/terms.html">Terms of Service</a></li>
               <li><a href="/privacy.html">Privacy Policy</a></li>
               <li><a href="/refund.html">Refund Policy</a></li>
-              <li><a href="/dmca.html">DMCA Notice</a></li>
               <li><a href="/cookies.html">Cookie Policy</a></li>
+              <li><a href="/dmca.html">DMCA Notice</a></li>
             </ul>
           </div>
         </div>
-        <div class="footer-bottom">
-          <p>
-            © 2026 Fire Store — a Firestore LLC store · fire-store.tv · All
-            rights reserved
-          </p>
-          <div class="footer-payment-row">
-            <span class="footer-payment-label">🔒 Secure &amp; Trusted</span>
-            <div class="footer-payment-badges">
-              <span class="footer-pay-badge visa">VISA</span>
-              <span class="footer-pay-badge mc">Mastercard</span>
-              <span class="footer-pay-badge pp">PayPal</span>
-              <span class="footer-pay-badge cr">₿ Crypto</span>
-            </div>
-          </div>
-        </div>
+        <div class="footer-bottom"><p>© 2026 Fire Store — a Firestore LLC store · fire-store.tv · All rights reserved</p></div>
       </div>
     </footer>
-
-    <!-- ── Lean landing script (no campaign / pricing / flame) ── -->
-    <script type="module" src="/setup.js"></script>
   </body>
 </html>

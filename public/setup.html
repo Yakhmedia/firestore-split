@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="https://fire-store.tv/" />
+    <title>Fire Store TV — Renewal</title>
+    <script>
+      const allowed = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+      const current = new URLSearchParams(window.location.search);
+      const target = new URL('/', window.location.origin);
+      allowed.forEach(key => {
+        const value = current.get(key);
+        if (value) target.searchParams.set(key, value);
+      });
+      window.location.replace(target.toString());
+    </script>
+  </head>
+  <body>
+    <p>This page has moved. <a href="/">Continue to Fire Store TV renewal plans</a>.</p>
+  </body>
+</html>

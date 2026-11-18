@@ -1,7 +1,8 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: process.env.GITHUB_ACTIONS ? '/firestore-split/' : '/',
+  // The site is served from its custom-domain root on every deployment.
+  base: '/',
   root: '.',
   build: {
     outDir: 'dist',
@@ -11,7 +12,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: 'index.html',
-        setup: 'setup.html',
         app: 'app.html',
         channels: 'channels.html',
         terms: 'terms.html',
