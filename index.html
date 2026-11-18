@@ -6,16 +6,20 @@
     <meta name="theme-color" content="#0a0a0a" />
 
     <script>
-      // Manually switch the offer off with active: false. Keep the product
-      // ID empty and checkoutVerified false until its price and fulfillment
-      // have both been confirmed.
       window.WINBACK = {
-        active: true,
+        // Keep the restricted offer hidden until checkout eligibility,
+        // redemption, and fulfillment are verified server-side.
+        active: false,
+        serverEnforcementVerified: false,
         endAt: null,
         tzLabel: '',
         checkoutProductId: '',
         checkoutVerified: false,
         includedScreens: null,
+        totalPriceCents: null,
+        paidMonths: null,
+        bonusMonths: null,
+        accessMonths: null,
         eligibilityText: '',
         accountMatchingText: '',
         activationText: '',
@@ -27,7 +31,7 @@
         const offer = window.WINBACK;
         const endAt = offer.endAt ? Date.parse(offer.endAt) : NaN;
         root.classList.remove('promo-winback', 'promo-expired', 'promo-off');
-        if (!offer.active) {
+        if (!offer.active || offer.serverEnforcementVerified !== true) {
           root.classList.add('promo-off');
         } else if (Number.isFinite(endAt) && endAt <= Date.now()) {
           root.classList.add('promo-expired');
@@ -38,7 +42,7 @@
     </script>
 
     <title>Welcome Back — Fire Store TV</title>
-    <meta name="description" content="Welcome back to Fire Store TV. Review the returning customer offer or choose a standard subscription plan." />
+    <meta name="description" content="Welcome back to Fire Store TV. Review the returning customer offer or choose a standard subscription renewal plan." />
     <link rel="canonical" href="https://fire-store.tv/" />
     <link rel="icon" type="image/svg+xml" href="/assets/images/firestore_favicon.svg" />
 
@@ -49,7 +53,7 @@
     <meta property="og:url" content="https://fire-store.tv/" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Welcome Back — Fire Store TV" />
-    <meta name="twitter:description" content="Review the returning customer offer or choose a standard subscription plan." />
+    <meta name="twitter:description" content="Review the returning customer offer or choose a standard subscription renewal plan." />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -69,7 +73,7 @@
 
   <body>
     <div class="promo-bar offer-only" role="region" aria-label="Returning customer offer">
-      <p><strong>Returning customer offer:</strong> 13 months of access · $79 total</p>
+        <p><strong>Returning customer offer:</strong> offer details are currently unavailable online</p>
       <a href="#featuredOffer" class="promo-bar-cta">Offer details</a>
     </div>
 
@@ -96,18 +100,18 @@
         <div class="hero-content">
           <div class="hero-badge">
             <span class="dot" aria-hidden="true"></span>
-            <span class="hb-text">Returning customer offer</span>
+            <span class="hb-text">Subscription renewal</span>
           </div>
           <h1 id="heroTitle"><span class="line-fire">Welcome back</span><span class="hero-title-rest">to Fire Store TV</span></h1>
           <p class="hero-sub">Renew your subscription and get back to watching.</p>
-          <p class="hero-offer offer-only"><strong>12 months + 1 month free</strong><br />13 months of access for <strong>$79 total.</strong></p>
+          <p class="hero-offer offer-only" id="campaignHeroOffer">A verified returning-customer offer will appear here when online checkout is ready.</p>
           <p class="hero-offer hero-fallback">Choose a standard renewal plan below. Contact support if you need help matching your account.</p>
           <div class="hero-ctas">
             <a href="#featuredOffer" class="cta-primary offer-only" id="heroRenewCta">Renew my subscription <span aria-hidden="true">→</span></a>
             <a href="#plans" class="cta-primary hero-fallback">Renew my subscription <span aria-hidden="true">→</span></a>
             <a href="https://wa.me/12029927413?text=I%20need%20help%20renewing%20my%20Fire%20Store%20TV%20subscription" class="cta-secondary" target="_blank" rel="noopener">Need help? WhatsApp us</a>
           </div>
-          <p class="hero-trust-line offer-only">Screen count and eligibility are being confirmed. Ask support before checkout.</p>
+          <p class="hero-trust-line offer-only">Review the full amount, term, and eligibility before paying.</p>
         </div>
       </section>
 
@@ -116,7 +120,7 @@
           <div class="section-header">
             <span class="section-tag">Your subscription</span>
             <h2 id="plansTitle">Choose how you’d like to renew</h2>
-            <p>Compare available plan terms and screen counts. Contact support for account-specific questions.</p>
+            <p>Choose a billing period for one simultaneous screen. Contact support about other screen options. Any available plan is a one-time payment with no auto-renewal.</p>
           </div>
 
           <div class="promo-expired-notice" id="expiredOfferNotice" hidden>
@@ -124,70 +128,94 @@
             Standard renewal plans are available below. Message us on WhatsApp if you need help.
           </div>
 
+          <!-- Returning Customer Offer Card -->
           <article class="plan-card promo-card offer-only" id="featuredOffer" aria-labelledby="featuredOfferTitle">
             <span class="plan-popular-badge promo-badge">Returning customer offer</span>
-            <div class="plan-duration">13 months of access</div>
-            <h3 id="featuredOfferTitle" class="promo-headline">12 months + 1 month free</h3>
-            <p class="promo-price"><span>$79</span> total</p>
+            <div class="plan-duration" id="campaignDuration">Offer details require confirmation</div>
+            <h3 id="featuredOfferTitle" class="promo-headline">Returning customer offer</h3>
+            <p class="promo-price" id="campaignPrice"><span>—</span> total</p>
             <ul class="plan-mini-features promo-features">
-              <li id="campaignScreenDetail">Included screen count: pending confirmation</li>
-              <li id="campaignEligibility">Eligibility: pending confirmation</li>
-              <li id="campaignAccountMatching">Account matching: pending confirmation</li>
-              <li id="campaignActivation">Activation timing: pending confirmation</li>
-              <li id="campaignPostTerm">After the 13-month term: pending confirmation</li>
-              <li id="campaignRefundTerms">Refund terms: pending confirmation</li>
+              <li id="campaignScreenDetail">Screen allowance requires confirmation</li>
+              <li id="campaignEligibility">Eligibility will be checked during checkout</li>
+              <li id="campaignAccountMatching">Contact support to confirm account matching</li>
+              <li id="campaignActivation">Contact support to confirm activation timing</li>
+              <li id="campaignPostTerm">Payment and post-term details require confirmation</li>
+              <li id="campaignRefundTerms">Review the refund policy before purchase</li>
             </ul>
-            <button type="button" class="btn-plan btn-plan-popular promo-checkout" id="btn-winback" disabled aria-describedby="campaignCheckoutStatus">
-              Renewal checkout is not configured yet
+            <button type="button" class="btn-plan btn-plan-popular promo-checkout" id="btn-winback" disabled
+              aria-describedby="campaignCheckoutStatus">
+              Offer checkout is unavailable
             </button>
-            <p class="promo-status" id="campaignCheckoutStatus" aria-live="polite">The product, screen count, eligibility, account matching, activation, refund terms, and 13-month fulfillment are pending confirmation. Contact support before choosing this offer.</p>
+            <p class="promo-status" id="campaignCheckoutStatus" aria-live="polite">This offer is not available online right now. Contact support for account-specific renewal options.</p>
             <a class="promo-support-link" href="https://wa.me/12029927413?text=Please%20confirm%20the%20returning%20customer%20offer%20for%20my%20account" target="_blank" rel="noopener">Ask about this offer on WhatsApp</a>
-            <p class="promo-terms">13 months total. $79 total. No deadline has been set. Review the eligibility and post-term details above before checkout.</p>
+            <p class="promo-terms">Offer details will be shown here only after checkout support is verified.</p>
             <p class="campaign-deadline" id="campaignDeadline" hidden></p>
           </article>
 
-          <div class="standard-plans-heading">
-            <h3>Standard renewal plans</h3>
-            <p>Choose the number of screens for these 1-, 6-, and 12-month plans.</p>
-          </div>
-
-          <div class="device-selector-container">
-            <span class="device-selector-label" id="deviceSelectorLabel">Number of screens</span>
-            <div class="device-selector-buttons" id="deviceSelector" role="group" aria-labelledby="deviceSelectorLabel">
-              <button type="button" class="device-btn active" data-devices="1" aria-pressed="true">1 screen</button>
-              <button type="button" class="device-btn" data-devices="2" aria-pressed="false">2 screens</button>
-              <button type="button" class="device-btn" data-devices="3" aria-pressed="false">3 screens</button>
-              <button type="button" class="device-btn" data-devices="4" aria-pressed="false">4 screens</button>
-              <button type="button" class="device-btn" data-devices="5" aria-pressed="false">5 screens</button>
+          <!-- Standard Renewal Switcher & Card -->
+          <div class="plan-configurator" id="planConfigurator">
+            <div class="billing-switcher-container">
+              <span class="switcher-label" id="switcherLabel">Billing period</span>
+              <div class="billing-switcher" role="tablist" aria-labelledby="switcherLabel">
+                <button type="button" role="tab" class="switcher-btn" data-plan="1" id="tab-1m" aria-selected="false" aria-controls="configurablePlanCard" tabindex="-1">
+                  1 Month
+                </button>
+                <button type="button" role="tab" class="switcher-btn" data-plan="6" id="tab-6m" aria-selected="false" aria-controls="configurablePlanCard" tabindex="-1">
+                  6 Months
+                </button>
+                <button type="button" role="tab" class="switcher-btn active" data-plan="12" id="tab-12m" aria-selected="true" aria-controls="configurablePlanCard" tabindex="0">
+                  Annual
+                </button>
+              </div>
             </div>
+
+            <article class="plan-card configurable-card" id="configurablePlanCard" role="tabpanel" aria-labelledby="tab-12m" tabindex="0">
+              <span class="plan-popular-badge" id="configCardBadge" hidden>Best value</span>
+
+              <div class="plan-card-header">
+                <div class="plan-duration" id="configPlanDuration">Checking available terms…</div>
+                <div class="plan-access-term" id="configAccessTerm">Term not confirmed</div>
+              </div>
+
+              <div class="plan-pricing-block" aria-live="polite">
+                <div class="plan-monthly-equiv">
+                  <span class="currency-symbol">$</span><span class="monthly-figure" id="configMonthlyPrice">—</span><span class="per-month-text">/month equivalent</span>
+                </div>
+                <p class="plan-upfront-text" id="configUpfrontText">Waiting for current checkout pricing…</p>
+              </div>
+
+              <div class="screens-dropdown-block">
+                <label for="screenSelect" class="screen-select-label">Simultaneous screens</label>
+                <select id="screenSelect" class="screen-select" aria-describedby="screenSelectHint">
+                  <option value="1" selected>1 screen</option>
+                </select>
+                <p id="screenSelectHint" class="screen-select-hint">Online checkout currently supports 1 simultaneous screen.</p>
+              </div>
+
+              <ul class="plan-features-list" id="configFeaturesList">
+                <li><span class="feature-icon" aria-hidden="true">✔</span> <strong id="featureScreens">1 simultaneous screen</strong></li>
+                <li><span class="feature-icon" aria-hidden="true">✔</span> <span id="featureTermText">Plan term will appear after availability is confirmed.</span></li>
+                <li><span class="feature-icon" aria-hidden="true">✔</span> 20,000+ live TV channels & VOD</li>
+                <li><span class="feature-icon" aria-hidden="true">✔</span> 4K Ultra HD & Full HD streams</li>
+                <li><span class="feature-icon" aria-hidden="true">✔</span> Anti-freeze technology</li>
+                <li><span class="feature-icon" aria-hidden="true">✔</span> TV Guide (EPG)</li>
+                <li><span class="feature-icon" aria-hidden="true">✔</span> Single payment · No auto-renewal</li>
+                <li><span class="feature-icon" aria-hidden="true">✔</span> 7-day money-back guarantee</li>
+              </ul>
+
+              <div class="plan-action-block">
+                <button type="button" class="btn-plan" id="configBuyBtn" disabled aria-describedby="checkoutStatus">
+                  Continue to checkout <span aria-hidden="true">→</span>
+                </button>
+                <p class="plan-reassurance" id="checkoutStatus" aria-live="polite">Checking current plan and checkout availability…</p>
+                <button type="button" class="btn-plan btn-plan-default checkout-retry" id="retryCheckout" hidden>Retry availability check</button>
+                <p class="selection-notice" id="selectionNotice" aria-live="polite" hidden></p>
+                <p class="plan-reassurance">Single payment with no auto-renewal · Full refund within 7 days</p>
+              </div>
+            </article>
           </div>
 
-          <div class="plans-grid" id="standardPlans">
-            <article class="plan-card" aria-labelledby="plan-1m-title">
-              <div class="plan-duration" id="plan-1m-title">1 month</div>
-              <div class="plan-price" id="price-1m"><span>$</span>29</div>
-              <p class="plan-period" id="period-1m">per month, billed monthly</p>
-              <ul class="plan-mini-features"><li><strong id="mini-screens-1m">1 screen</strong> at the same time</li><li>1 month of access</li></ul>
-              <button type="button" class="btn-plan btn-plan-default" id="btn-1m">Choose 1 month</button>
-            </article>
-            <article class="plan-card" aria-labelledby="plan-6m-title">
-              <div class="plan-duration" id="plan-6m-title">6 months</div>
-              <div class="plan-price" id="price-6m"><span>$</span>49</div>
-              <p class="plan-period" id="period-6m">$8.10/month — billed once</p>
-              <ul class="plan-mini-features"><li><strong id="mini-screens-6m">1 screen</strong> at the same time</li><li>6 months of access</li></ul>
-              <button type="button" class="btn-plan btn-plan-default" id="btn-6m">Choose 6 months</button>
-            </article>
-            <article class="plan-card popular" aria-labelledby="plan-12m-title">
-              <span class="plan-popular-badge">Standard annual plan</span>
-              <div class="plan-duration" id="plan-12m-title">12 months</div>
-              <div class="plan-price" id="price-12m"><span>$</span>79</div>
-              <p class="plan-period" id="period-12m">$6.58/month — billed once</p>
-              <ul class="plan-mini-features"><li><strong id="mini-screens-12m">1 screen</strong> at the same time</li><li>12 months of access</li></ul>
-              <button type="button" class="btn-plan btn-plan-popular" id="btn-12m">Choose 12 months</button>
-            </article>
-          </div>
-
-          <p class="standard-price-note">Standard plans are a single payment with no auto-renewal and include a full refund within 7 days. The featured offer is 13 months for $79; the standard annual plan is 12 months for $79. See the <a href="/refund.html">refund policy</a>.</p>
+          <p class="standard-price-note">Standard renewal plans are a single payment with no auto-renewal and include a full refund within 7 days. See our <a href="/refund.html">refund policy</a>.</p>
           <div class="payment-trust-strip">
             <span>Questions about your account or the plan terms?</span>
             <a href="https://wa.me/12029927413?text=I%20need%20help%20with%20my%20Fire%20Store%20TV%20renewal" target="_blank" rel="noopener">Contact support on WhatsApp</a>

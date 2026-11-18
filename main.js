@@ -5,79 +5,103 @@
 import { initWinback, maybeInjectWinbackFaq } from './winback.js';
 import { captureUtms, track as trackBase } from './campaign-utils.js';
 
-/* Standard plan prices and product IDs are the checkout source of truth. */
-export const pricingPlans = {
+/** Static term labels only. Prices and product IDs always come from checkout. */
+export const STANDARD_PLANS = {
   1: {
-    1: { price: 29, monthly: 29, productId: 'e1f22bc1-bdbf-4737-bf86-2f8388639c93' },
-    6: { price: 49, monthly: 8.1, productId: '91f8e845-15a3-43e8-93f2-e47abdb03dd2' },
-    12: { price: 79, monthly: 6.58, productId: '92a116ae-bf73-4a82-864a-f643ce58cf8a' },
+    key: '1m',
+    months: 1,
+    paidMonths: 1,
+    bonusMonths: 0,
+    accessMonths: 1,
+    durationText: '1 month of access',
+    accessText: '1 month total access',
+    termFeatureText: '1 month total access',
+    badge: null,
   },
-  2: {
-    1: { price: 59, monthly: 59, productId: 'f8de3852-90e3-4cb8-b03e-1d09b96bb297' },
-    6: { price: 99, monthly: 16, productId: '183e5620-9bee-4257-9a32-ab259ec84483' },
-    12: { price: 159, monthly: 13.25, productId: '0319e334-96f9-4f50-b27c-392f6737efb5' },
+  6: {
+    key: '6m',
+    months: 6,
+    paidMonths: 6,
+    bonusMonths: 0,
+    accessMonths: 6,
+    durationText: '6 months of access',
+    accessText: '6 months total access',
+    termFeatureText: '6 months total access',
+    badge: null,
   },
-  3: {
-    1: { price: 89, monthly: 89, productId: 'e4654946-dcc9-4e34-9277-ff06b3dfd447' },
-    6: { price: 149, monthly: 24, productId: '2d508b86-b9e8-497d-8f7b-ac7db50aaf95' },
-    12: { price: 209, monthly: 17.42, productId: '4b43f74c-6280-4363-b685-12316cb01472' },
-  },
-  4: {
-    1: { price: 119, monthly: 119, productId: '5cf9c53a-b075-4349-85f8-00de1b12100b' },
-    6: { price: 159, monthly: 26.5, productId: 'c3af3f2a-ed65-4c54-bccc-4bbe0a68ee5d' },
-    12: { price: 239, monthly: 19.91, productId: '0502ce40-7bcc-4c11-9cdc-3fdfe7fe78bb' },
-  },
-  5: {
-    1: { price: 129, monthly: 129, productId: '2d446c17-8905-4d7b-8dc4-e6287f01a6e5' },
-    6: { price: 179, monthly: 29.83, productId: '529a376d-a2d0-42d9-9f58-8debf8d45ba2' },
-    12: { price: 289, monthly: 24.08, productId: 'd139f32e-a138-4e23-895f-f69652501015' },
+  12: {
+    key: '12m',
+    months: 12,
+    paidMonths: 12,
+    bonusMonths: 1,
+    accessMonths: 13,
+    durationText: '12 months + 1 bonus month',
+    accessText: '13 months total access',
+    termFeatureText: '12 months + 1 bonus month included (13 months)',
+    badge: 'Best value',
   },
 };
+
+let currentPeriod = 12;
+let currentScreens = 1;
+const catalogPlans = new Map();
+let catalogState = 'loading';
+let widgetState = 'loading';
+let catalogError = '';
+let widgetLoadPromise = null;
+const checkoutOrigin = resolveCheckoutOrigin();
+
+function resolveCheckoutOrigin() {
+  const configured = import.meta.env.VITE_CHECKOUT_ORIGIN || 'https://fire-store.shop';
+  try {
+    const origin = new URL(configured, window.location.origin);
+    if (!['http:', 'https:'].includes(origin.protocol) || origin.username || origin.password) return '';
+    return origin.origin;
+  } catch (_) {
+    return '';
+  }
+}
 
 const faqRenewing = [
   {
     q: 'Will my login and settings still be available?',
-    a: 'Buying a renewal adds time to your existing subscription. If you are unsure which account to renew or whether your previous settings are available, contact support before paying.'
+    a: 'Buying a renewal adds time to your existing subscription. If you are unsure which account to renew or whether your previous settings are available, contact support before paying.',
   },
   {
     q: 'How is my existing account identified?',
-    a: 'For order help, email contact@firestore.tv from the address used at checkout and include your order number. Do not put login credentials or personal identifiers in a URL.'
+    a: 'Before paying, contact support to confirm which account details to use for your renewal.',
   },
   {
     q: 'How long does reactivation take?',
-    a: 'Activation is handled by the team and is not instant. They email your sign-in details and will let you know if it is taking longer than usual. If you have not received the email, contact support with your order number.'
+    a: 'Activation timing can depend on your account. Contact support before paying if you need a confirmed timeframe.',
   },
   {
     q: 'What if I have lost my account details?',
-    a: 'Email contact@firestore.tv from the address used at checkout and include your order number. Do not send passwords in a website link or URL.'
+    a: 'Contact support with any order details you still have so they can help locate the correct account.',
   },
   {
-    q: 'How many screens are included in the $79 returning customer offer?',
-    a: 'The included screen count and eligibility are still being confirmed. Ask support before checkout. The offer is for one fixed screen count and does not change with the standard plan selector.'
+    q: 'What does "simultaneous screens" mean?',
+    a: 'Simultaneous screens represents how many devices can stream content at the exact same moment. You can install the Fire Store TV app on as many devices as you like.',
   },
   {
-    q: 'What happens after the 13-month offer ends?',
-    a: 'The post-term renewal behavior has not been confirmed. Please ask support to explain the available options before checkout.'
+    q: 'How does my selected renewal affect my current access?',
+    a: 'Review the selected term and upfront total in checkout. Contact support before paying if you need confirmation of how a renewal changes your current access period.',
   },
   {
-    q: 'How is the $79 offer different from the standard annual plan?',
-    a: 'The featured offer is 13 months of access for $79 total. The standard one-screen annual plan is 12 months for $79. The featured offer checkout is not available until its fulfillment details are confirmed.'
+    q: 'Are there any recurring charges or auto-renewals?',
+    a: 'No. Every Fire Store TV plan is a single upfront payment with zero auto-renewal. You will never be charged automatically.',
   },
   {
     q: 'Where can I read the refund terms?',
-    a: 'Standard plans include a full refund within 7 days of payment. See the <a href="/refund.html">subscription refund policy</a>. Campaign-specific refund terms for the featured offer are still being confirmed.'
+    a: 'All standard renewal plans include a full refund within 7 days of payment. See the <a href="/refund.html">subscription refund policy</a> for complete details.',
   },
   {
     q: 'Which devices and apps are compatible?',
-    a: 'Compatibility can depend on your device, app, and region. Message support with your device model and app name so they can confirm before you purchase.'
+    a: 'Contact support to confirm compatibility with your device and app before purchasing.',
   },
   {
-    q: 'Can I get help setting up the app?',
-    a: 'Contact support on WhatsApp with your device and app details and ask for the current setup steps.'
-  },
-  {
-    q: 'Where can I check the current channel list?',
-    a: 'Channel availability can change. Contact support to ask about current availability for your region before selecting a plan.'
+    q: 'Can I get help setting up my app?',
+    a: 'Message support on WhatsApp for setup guidance and account questions.',
   },
 ];
 
@@ -93,13 +117,13 @@ function renderFaq() {
   list.replaceChildren();
 
   let index = 0;
-  faqGroups.forEach(group => {
+  faqGroups.forEach((group) => {
     const label = document.createElement('h3');
     label.className = 'faq-group-label';
     label.textContent = group.label;
     list.appendChild(label);
 
-    group.items.forEach(item => {
+    group.items.forEach((item) => {
       const id = `faq-answer-${index++}`;
       const row = document.createElement('div');
       row.className = 'faq-item';
@@ -111,21 +135,23 @@ function renderFaq() {
 
       const button = row.querySelector('.faq-q');
       const answer = row.querySelector('.faq-a');
-      button.addEventListener('click', () => {
+      button?.addEventListener('click', () => {
         const shouldOpen = button.getAttribute('aria-expanded') !== 'true';
-        list.querySelectorAll('.faq-q').forEach(other => {
+        list.querySelectorAll('.faq-q').forEach((other) => {
           other.setAttribute('aria-expanded', 'false');
           other.classList.remove('active');
         });
-        list.querySelectorAll('.faq-a').forEach(other => {
+        list.querySelectorAll('.faq-a').forEach((other) => {
           other.hidden = true;
           other.classList.remove('open');
         });
         if (shouldOpen) {
           button.setAttribute('aria-expanded', 'true');
           button.classList.add('active');
-          answer.hidden = false;
-          answer.classList.add('open');
+          if (answer) {
+            answer.hidden = false;
+            answer.classList.add('open');
+          }
         }
       });
       list.appendChild(row);
@@ -133,87 +159,285 @@ function renderFaq() {
   });
 }
 
-function updatePriceCards(deviceCount) {
-  const plans = pricingPlans[deviceCount];
-  if (!plans) return;
+function getCatalogPlan(months) {
+  return catalogPlans.get(Number(months)) || null;
+}
 
-  const deviceWord = deviceCount === 1 ? 'screen' : 'screens';
-  const setText = (id, value) => {
-    const node = document.getElementById(id);
-    if (node) node.textContent = value;
-  };
-  const setPrice = (id, value) => {
-    const node = document.getElementById(id);
-    if (node) node.innerHTML = `<span>$</span>${value}`;
-  };
+function getBestValuePeriod() {
+  const all = [...catalogPlans.values()];
+  if (all.length !== 3) return null;
+  return all.reduce((best, candidate) => candidate.monthlyCents < best.monthlyCents ? candidate : best).months;
+}
 
-  [1, 6, 12].forEach(months => {
-    const plan = plans[months];
-    const suffix = `${months}m`;
-    setPrice(`price-${suffix}`, plan.price);
-    setText(`mini-screens-${suffix}`, `${deviceCount} ${deviceWord}`);
-    setText(`period-${suffix}`, months === 1
-      ? 'per month, billed monthly'
-      : `$${plan.monthly.toFixed(2)}/month — billed once`);
+function refreshSelection() {
+  const plan = STANDARD_PLANS[currentPeriod];
+  const catalogPlan = getCatalogPlan(currentPeriod);
+  const bestValuePeriod = getBestValuePeriod();
+  const isBestValue = bestValuePeriod === currentPeriod;
 
-    const button = document.getElementById(`btn-${suffix}`);
-    if (!button) return;
-    button.classList.add('firestore-buy-btn');
-    button.dataset.productId = plan.productId;
-    button.dataset.planMonths = String(months);
-    button.dataset.screenCount = String(deviceCount);
-    button.onclick = null;
+  const durationEl = document.getElementById('configPlanDuration');
+  const accessTermEl = document.getElementById('configAccessTerm');
+  const badgeEl = document.getElementById('configCardBadge');
+  const cardEl = document.getElementById('configurablePlanCard');
+  const monthlyPriceEl = document.getElementById('configMonthlyPrice');
+  const upfrontTextEl = document.getElementById('configUpfrontText');
+  const termFeatureEl = document.getElementById('featureTermText');
+  const button = document.getElementById('configBuyBtn');
+  const status = document.getElementById('checkoutStatus');
+  const retryButton = document.getElementById('retryCheckout');
+  const tabs = [...document.querySelectorAll('.billing-switcher .switcher-btn')];
+  const annualTab = tabs.find((tab) => Number(tab.dataset.plan) === 12);
+  const selectedTab = tabs.find((tab) => Number(tab.dataset.plan) === currentPeriod);
 
-    if (button.dataset.analyticsBound !== 'true') {
-      button.dataset.analyticsBound = 'true';
-      button.addEventListener('click', () => {
-        track('renewal_checkout_open', {
-          plan: `${button.dataset.planMonths}_month`,
-          screens: Number(button.dataset.screenCount),
-          price: pricingPlans[Number(button.dataset.screenCount)][Number(button.dataset.planMonths)].price,
-          currency: 'USD',
-        });
-      });
+  if (annualTab) annualTab.textContent = catalogPlans.has(12) ? '12 + 1 Bonus Month' : 'Annual';
+
+  if (durationEl) durationEl.textContent = catalogPlan ? plan.durationText : 'Plan details unavailable';
+  if (accessTermEl) accessTermEl.textContent = catalogPlan ? plan.accessText : 'Term will appear when confirmed';
+  if (monthlyPriceEl) monthlyPriceEl.textContent = catalogPlan ? (catalogPlan.monthlyCents / 100).toFixed(2) : '—';
+  if (upfrontTextEl) upfrontTextEl.textContent = catalogPlan
+    ? `Billed upfront: ${formatMoney(catalogPlan.priceCents)} for ${catalogPlan.accessMonths} months`
+    : 'Pricing is unavailable until the checkout catalog responds.';
+  if (termFeatureEl) termFeatureEl.textContent = catalogPlan ? plan.termFeatureText : 'The selected term is not currently confirmed.';
+  if (badgeEl) badgeEl.hidden = !isBestValue;
+  if (cardEl) {
+    cardEl.classList.toggle('popular', isBestValue);
+    cardEl.setAttribute('aria-labelledby', selectedTab?.id || 'configPlanDuration');
+  }
+
+  tabs.forEach((tab) => {
+    const selected = tab === selectedTab;
+    tab.classList.toggle('active', selected);
+    tab.setAttribute('aria-selected', String(selected));
+    tab.tabIndex = selected ? 0 : -1;
+  });
+
+  const canCheckout = catalogState === 'ready' && widgetState === 'ready' && Boolean(catalogPlan);
+  if (button) {
+    button.disabled = !canCheckout;
+    button.classList.toggle('firestore-buy-btn', canCheckout);
+    button.classList.toggle('btn-plan-popular', canCheckout && isBestValue);
+    for (const key of ['productId', 'currency', 'planMonths', 'screenCount', 'price', 'market']) {
+      delete button.dataset[key];
     }
+    if (canCheckout) {
+      button.dataset.productId = catalogPlan.productId;
+      button.dataset.currency = 'USD';
+      button.dataset.planMonths = String(catalogPlan.accessMonths);
+      button.dataset.screenCount = '1';
+      button.dataset.price = (catalogPlan.priceCents / 100).toFixed(2);
+      button.dataset.market = catalogPlan.market;
+    }
+  }
+
+  if (status) {
+    if (catalogError) status.textContent = 'Online checkout is temporarily unavailable. Contact support for renewal help.';
+    else if (catalogState === 'loading' || widgetState === 'loading') status.textContent = 'Checking current plan and checkout availability…';
+    else if (widgetState !== 'ready') status.textContent = 'Online checkout is unavailable right now. Contact support for renewal help.';
+    else if (!catalogPlan) status.textContent = 'This plan is not available for online checkout. Contact support for options.';
+    else status.textContent = 'Review the selected term and full upfront total in checkout before paying.';
+  }
+  if (retryButton) retryButton.hidden = catalogState !== 'error' && widgetState !== 'error';
+}
+
+function showSelectionNotice(message = '') {
+  const notice = document.getElementById('selectionNotice');
+  if (!notice) return;
+  notice.textContent = message;
+  notice.hidden = !message;
+}
+
+function formatMoney(cents) {
+  return `$${(cents / 100).toFixed(2)}`;
+}
+
+function readMoneyCents(plan) {
+  if (Number.isSafeInteger(plan.priceCents) && plan.priceCents > 0) return plan.priceCents;
+  if (!Number.isFinite(Number(plan.price)) || Number(plan.price) <= 0) return null;
+  const cents = Math.round(Number(plan.price) * 100);
+  return Math.abs(Number(plan.price) * 100 - cents) < 0.000001 ? cents : null;
+}
+
+function parseCatalog(data) {
+  if (!data || !Array.isArray(data.plans) || String(data.currency).toUpperCase() !== 'USD') {
+    throw new Error('Unsupported catalog response');
+  }
+  if (typeof data.market !== 'string' || !data.market.trim()) throw new Error('Catalog market missing');
+
+  const matches = new Map();
+  for (const entry of data.plans) {
+    if (!entry || typeof entry !== 'object') continue;
+    const months = Object.keys(STANDARD_PLANS).find((key) => STANDARD_PLANS[key].key === entry.planKey);
+    if (!months) continue; // Restricted/campaign products use a different plan key.
+
+    const screens = Number(entry.simultaneousScreens ?? entry.screens ?? entry.screenCount);
+    const plan = STANDARD_PLANS[months];
+    if (screens !== 1 || entry.market !== data.market) continue;
+    if (entry.currency && String(entry.currency).toUpperCase() !== 'USD') continue;
+    if (entry.restricted === true || entry.isRestricted === true || entry.eligibleOnly === true) continue;
+    if (entry.available === false || entry.published === false) continue;
+    if (Number(entry.paidMonths) !== plan.paidMonths || Number(entry.bonusMonths) !== plan.bonusMonths || Number(entry.accessMonths) !== plan.accessMonths) continue;
+    if (typeof entry.productId !== 'string' || !entry.productId.trim()) continue;
+
+    const priceCents = readMoneyCents(entry);
+    if (!priceCents) continue;
+    if (matches.has(Number(months))) throw new Error(`Duplicate standard plan ${plan.key}`);
+    matches.set(Number(months), {
+      months: Number(months),
+      productId: entry.productId,
+      priceCents,
+      monthlyCents: Math.round(priceCents / plan.accessMonths),
+      accessMonths: plan.accessMonths,
+      market: data.market,
+    });
+  }
+  return matches;
+}
+
+/** Updates the configurable card from the selected, server-catalogued plan. */
+export function selectPeriod(months) {
+  if (!STANDARD_PLANS[months]) return;
+  currentPeriod = Number(months);
+  refreshSelection();
+  const plan = getCatalogPlan(currentPeriod);
+  track('renewal_period_select', {
+    plan: plan ? `${plan.accessMonths}_month` : STANDARD_PLANS[currentPeriod].key,
+    screens: currentScreens,
+    ...(plan ? { price: plan.priceCents / 100, currency: 'USD' } : {}),
   });
 }
 
 export function selectDevice(deviceCount) {
-  const selector = document.getElementById('deviceSelector');
-  selector?.querySelectorAll('.device-btn').forEach(button => {
-    const selected = Number(button.dataset.devices) === deviceCount;
-    button.classList.toggle('active', selected);
-    button.setAttribute('aria-pressed', String(selected));
-  });
-  updatePriceCards(deviceCount);
+  const count = Number(deviceCount);
+  if (count !== 1) {
+    showSelectionNotice('Online checkout currently supports 1 simultaneous screen. Contact support about other options.');
+    return false;
+  }
+  currentScreens = 1;
+  const screenSelect = document.getElementById('screenSelect');
+  if (screenSelect) screenSelect.value = '1';
+  const screenFeature = document.getElementById('featureScreens');
+  if (screenFeature) screenFeature.textContent = '1 simultaneous screen';
+  refreshSelection();
+  return true;
 }
 
-function initDeviceSelector() {
-  const selector = document.getElementById('deviceSelector');
-  if (!selector) return;
-  selector.querySelectorAll('.device-btn').forEach(button => {
-    button.addEventListener('click', () => selectDevice(Number(button.dataset.devices)));
+async function loadCatalog() {
+  try {
+    if (!checkoutOrigin) throw new Error('Checkout origin is not configured');
+    const response = await fetch(`${checkoutOrigin}/api/widget/plans?currency=USD`, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`Catalog returned HTTP ${response.status}`);
+    const data = await response.json();
+    const parsed = parseCatalog(data);
+    catalogPlans.clear();
+    parsed.forEach((plan, key) => catalogPlans.set(key, plan));
+    catalogState = 'ready';
+  } catch (error) {
+    catalogPlans.clear();
+    catalogState = 'error';
+    catalogError = error instanceof Error ? error.message : 'Catalog unavailable';
+    track('renewal_catalog_error', { currency: 'USD' });
+  }
+  refreshSelection();
+}
+
+function loadCheckoutWidget() {
+  if (widgetState === 'ready') return Promise.resolve(true);
+  if (widgetLoadPromise) return widgetLoadPromise;
+  if (!checkoutOrigin) {
+    widgetState = 'error';
+    refreshSelection();
+    return Promise.resolve(false);
+  }
+
+  widgetState = 'loading';
+  const script = document.createElement('script');
+  script.src = `${checkoutOrigin}/widget.js`;
+  script.async = true;
+  widgetLoadPromise = new Promise((resolve) => {
+    script.onload = () => {
+      widgetState = 'ready';
+      widgetLoadPromise = null;
+      refreshSelection();
+      resolve(true);
+    };
+    script.onerror = () => {
+      script.remove();
+      widgetState = 'error';
+      widgetLoadPromise = null;
+      refreshSelection();
+      resolve(false);
+    };
+    document.head.appendChild(script);
   });
+  return widgetLoadPromise;
+}
+
+function initBillingSwitcher() {
+  const buttons = [...document.querySelectorAll('.billing-switcher .switcher-btn')];
+  buttons.forEach((button, index) => {
+    button.addEventListener('click', () => selectPeriod(Number(button.dataset.plan)));
+    button.addEventListener('keydown', (event) => {
+      let nextIndex = null;
+      if (event.key === 'ArrowRight') nextIndex = (index + 1) % buttons.length;
+      else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + buttons.length) % buttons.length;
+      else if (event.key === 'Home') nextIndex = 0;
+      else if (event.key === 'End') nextIndex = buttons.length - 1;
+      if (nextIndex === null) return;
+      event.preventDefault();
+      buttons[nextIndex].focus();
+      selectPeriod(Number(buttons[nextIndex].dataset.plan));
+    });
+  });
+
+  document.getElementById('screenSelect')?.addEventListener('change', (event) => selectDevice(event.target.value));
+  document.getElementById('retryCheckout')?.addEventListener('click', () => {
+    catalogError = '';
+    catalogState = 'loading';
+    if (widgetState !== 'ready') widgetState = 'loading';
+    refreshSelection();
+    loadCatalog();
+    loadCheckoutWidget();
+  });
+
+  const buyButton = document.getElementById('configBuyBtn');
+  if (buyButton && buyButton.dataset.analyticsBound !== 'true') {
+    buyButton.dataset.analyticsBound = 'true';
+    buyButton.addEventListener('click', () => {
+      const plan = getCatalogPlan(currentPeriod);
+      if (!plan || buyButton.disabled) return;
+      track('renewal_checkout_click', {
+        plan: `${plan.accessMonths}_month`,
+        screens: currentScreens,
+        price: plan.priceCents / 100,
+        currency: 'USD',
+      });
+    });
+  }
+
+  selectPeriod(12);
   selectDevice(1);
 }
 
 function initDeepLink() {
   const params = new URLSearchParams(window.location.search);
-  const devices = Number(params.get('devices'));
+  const screenValue = params.get('devices');
   const plan = params.get('plan');
-  const validDevices = Number.isInteger(devices) && devices >= 1 && devices <= 5;
   const validPlan = ['1', '6', '12'].includes(plan);
-  if (!validDevices && !validPlan) return;
-
-  if (validDevices) selectDevice(devices);
-  if (validPlan) {
-    const card = document.getElementById(`btn-${plan}m`)?.closest('.plan-card');
-    card?.classList.add('plan-highlight');
+  if (screenValue !== null) {
+    if (screenValue === '1') selectDevice(1);
+    else showSelectionNotice('This link requests an unsupported screen count. Online checkout currently supports 1 simultaneous screen; contact support about other options.');
   }
-
-  window.setTimeout(() => {
-    document.getElementById('plans')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 0);
+  if (validPlan) {
+    selectPeriod(Number(plan));
+    document.getElementById('configurablePlanCard')?.classList.add('plan-highlight');
+  }
+  if (screenValue !== null || validPlan) {
+    const motionPreference = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    window.setTimeout(() => document.getElementById('plans')?.scrollIntoView({
+      behavior: motionPreference ? 'auto' : 'smooth',
+      block: 'start',
+    }), 0);
+  }
 }
 
 function initNavbar() {
@@ -230,14 +454,16 @@ function initNavbar() {
     links?.classList.toggle('active', expanded);
     document.body.classList.toggle('nav-open', expanded);
   });
-  links?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-    toggle?.setAttribute('aria-expanded', 'false');
-    toggle?.setAttribute('aria-label', 'Open navigation');
-    toggle?.classList.remove('active');
-    links.classList.remove('active');
-    document.body.classList.remove('nav-open');
-  }));
-  document.addEventListener('keydown', event => {
+  links?.querySelectorAll('a').forEach((link) =>
+    link.addEventListener('click', () => {
+      toggle?.setAttribute('aria-expanded', 'false');
+      toggle?.setAttribute('aria-label', 'Open navigation');
+      toggle?.classList.remove('active');
+      links.classList.remove('active');
+      document.body.classList.remove('nav-open');
+    })
+  );
+  document.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape' || toggle?.getAttribute('aria-expanded') !== 'true') return;
     toggle.setAttribute('aria-expanded', 'false');
     toggle.setAttribute('aria-label', 'Open navigation');
@@ -249,17 +475,13 @@ function initNavbar() {
 }
 
 function installPurchaseConfirmationBridge() {
-  // The checkout integration must call this only after a confirmed payment.
-  // No purchase conversion is fired from a plan-button click.
   window.fireStoreTrackCompletedPurchase = ({ transactionId, value, currency = 'USD', items = [] } = {}) => {
     if (!transactionId || !Number.isFinite(Number(value)) || !/^[A-Z]{3}$/.test(currency)) return false;
     try {
       const key = `firestore_purchase_${transactionId}`;
       if (localStorage.getItem(key)) return false;
       localStorage.setItem(key, '1');
-    } catch (_) {
-      // Still report a confirmed purchase when storage is unavailable.
-    }
+    } catch (_) {}
     track('purchase', {
       transaction_id: String(transactionId),
       value: Number(value),
@@ -275,8 +497,10 @@ document.addEventListener('DOMContentLoaded', () => {
   maybeInjectWinbackFaq(faqGroups);
   renderFaq();
   initNavbar();
-  initDeviceSelector();
+  initBillingSwitcher();
   initWinback();
   installPurchaseConfirmationBridge();
   initDeepLink();
+  loadCatalog();
+  loadCheckoutWidget();
 });

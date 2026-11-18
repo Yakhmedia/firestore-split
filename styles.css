@@ -402,6 +402,8 @@ img { max-width: 100%; }
   text-transform: uppercase;
 }
 
+.plan-popular-badge[hidden] { display: none; }
+
 .promo-card {
   width: min(720px, 100%);
   margin: 0 auto 56px;
@@ -589,6 +591,250 @@ img { max-width: 100%; }
 
 .device-btn:hover { border-color: rgba(255, 107, 0, 0.55); color: #fff; }
 .device-btn.active { color: #fff; border-color: var(--fire-orange); background: rgba(255, 81, 0, 0.2); }
+
+/* ============================================================
+   Billing Switcher & Configurable Plan Card
+   ============================================================ */
+
+.plan-configurator {
+  max-width: 620px;
+  margin: 0 auto 36px;
+}
+
+.billing-switcher-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.switcher-label {
+  color: #ddd5ce;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.billing-switcher {
+  display: inline-flex;
+  align-items: center;
+  background: #151515;
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.switcher-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: #b7b0a8;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 180ms ease;
+  white-space: nowrap;
+}
+
+.switcher-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.switcher-btn:focus-visible {
+  outline: 2px solid var(--fire-orange);
+  outline-offset: 2px;
+}
+
+.switcher-btn.active {
+  color: #fff;
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.28), rgba(255, 192, 43, 0.16));
+  border-color: rgba(255, 107, 0, 0.55);
+  box-shadow: 0 2px 12px rgba(255, 107, 0, 0.22);
+}
+
+.switcher-pill {
+  background: linear-gradient(100deg, #ff8f00, #ff4500);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 999px;
+  line-height: 1.2;
+}
+
+.configurable-card {
+  width: 100%;
+  margin: 0 auto;
+  padding: 36px clamp(20px, 4vw, 42px) 32px;
+  border-color: rgba(255, 107, 0, 0.5);
+  border-radius: 12px;
+  background:
+    radial-gradient(ellipse at top, rgba(255, 89, 0, 0.14), transparent 58%),
+    linear-gradient(145deg, #20150e, #111 72%);
+  text-align: center;
+}
+
+.plan-card-header .plan-duration {
+  font-size: 0.92rem;
+  letter-spacing: 0.14em;
+}
+
+.plan-access-term {
+  color: #c9c3be;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.plan-pricing-block {
+  margin: 18px 0 16px;
+}
+
+.plan-monthly-equiv {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+}
+
+.plan-monthly-equiv .currency-symbol {
+  color: var(--fire-orange);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+}
+
+.plan-monthly-equiv .monthly-figure {
+  color: #fff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.2rem, 6vw, 4.2rem);
+  line-height: 1;
+}
+
+.plan-monthly-equiv .per-month-text {
+  color: #a8a29e;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.plan-upfront-text {
+  color: #e7e5e4;
+  font-size: 0.96rem;
+  font-weight: 600;
+  margin: 6px 0 0;
+}
+
+.screens-dropdown-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin: 20px auto 22px;
+  max-width: 320px;
+}
+
+.screen-select-label {
+  color: #ddd5ce;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.screen-select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: #18181b;
+  color: #fff;
+  font-size: 0.98rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 150ms ease;
+}
+
+.screen-select:focus-visible {
+  outline: 2px solid var(--fire-orange);
+  outline-offset: 2px;
+}
+
+.screen-select-hint {
+  color: #a8a29e;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.plan-features-list {
+  max-width: 500px;
+  padding: 16px 20px;
+  margin: 18px auto 24px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+  list-style: none;
+  text-align: left;
+}
+
+.plan-features-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  color: #c5c1bd;
+  font-size: 0.92rem;
+}
+
+.plan-features-list .feature-icon {
+  color: #ff9952;
+  font-weight: 900;
+  font-size: 1rem;
+}
+
+.plan-features-list strong {
+  color: #fff;
+}
+
+.plan-action-block {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.plan-action-block .btn-plan {
+  min-height: 52px;
+  font-size: 1.12rem;
+}
+
+.checkout-retry[hidden] { display: none; }
+
+.plan-reassurance {
+  margin: 10px 0 0;
+  color: #a8a29e;
+  font-size: 0.82rem;
+}
+
+.selection-notice {
+  margin: 10px 0 0;
+  color: #ffbf7a;
+  font-size: 0.88rem;
+}
+
+.selection-notice[hidden] { display: none; }
 
 .plans-grid {
   display: grid;
@@ -920,5 +1166,11 @@ img { max-width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+  :root { scroll-behavior: auto; }
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

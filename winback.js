@@ -25,13 +25,25 @@ function setupOfferCheckout() {
   const status = document.getElementById('campaignCheckoutStatus');
   const config = window.WINBACK || {};
   const screens = Number(config.includedScreens);
+  const paidMonths = Number(config.paidMonths);
+  const bonusMonths = Number(config.bonusMonths);
+  const accessMonths = Number(config.accessMonths);
+  const totalPriceCents = Number(config.totalPriceCents);
   const offerDetailsReady = Number.isInteger(screens) && screens >= 1 && screens <= 5 &&
+    Number.isInteger(paidMonths) && paidMonths >= 1 &&
+    Number.isInteger(bonusMonths) && bonusMonths >= 0 &&
+    accessMonths === paidMonths + bonusMonths &&
+    Number.isSafeInteger(totalPriceCents) && totalPriceCents > 0 &&
     typeof config.eligibilityText === 'string' && config.eligibilityText.trim() &&
     typeof config.accountMatchingText === 'string' && config.accountMatchingText.trim() &&
     typeof config.activationText === 'string' && config.activationText.trim() &&
     typeof config.refundTermsText === 'string' && config.refundTermsText.trim() &&
     typeof config.postTermText === 'string' && config.postTermText.trim();
-  if (!button || !config.checkoutProductId || config.checkoutVerified !== true || !offerDetailsReady) return false;
+  if (!button) return false;
+  button.disabled = true;
+  button.classList.remove('firestore-buy-btn');
+  for (const key of ['productId', 'currency', 'planMonths', 'screenCount', 'offer']) delete button.dataset[key];
+  if (!config.checkoutProductId || config.checkoutVerified !== true || config.serverEnforcementVerified !== true || !offerDetailsReady) return false;
 
   const screenLine = document.getElementById('campaignScreenDetail');
   const eligibilityLine = document.getElementById('campaignEligibility');
@@ -39,7 +51,17 @@ function setupOfferCheckout() {
   const activationLine = document.getElementById('campaignActivation');
   const postTermLine = document.getElementById('campaignPostTerm');
   const refundLine = document.getElementById('campaignRefundTerms');
+  const durationLine = document.getElementById('campaignDuration');
+  const priceLine = document.querySelector('#campaignPrice span');
+  const heroOffer = document.getElementById('campaignHeroOffer');
+  const totalPrice = `$${(totalPriceCents / 100).toFixed(2)}`;
+  const termDescription = bonusMonths
+    ? `${paidMonths} paid months + ${bonusMonths} bonus ${bonusMonths === 1 ? 'month' : 'months'} (${accessMonths} months total access)`
+    : `${accessMonths} ${accessMonths === 1 ? 'month' : 'months'} total access`;
   if (screenLine) screenLine.textContent = `${screens} ${screens === 1 ? 'screen' : 'screens'} included`;
+  if (durationLine) durationLine.textContent = termDescription;
+  if (priceLine) priceLine.textContent = totalPrice;
+  if (heroOffer) heroOffer.textContent = `${termDescription} · ${totalPrice} total. Review eligibility before checkout.`;
   if (eligibilityLine) eligibilityLine.textContent = config.eligibilityText;
   if (accountLine) accountLine.textContent = config.accountMatchingText;
   if (activationLine) activationLine.textContent = config.activationText;
@@ -47,16 +69,19 @@ function setupOfferCheckout() {
   if (refundLine) refundLine.textContent = config.refundTermsText;
 
   button.disabled = false;
-  button.textContent = 'Renew for 13 months · $79 total';
+  button.textContent = `Renew for ${accessMonths} ${accessMonths === 1 ? 'month' : 'months'} · ${totalPrice} total`;
   button.classList.add('firestore-buy-btn');
   button.dataset.productId = config.checkoutProductId;
-  button.dataset.offer = '13_months_79';
+  button.dataset.currency = 'USD';
+  button.dataset.planMonths = String(accessMonths);
+  button.dataset.screenCount = String(screens);
+  button.dataset.offer = config.offerKey || 'welcome_back_offer';
   if (status) status.textContent = 'Review the offer details above before continuing to checkout.';
   button.addEventListener('click', () => {
-    track('renewal_checkout_open', {
-      offer: '13_months',
-      term_months: 13,
-      price: 79,
+    track('renewal_checkout_click', {
+      offer: config.offerKey || 'welcome_back_offer',
+      term_months: accessMonths,
+      price: totalPriceCents / 100,
       currency: 'USD',
     });
   });
@@ -91,12 +116,20 @@ function setupOfferTracking() {
 }
 
 function injectStickyCta() {
+  const config = window.WINBACK || {};
+  const accessMonths = Number(config.accessMonths);
+  const totalPriceCents = Number(config.totalPriceCents);
   const sticky = document.createElement('div');
   sticky.className = 'promo-sticky';
-  sticky.innerHTML = `
-    <span class="promo-sticky-info">13 months · $79 total</span>
-    <button type="button" class="promo-sticky-cta">Renew</button>`;
-  sticky.querySelector('button').addEventListener('click', () => {
+  const offerInfo = document.createElement('span');
+  offerInfo.className = 'promo-sticky-info';
+  offerInfo.textContent = `${accessMonths} ${accessMonths === 1 ? 'month' : 'months'} · $${(totalPriceCents / 100).toFixed(2)} total`;
+  const offerButton = document.createElement('button');
+  offerButton.type = 'button';
+  offerButton.className = 'promo-sticky-cta';
+  offerButton.textContent = 'Renew';
+  sticky.append(offerInfo, offerButton);
+  offerButton.addEventListener('click', () => {
     document.getElementById('btn-winback')?.click();
   });
   document.body.appendChild(sticky);
@@ -122,8 +155,8 @@ export function maybeInjectWinbackFaq(faqGroups) {
   faqGroups.unshift({
     label: 'Returning customer offer',
     items: [{
-      q: 'Is the 13-month offer ready to buy?',
-      a: 'Not yet. Checkout is disabled while the included screen count, eligibility, and fulfillment are confirmed. Contact support if you have questions.',
+      q: 'How does the returning customer offer work?',
+      a: 'If the returning-customer offer is available, its term and full amount will be shown before checkout. Eligibility is checked during checkout. Contact support with account-specific questions.',
     }],
   });
 }
@@ -149,7 +182,12 @@ export function initWinback() {
     return;
   }
 
-  track('renewal_offer_view', { term_months: 13, price: 79, currency: 'USD' });
+  const config = window.WINBACK || {};
+  track('renewal_offer_view', {
+    term_months: Number(config.accessMonths),
+    price: Number(config.totalPriceCents) / 100,
+    currency: 'USD',
+  });
   setupOfferTracking();
   showDeadline();
   if (setupOfferCheckout()) injectStickyCta();

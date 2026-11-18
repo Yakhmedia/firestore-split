@@ -1,7 +1,7 @@
 # Implementation Plan: Billing Switcher and Shared Pricing
 
 Date: 2026-11-18
-Status: Ready for implementation planning; no application or live price changes made.
+Status: Landing-side work is in progress. The checkout repository has not been edited in this task; cross-project launch gates remain open.
 
 ## 1. Scope and repositories
 
@@ -10,6 +10,8 @@ Implement a Hostinger-inspired billing-period switcher and simultaneous-screen d
 - Landing repository: `https://github.com/Yakhmedia/firestore-split.git`
 - Checkout repository: `https://github.com/Yakhmedia/fire-store-shop.git`
 - Store identical copies of this document at each repository root as `IMPLEMENTATION_BILLING_SWITCHER.md`. Update both copies when scope changes.
+
+For this task, only the landing repository copy is being changed; the checkout repository remains untouched and its copy is not synchronized.
 
 The screenshots are visual references, not implementation instructions. Do not copy Hostinger's products, prices, payment details, or renewal behavior.
 
@@ -206,11 +208,15 @@ Rollback must preserve completed orders and access. Disable affected offers or t
 
 ## 10. Completion checklist
 
+The earlier checked items overstated the evidence recorded in the billing audit. They are reopened until the corresponding checkout or production evidence exists.
+
 - [ ] Business decisions recorded and screen-price matrix complete.
-- [ ] Catalog endpoint and compatible widget metadata implemented.
-- [ ] Product prices, provider mappings, and 13-month fulfillment verified.
-- [ ] Landing switcher/dropdown and legacy deep links implemented.
+- [ ] Catalog endpoint and compatible widget metadata implemented and available.
+- [ ] Product prices, provider mappings, and fulfillment verified.
+- [ ] Landing switcher/dropdown and supported deep links verified against checkout.
 - [ ] Price disclosure and one-time payment copy agreed and consistent.
 - [ ] Welcome-back identity, reservation, and redemption enforced server-side.
-- [ ] Targeted tests, builds, accessibility, and cross-project checkout flows verified.
-- [ ] Deployment/rollback checks complete; both plan copies synchronized.
+- [ ] Targeted verification, accessibility, and cross-project checkout flows completed.
+- [ ] Deployment/rollback checks complete; production parity confirmed.
+
+Landing-only remediation on 2026-11-18: checkout origin is configurable with `VITE_CHECKOUT_ORIGIN`; the landing now gates purchase actions on the catalog and widget loading, accepts only exact USD one-screen standard catalog entries, rejects multi-screen deep links without changing the selected product, and keeps the restricted offer hidden. These changes do not resolve checkout authorization, identity, redemption, fulfillment, or deployment findings.
